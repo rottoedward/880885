@@ -1,0 +1,60 @@
+﻿@{ 
+    string categoryP = Model;
+}
+<script>
+    $(document).ready(function () {
+        var BroAll = $(".CRUD>#BrowseAll");
+        var Cre = $(".CRUD>#OCreate");
+        var Rea = $(".CRUD>#ORead");
+        var Upd = $(".CRUD>#OUpdate");
+        var Del = $(".CRUD>#ODelete");
+
+        function BrowseAll() {
+            $("#Bodys").load("@Url.Action("Browse" + categoryP + "All", categoryP)");
+            $("#Titles").text(BroAll.text());
+        }
+
+        function OCreate() {
+            $("#Bodys").load("@Url.Action(categoryP + "Create", categoryP)");
+            $("#Titles").text(Cre.text());
+        }
+
+        function ORead() {
+            $("#Bodys").load("@Url.Action(categoryP + "Read", categoryP)");
+            $("#Titles").text(Rea.text());
+        }
+
+        function OUpdate() {
+            $("#Bodys").load("@Url.Action(categoryP + "Update", categoryP)");
+            $("#Titles").text(Upd.text());
+        }
+
+        function ODelete() {
+            $("#Bodys").load("@Url.Action(categoryP + "Delete", categoryP)");
+            $("#Titles").text(Del.text());
+        }
+
+        BroAll.click(function () {
+            BrowseAll();
+        });
+
+        Cre.click(function () {
+            OCreate();
+        });
+
+        Rea.click(function () {
+            ORead();
+        });
+
+        Upd.click(function () {
+            OUpdate();
+        });
+
+        Del.click(function () {
+            ODelete();
+        });
+
+        BrowseAll();
+    });
+</script>
+

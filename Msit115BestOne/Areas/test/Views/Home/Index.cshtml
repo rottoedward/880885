@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "電子報";
+    Layout = "~/Areas/MyMember/Views/Shared/_Layoutcreate.cshtml";
+}
+
+
+
+<br />
+
+
+<div class="form-horizontal" style="margin-top:10px; padding:5px; background-image:url('@Url.Content("~/download/Images/newsapp.jpg")');background-size:cover; background-repeat:no-repeat; background-position:center; ">
+    <h1 style="font-family:DFKai-sb;margin-left:550px">電子報<a href="~/MyCaseCenter/Home/Index" class="btn btn-info">我要寄信</a></h1>
+
+    <table class="table table-bordered" style="margin-left:300px; margin-bottom:0px; background-color:aliceblue; width:700px; ">
+        @*<thead>
+                <tr>
+                    <th>
+                        電子報
+                    </th>
+                    <th>
+                        下載
+                    </th>
+                </tr>
+            </thead>*@
+        <tbody>
+            @for (int i = 8; i >= 1; i--)
+            {
+                <tr>
+                    <td style="width:500px">
+                        <h3>
+                            @i 月份電子報**歡迎索取~
+                        </h3>
+                    </td>
+                    <td style="width:100px">
+                        @Html.ActionLink("下載", "down", "Home", new { area = "test", @class = "btn btn-primary" })
+                    </td>
+                </tr>}
+        </tbody>
+    </table>
+</div>

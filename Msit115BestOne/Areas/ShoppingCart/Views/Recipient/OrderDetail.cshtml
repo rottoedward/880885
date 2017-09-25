@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Msit115BestOne.Areas.ShoppingCart.Models.ShoppingCarts>
+@{
+    ViewBag.Title = "訂單明細";
+}
+<br />
+<br />
+<row>
+   
+</row>
+<table class="table table-bordered" id="cartTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(c => c.CaseTitle)
+            </th>
+            @*<th>@Html.DisplayNameFor(c => c.Point)</th>*@
+            <th>@Html.DisplayNameFor(c => c.Quantity)</th>
+            @*<th>@Html.DisplayNameFor(c => c.Amount)</th>*@
+        </tr>
+    </thead>
+    <tbody id="tbody1">
+        @foreach (var cart in Model)
+        {
+            <tr id="tr1">
+                <td>
+                    @Html.DisplayFor(c => cart.CaseTitle)
+                    @Html.HiddenFor(c => cart.CartID)
+                </td>
+                @*<td>@Html.DisplayFor(c => cart.Point)</td>*@
+                <td>@Html.DisplayFor(c => cart.Quantity)</td>
+                @*<td>@Html.DisplayFor(c => cart.Amount)</td>*@
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.ActionLink("確認送出", "CartDatainOrders","Recipient")
+@*<row class="text-right">
+    <h5>總計：@TempData["TotalAmount"] 點</h5>
+</row>
+<row>
+    <h5>收件人姓名：@TempData["Recipient"]</h5>
+    <h5>收件人電話：@TempData["RecipientPhone"]</h5>
+    <h5>收件人地址：@TempData["RecipientAddress"]</h5>
+</row>*@
+
+@*@Html.ActionLink*@
+<br />
+<br />
+
+
+

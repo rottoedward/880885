@@ -1,0 +1,160 @@
+﻿
+@{
+    ViewBag.Title = "其他會員";
+}
+
+@section styles{
+
+
+    <style>
+
+
+        .view {
+            width: 250px;
+            height: 250px;
+            margin: 10px;
+            float: left;
+            border: 10px solid #fff;
+            overflow: hidden;
+            position: relative;
+            text-align: center;
+            box-shadow: 1px 1px 2px #e6e6e6;
+            cursor: default;
+            background: #fff url(../images/bgimg.jpg) no-repeat center center;
+        }
+
+            .view .mask, .view .content {
+                width: 250px;
+                height: 250px;
+                position: absolute;
+                overflow: hidden;
+                top: 0;
+                left: 0;
+            }
+
+            .view img {
+                display: block;
+                position: relative;
+            }
+
+            .view h2 {
+                text-transform: uppercase;
+                color: #fff;
+                text-align: center;
+                position: relative;
+                font-size: 23px;
+                padding: 10px;
+                background: rgba(0, 0, 0, 0.8);
+                margin: 20px 0 0 0;
+            }
+
+            .view p {
+                font-family: Georgia, serif;
+                /*font-style: italic;*/
+                font-size: 17px;
+                position: relative;
+                color: #fff;
+                /*padding: 10px 20px 20px;*/
+                text-align: center;
+            }
+
+            .view a.info {
+                display: inline-block;
+                text-decoration: none;
+                padding: 7px 14px;
+                background: #000;
+                color: #fff;
+                text-transform: uppercase;
+                box-shadow: 0 0 1px #000;
+            }
+
+                .view a.info:hover {
+                    box-shadow: 0 0 5px #000;
+                }
+    </style>
+    <style>
+        .view-second img {
+            transition: all 0.2s ease-in;
+         max-height: 100%;
+         width:auto;
+        }
+
+        .view-second .mask {
+            background-color: rgba(115,146,184, 0.7);
+            width: 300px;
+            padding: 60px;
+            height: 300px;
+            opacity: 0;
+            transform: translate(265px, 145px) rotate(45deg);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .view-second h2 {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+            background: transparent;
+            margin: 20px 40px 0px 40px;
+            transform: translate(200px, -200px);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .view-second p {
+            transform: translate(-200px, 200px);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .view-second a.info {
+            transform: translate(0px, 100px);
+            transition: all 0.2s 0.1s ease-in-out;
+        }
+
+        .view-second:hover .mask {
+            opacity: 1;
+            transform: translate(-10px, -125px) rotate(45deg);
+        }
+
+        .view-second:hover h2 {
+            transform: translate(0px,0px);
+            transition-delay: 0.3s;
+        }
+
+        .view-second:hover p {
+            transform: translate(0px,0px);
+            transition-delay: 0.4s;
+        }
+
+        .view-second:hover a.info {
+            transform: translate(0px,0px);
+            transition-delay: 0.5s;
+        }
+    </style>
+
+}
+<h2>會員牆</h2>
+
+
+
+@foreach (var m in @ViewBag.othermember)
+{
+
+    <div id="div1" class="view view-second">
+
+        <img src='@Url.Action("GetOtherPhoto", "Member", new { area = "MyMember" ,id= @m.MemberID})' />
+        <div class="mask"></div>
+        <div class="content">
+            <h2>@m.NickName</h2>
+            <p>案件總數: @m.casecount</p>
+            <p>人氣總評: @m.sumpoint</p>
+            <p>我的專長: @m.MPSubClass1 </p>
+            
+            <a href="@Url.Action("OtherMemberProfile","Member",new { omid=@m.MemberID})" class="info">Profile</a>
+
+            </div>
+        </div>
+
+}
+
+
+
+
+
+

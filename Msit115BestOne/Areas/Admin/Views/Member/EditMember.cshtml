@@ -1,0 +1,134 @@
+﻿@model Msit115BestOne.Areas.Admin.Models.MemberGroup.MemberByIdViewModel
+
+@{
+    ViewBag.Title = "修改會員資料";
+}
+
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
+        <div class="content-header">
+        </div>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <!-- left column -->
+            <div class="col-md-6">
+                <!-- general form elements -->
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <h3 class="box-title">會員修改</h3>
+                    </div><!-- /.box-header -->
+                    <!-- form start -->
+                    @using (Html.BeginForm("EditMember", "Member", FormMethod.Post, new { role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="box-body">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.MemberID, htmlAttributes: new { @class = "control-label" })
+                                <div>
+                                    @Html.EditorFor(model => model.MemberID, new { htmlAttributes = new { @class = "form-control", ReadOnly = "ReadOnly" } })
+                                    @Html.ValidationMessageFor(model => model.MemberID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.MAccount, htmlAttributes: new { @class = "control-label" })
+                                <div>
+                                    @Html.EditorFor(model => model.MAccount, new { htmlAttributes = new { @class = "form-control", ReadOnly = "ReadOnly" } })
+                                    @Html.ValidationMessageFor(model => model.MAccount, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.MPassword, htmlAttributes: new { @class = "control-label" })
+                                <div>
+                                    @Html.EditorFor(model => model.MPassword, new { htmlAttributes = new { @class = "form-control", type = "password" } })
+                                    @Html.ValidationMessageFor(model => model.MPassword, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Birthday, htmlAttributes: new { @class = "control-label" })
+                                <div>
+                                    <input class="form-control" type="date" id="Birthday" name="Birthday" value="@Model.Birthday.Value.ToString("yyyy-MM-dd")" />
+                                    @Html.ValidationMessageFor(model => model.Birthday, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label" })
+                                <div>
+                                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+                                <div>
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.RegionID, htmlAttributes: new { @class = "control-label" })
+                                <div>
+                                    @Html.DropDownList("City", (List<SelectListItem>)ViewBag.SelectCity, new { @class = "form-control" })
+                                    @Html.DropDownList("RegionID", (List<SelectListItem>)ViewBag.SelectRegion, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.RegionID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label" })
+                                <div>
+                                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">修改</button>
+                        </div>
+                    }
+                </div><!-- /.box -->
+                <!-- Form Element sizes -->
+            </div><!--/.col (left) -->
+            <div class="col-md-3"></div>
+        </div>   <!-- /.row -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+
+@section scripts{
+    <script src="~/Areas/Admin/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Areas/Admin/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        $(function()
+        {
+            $('#City').change(function () {
+                ChangeCountyOptions();
+            });
+        });
+
+        function ChangeCountyOptions()
+        {
+            var selectedCityId = $.trim($('#City option:selected').val());
+                SetRegionIDEmpty();
+                $.ajax(
+                {
+                    url: "@Url.Action("GetRegionByCityAll","Member")",
+                    data: { cityId: selectedCityId },
+                    type: 'get',
+                    cache: false,
+                    async: false,
+                    dataType: 'html',
+                    success: function (data)
+                    {
+                        if (data.length > 0)
+                        {
+                            $('#RegionID').append(data);
+                        }
+                    }
+                });
+        }
+
+        function SetRegionIDEmpty() {
+            $('#RegionID').empty();
+            $('#RegionID').append($('<option></option>').val('').text('請選擇'));
+        }
+    </script>
+}

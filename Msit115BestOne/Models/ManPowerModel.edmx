@@ -1,0 +1,1799 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ManPowerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdminArticle">
+          <Key>
+            <PropertyRef Name="AdminArticleID" />
+          </Key>
+          <Property Name="AdminArticleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdminID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AdminArticleContent" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AdminArticleTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Administrator">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Apassword" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Authority" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AdminLog">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="AdminName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SaveData" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Data_Action" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Orignal_Page" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ActionName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ControllersName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Advertisement">
+          <Key>
+            <PropertyRef Name="AdID" />
+          </Key>
+          <Property Name="AdID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdContent" Type="nvarchar(max)" />
+          <Property Name="ImageID" Type="int" />
+        </EntityType>
+        <EntityType Name="Board">
+          <Key>
+            <PropertyRef Name="BoardID" />
+          </Key>
+          <Property Name="BoardID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StartDateTime" Type="datetime" Nullable="false" />
+          <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="CaseTitle" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CaseContent" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="CartID" />
+          </Key>
+          <Property Name="CartID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShoppingCartID" Type="int" />
+          <Property Name="CaseID" Type="int" Nullable="false" />
+          <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="Point" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="Recipient" Type="nvarchar" MaxLength="50" />
+          <Property Name="RecipientPhone" Type="int" />
+          <Property Name="RecipientAddress" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Cases">
+          <Key>
+            <PropertyRef Name="CaseID" />
+          </Key>
+          <Property Name="CaseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StartDateTime" Type="datetime" Nullable="false" />
+          <Property Name="EndDateTime" Type="datetime" />
+          <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="CaseTitle" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CaseContent" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Location" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Recommendation" Type="int" />
+          <Property Name="StatusID" Type="int" Nullable="false" />
+          <Property Name="RegionID" Type="int" Nullable="false" />
+          <Property Name="Contact" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="CaseStatus">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusName" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Chat">
+          <Key>
+            <PropertyRef Name="MChatID" />
+          </Key>
+          <Property Name="MChatID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="MChatRoomID" Type="int" Nullable="false" />
+          <Property Name="MChat" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MDate" Type="datetime" Nullable="false" />
+          <Property Name="DeleteChat" Type="bit" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Content">
+          <Key>
+            <PropertyRef Name="ContentID" />
+          </Key>
+          <Property Name="ContentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CaseID" Type="int" Nullable="false" />
+          <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="MessageContent" Type="nvarchar(max)" />
+          <Property Name="MessageDateTime" Type="datetime" Nullable="false" />
+          <Property Name="AuthorRepeat" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Evaluation">
+          <Key>
+            <PropertyRef Name="EvaID" />
+          </Key>
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="Evaluation" Type="int" Nullable="false" />
+          <Property Name="EvaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Evacontent" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="GdsSubClass">
+          <Key>
+            <PropertyRef Name="GdsSubClassID" />
+          </Key>
+          <Property Name="GdsSubClassID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GdsClassID" Type="int" Nullable="false" />
+          <Property Name="GdsSubClass" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Goods">
+          <Key>
+            <PropertyRef Name="GdsID" />
+          </Key>
+          <Property Name="GdsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GdsName" Type="nvarchar" MaxLength="50" />
+          <Property Name="GdsCount" Type="int" />
+          <Property Name="GdsPoint" Type="int" />
+          <Property Name="GdsDeadline" Type="datetime" Nullable="false" />
+          <Property Name="GdsSubClassID" Type="int" />
+          <Property Name="CaseID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GoodsClass">
+          <Key>
+            <PropertyRef Name="GdsClassID" />
+          </Key>
+          <Property Name="GdsClassID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GdsClass" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ManPower">
+          <Key>
+            <PropertyRef Name="MPID" />
+          </Key>
+          <Property Name="MPID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MPName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MPNeedCount" Type="int" Nullable="false" />
+          <Property Name="MPActuralCount" Type="int" Nullable="false" />
+          <Property Name="MPPoint" Type="int" Nullable="false" />
+          <Property Name="MPTime" Type="datetime" Nullable="false" />
+          <Property Name="CaseID" Type="int" Nullable="false" />
+          <Property Name="MPSubClassID" Type="int" />
+          <Property Name="MPDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MC_Match">
+          <Key>
+            <PropertyRef Name="MemberID" />
+            <PropertyRef Name="CaseID" />
+          </Key>
+          <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="CaseID" Type="int" Nullable="false" />
+          <Property Name="Match" Type="int" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MAccount" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MPassword" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Stage" Type="int" Nullable="false" />
+          <Property Name="EXP" Type="int" Nullable="false" />
+          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="PointCount" Type="int" Nullable="false" />
+          <Property Name="RegionID" Type="int" Nullable="false" />
+          <Property Name="NickName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MemberStage">
+          <Key>
+            <PropertyRef Name="Stage" />
+          </Key>
+          <Property Name="Stage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RequiredEXP" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MPClass">
+          <Key>
+            <PropertyRef Name="MPClassID" />
+          </Key>
+          <Property Name="MPClassID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MPClass" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MPSCList">
+          <Key>
+            <PropertyRef Name="MPSubClassID" />
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MPSubClassID" Type="int" Nullable="false" />
+          <Property Name="MemberID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MPSubClass">
+          <Key>
+            <PropertyRef Name="MPSubClassID" />
+          </Key>
+          <Property Name="MPSubClassID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MPClassID" Type="int" Nullable="false" />
+          <Property Name="MPSubClass" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CaseID" Type="int" />
+          <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="ShoppingCartID" Type="int" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Point" Type="int" Nullable="false" />
+          <Property Name="OrderDate" Type="datetime" Nullable="false" />
+          <Property Name="FinishedDate" Type="datetime" />
+          <Property Name="OrderStatusID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderStatus">
+          <Key>
+            <PropertyRef Name="OrderStatusID" />
+          </Key>
+          <Property Name="OrderStatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Picture">
+          <Key>
+            <PropertyRef Name="ImageID" />
+          </Key>
+          <Property Name="ImageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Images" Type="varbinary(max)" Nullable="false" />
+          <Property Name="CaseID" Type="int" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="RegionID" />
+          </Key>
+          <Property Name="RegionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CityID" Type="int" Nullable="false" />
+          <Property Name="RegionName" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_AdminArticle_Administrator">
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="1" />
+          <End Role="AdminArticle" Type="Self.AdminArticle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administrator">
+              <PropertyRef Name="AdminID" />
+            </Principal>
+            <Dependent Role="AdminArticle">
+              <PropertyRef Name="AdminID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Advertisement_Picture">
+          <End Role="Picture" Type="Self.Picture" Multiplicity="0..1" />
+          <End Role="Advertisement" Type="Self.Advertisement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Picture">
+              <PropertyRef Name="ImageID" />
+            </Principal>
+            <Dependent Role="Advertisement">
+              <PropertyRef Name="ImageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_Member">
+          <End Role="Member" Type="Self.Member" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cases" Type="Self.Cases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Board_Member">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="Board" Type="Self.Board" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Board">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cart_Case">
+          <End Role="Cases" Type="Self.Cases" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cases">
+              <PropertyRef Name="CaseID" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="CaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Case_CaseStatus">
+          <End Role="CaseStatus" Type="Self.CaseStatus" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cases" Type="Self.Cases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CaseStatus">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chat_Member">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="Chat" Type="Self.Chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Chat">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Content_Article">
+          <End Role="Cases" Type="Self.Cases" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Content" Type="Self.Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cases">
+              <PropertyRef Name="CaseID" />
+            </Principal>
+            <Dependent Role="Content">
+              <PropertyRef Name="CaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Content_Member">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="Content" Type="Self.Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Content">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evaluation_Order1">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Evaluation" Type="Self.Evaluation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="Evaluation">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GdsSubClass_GoodsClass">
+          <End Role="GoodsClass" Type="Self.GoodsClass" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GdsSubClass" Type="Self.GdsSubClass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GoodsClass">
+              <PropertyRef Name="GdsClassID" />
+            </Principal>
+            <Dependent Role="GdsSubClass">
+              <PropertyRef Name="GdsClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Goods_Case">
+          <End Role="Cases" Type="Self.Cases" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Goods" Type="Self.Goods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cases">
+              <PropertyRef Name="CaseID" />
+            </Principal>
+            <Dependent Role="Goods">
+              <PropertyRef Name="CaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Goods_GdsSubClass">
+          <End Role="GdsSubClass" Type="Self.GdsSubClass" Multiplicity="0..1" />
+          <End Role="Goods" Type="Self.Goods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GdsSubClass">
+              <PropertyRef Name="GdsSubClassID" />
+            </Principal>
+            <Dependent Role="Goods">
+              <PropertyRef Name="GdsSubClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManPower_Case">
+          <End Role="Cases" Type="Self.Cases" Multiplicity="1" />
+          <End Role="ManPower" Type="Self.ManPower" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cases">
+              <PropertyRef Name="CaseID" />
+            </Principal>
+            <Dependent Role="ManPower">
+              <PropertyRef Name="CaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManPower_MPSubClass">
+          <End Role="MPSubClass" Type="Self.MPSubClass" Multiplicity="0..1" />
+          <End Role="ManPower" Type="Self.ManPower" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MPSubClass">
+              <PropertyRef Name="MPSubClassID" />
+            </Principal>
+            <Dependent Role="ManPower">
+              <PropertyRef Name="MPSubClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MC_Match_Case">
+          <End Role="Cases" Type="Self.Cases" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="MC_Match" Type="Self.MC_Match" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cases">
+              <PropertyRef Name="CaseID" />
+            </Principal>
+            <Dependent Role="MC_Match">
+              <PropertyRef Name="CaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Member_MemberStage">
+          <End Role="MemberStage" Type="Self.MemberStage" Multiplicity="1" />
+          <End Role="Member" Type="Self.Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberStage">
+              <PropertyRef Name="Stage" />
+            </Principal>
+            <Dependent Role="Member">
+              <PropertyRef Name="Stage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Member_Region">
+          <End Role="Region" Type="Self.Region" Multiplicity="1" />
+          <End Role="Member" Type="Self.Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="RegionID" />
+            </Principal>
+            <Dependent Role="Member">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MPSCList_MPSubClass">
+          <End Role="MPSubClass" Type="Self.MPSubClass" Multiplicity="1" />
+          <End Role="MPSCList" Type="Self.MPSCList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MPSubClass">
+              <PropertyRef Name="MPSubClassID" />
+            </Principal>
+            <Dependent Role="MPSCList">
+              <PropertyRef Name="MPSubClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MPSubClass_MPClass">
+          <End Role="MPClass" Type="Self.MPClass" Multiplicity="1" />
+          <End Role="MPSubClass" Type="Self.MPSubClass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MPClass">
+              <PropertyRef Name="MPClassID" />
+            </Principal>
+            <Dependent Role="MPSubClass">
+              <PropertyRef Name="MPClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Case">
+          <End Role="Cases" Type="Self.Cases" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cases">
+              <PropertyRef Name="CaseID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="ShoppingCartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_OrderStatus">
+          <End Role="OrderStatus" Type="Self.OrderStatus" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderStatus">
+              <PropertyRef Name="OrderStatusID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="OrderStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Picture_Case">
+          <End Role="Cases" Type="Self.Cases" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Picture" Type="Self.Picture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cases">
+              <PropertyRef Name="CaseID" />
+            </Principal>
+            <Dependent Role="Picture">
+              <PropertyRef Name="CaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Region_City">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Region" Type="Self.Region" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="Region">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ManPowerModelStoreContainer">
+          <EntitySet Name="AdminArticle" EntityType="Self.AdminArticle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Administrator" EntityType="Self.Administrator" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdminLog" EntityType="Self.AdminLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Advertisement" EntityType="Self.Advertisement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Board" EntityType="Self.Board" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cases" EntityType="Self.Cases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CaseStatus" EntityType="Self.CaseStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Chat" EntityType="Self.Chat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Content" EntityType="Self.Content" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Evaluation" EntityType="Self.Evaluation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GdsSubClass" EntityType="Self.GdsSubClass" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Goods" EntityType="Self.Goods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GoodsClass" EntityType="Self.GoodsClass" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ManPower" EntityType="Self.ManPower" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MC_Match" EntityType="Self.MC_Match" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MemberStage" EntityType="Self.MemberStage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MPClass" EntityType="Self.MPClass" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MPSCList" EntityType="Self.MPSCList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MPSubClass" EntityType="Self.MPSubClass" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderStatus" EntityType="Self.OrderStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Picture" EntityType="Self.Picture" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AdminArticle_Administrator" Association="Self.FK_AdminArticle_Administrator">
+            <End Role="Administrator" EntitySet="Administrator" />
+            <End Role="AdminArticle" EntitySet="AdminArticle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Advertisement_Picture" Association="Self.FK_Advertisement_Picture">
+            <End Role="Picture" EntitySet="Picture" />
+            <End Role="Advertisement" EntitySet="Advertisement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_Member" Association="Self.FK_Article_Member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Board_Member" Association="Self.FK_Board_Member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Board" EntitySet="Board" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cart_Case" Association="Self.FK_Cart_Case">
+            <End Role="Cases" EntitySet="Cases" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Case_CaseStatus" Association="Self.FK_Case_CaseStatus">
+            <End Role="CaseStatus" EntitySet="CaseStatus" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chat_Member" Association="Self.FK_Chat_Member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Chat" EntitySet="Chat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Content_Article" Association="Self.FK_Content_Article">
+            <End Role="Cases" EntitySet="Cases" />
+            <End Role="Content" EntitySet="Content" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Content_Member" Association="Self.FK_Content_Member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Content" EntitySet="Content" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evaluation_Order1" Association="Self.FK_Evaluation_Order1">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Evaluation" EntitySet="Evaluation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GdsSubClass_GoodsClass" Association="Self.FK_GdsSubClass_GoodsClass">
+            <End Role="GoodsClass" EntitySet="GoodsClass" />
+            <End Role="GdsSubClass" EntitySet="GdsSubClass" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Goods_Case" Association="Self.FK_Goods_Case">
+            <End Role="Cases" EntitySet="Cases" />
+            <End Role="Goods" EntitySet="Goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Goods_GdsSubClass" Association="Self.FK_Goods_GdsSubClass">
+            <End Role="GdsSubClass" EntitySet="GdsSubClass" />
+            <End Role="Goods" EntitySet="Goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManPower_Case" Association="Self.FK_ManPower_Case">
+            <End Role="Cases" EntitySet="Cases" />
+            <End Role="ManPower" EntitySet="ManPower" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManPower_MPSubClass" Association="Self.FK_ManPower_MPSubClass">
+            <End Role="MPSubClass" EntitySet="MPSubClass" />
+            <End Role="ManPower" EntitySet="ManPower" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MC_Match_Case" Association="Self.FK_MC_Match_Case">
+            <End Role="Cases" EntitySet="Cases" />
+            <End Role="MC_Match" EntitySet="MC_Match" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Member_MemberStage" Association="Self.FK_Member_MemberStage">
+            <End Role="MemberStage" EntitySet="MemberStage" />
+            <End Role="Member" EntitySet="Member" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Member_Region" Association="Self.FK_Member_Region">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="Member" EntitySet="Member" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MPSCList_MPSubClass" Association="Self.FK_MPSCList_MPSubClass">
+            <End Role="MPSubClass" EntitySet="MPSubClass" />
+            <End Role="MPSCList" EntitySet="MPSCList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MPSubClass_MPClass" Association="Self.FK_MPSubClass_MPClass">
+            <End Role="MPClass" EntitySet="MPClass" />
+            <End Role="MPSubClass" EntitySet="MPSubClass" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Case" Association="Self.FK_Order_Case">
+            <End Role="Cases" EntitySet="Cases" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_OrderStatus" Association="Self.FK_Order_OrderStatus">
+            <End Role="OrderStatus" EntitySet="OrderStatus" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Picture_Case" Association="Self.FK_Picture_Case">
+            <End Role="Cases" EntitySet="Cases" />
+            <End Role="Picture" EntitySet="Picture" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Region_City" Association="Self.FK_Region_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Region" EntitySet="Region" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ManPowerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AdminArticle">
+          <Key>
+            <PropertyRef Name="AdminArticleID" />
+          </Key>
+          <Property Name="AdminArticleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdminID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AdminArticleContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AdminArticleTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Administrator" Relationship="Self.FK_AdminArticle_Administrator" FromRole="AdminArticle" ToRole="Administrator" />
+        </EntityType>
+        <EntityType Name="Administrator">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Authority" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="AdminArticle" Relationship="Self.FK_AdminArticle_Administrator" FromRole="Administrator" ToRole="AdminArticle" />
+        </EntityType>
+        <EntityType Name="Advertisement">
+          <Key>
+            <PropertyRef Name="AdID" />
+          </Key>
+          <Property Name="AdID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ImageID" Type="Int32" />
+          <NavigationProperty Name="Picture" Relationship="Self.FK_Advertisement_Picture" FromRole="Advertisement" ToRole="Picture" />
+        </EntityType>
+        <EntityType Name="Board">
+          <Key>
+            <PropertyRef Name="BoardID" />
+          </Key>
+          <Property Name="BoardID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StartDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="CaseTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CaseContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Member" Relationship="Self.FK_Board_Member" FromRole="Board" ToRole="Member" />
+        </EntityType>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="CartID" />
+          </Key>
+          <Property Name="CartID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShoppingCartID" Type="Int32" />
+          <Property Name="CaseID" Type="Int32" Nullable="false" />
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="Point" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="Recipient" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RecipientPhone" Type="Int32" />
+          <Property Name="RecipientAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cases" Relationship="Self.FK_Cart_Case" FromRole="Cart" ToRole="Cases" />
+        </EntityType>
+        <EntityType Name="Cases">
+          <Key>
+            <PropertyRef Name="CaseID" />
+          </Key>
+          <Property Name="CaseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StartDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDateTime" Type="DateTime" Precision="3" />
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="CaseTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CaseContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Recommendation" Type="Int32" />
+          <Property Name="StatusID" Type="Int32" Nullable="false" />
+          <Property Name="RegionID" Type="Int32" Nullable="false" />
+          <Property Name="Contact" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cart" Relationship="Self.FK_Cart_Case" FromRole="Cases" ToRole="Cart" />
+          <NavigationProperty Name="Member" Relationship="Self.FK_Article_Member" FromRole="Cases" ToRole="Member" />
+          <NavigationProperty Name="CaseStatus" Relationship="Self.FK_Case_CaseStatus" FromRole="Cases" ToRole="CaseStatus" />
+          <NavigationProperty Name="Content" Relationship="Self.FK_Content_Article" FromRole="Cases" ToRole="Content" />
+          <NavigationProperty Name="Goods" Relationship="Self.FK_Goods_Case" FromRole="Cases" ToRole="Goods" />
+          <NavigationProperty Name="ManPower" Relationship="Self.FK_ManPower_Case" FromRole="Cases" ToRole="ManPower" />
+          <NavigationProperty Name="MC_Match" Relationship="Self.FK_MC_Match_Case" FromRole="Cases" ToRole="MC_Match" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Case" FromRole="Cases" ToRole="Orders" />
+          <NavigationProperty Name="Picture" Relationship="Self.FK_Picture_Case" FromRole="Cases" ToRole="Picture" />
+        </EntityType>
+        <EntityType Name="CaseStatus">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Cases" Relationship="Self.FK_Case_CaseStatus" FromRole="CaseStatus" ToRole="Cases" />
+        </EntityType>
+        <EntityType Name="Chat">
+          <Key>
+            <PropertyRef Name="MChatID" />
+          </Key>
+          <Property Name="MChatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="MChatRoomID" Type="Int32" Nullable="false" />
+          <Property Name="MChat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DeleteChat" Type="Boolean" />
+          <NavigationProperty Name="Member" Relationship="Self.FK_Chat_Member" FromRole="Chat" ToRole="Member" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityName" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Region" Relationship="Self.FK_Region_City" FromRole="City" ToRole="Region" />
+        </EntityType>
+        <EntityType Name="Content">
+          <Key>
+            <PropertyRef Name="ContentID" />
+          </Key>
+          <Property Name="ContentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CaseID" Type="Int32" Nullable="false" />
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="MessageContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MessageDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AuthorRepeat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cases" Relationship="Self.FK_Content_Article" FromRole="Content" ToRole="Cases" />
+          <NavigationProperty Name="Member" Relationship="Self.FK_Content_Member" FromRole="Content" ToRole="Member" />
+        </EntityType>
+        <EntityType Name="Evaluation">
+          <Key>
+            <PropertyRef Name="EvaID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="Evaluation1" Type="Int32" Nullable="false" />
+          <Property Name="EvaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Evacontent" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Evaluation_Order1" FromRole="Evaluation" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="GdsSubClass">
+          <Key>
+            <PropertyRef Name="GdsSubClassID" />
+          </Key>
+          <Property Name="GdsSubClassID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GdsClassID" Type="Int32" Nullable="false" />
+          <Property Name="GdsSubClass1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="GoodsClass" Relationship="Self.FK_GdsSubClass_GoodsClass" FromRole="GdsSubClass" ToRole="GoodsClass" />
+          <NavigationProperty Name="Goods" Relationship="Self.FK_Goods_GdsSubClass" FromRole="GdsSubClass" ToRole="Goods" />
+        </EntityType>
+        <EntityType Name="Goods">
+          <Key>
+            <PropertyRef Name="GdsID" />
+          </Key>
+          <Property Name="GdsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GdsName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GdsCount" Type="Int32" />
+          <Property Name="GdsPoint" Type="Int32" />
+          <Property Name="GdsDeadline" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="GdsSubClassID" Type="Int32" />
+          <Property Name="CaseID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cases" Relationship="Self.FK_Goods_Case" FromRole="Goods" ToRole="Cases" />
+          <NavigationProperty Name="GdsSubClass" Relationship="Self.FK_Goods_GdsSubClass" FromRole="Goods" ToRole="GdsSubClass" />
+        </EntityType>
+        <EntityType Name="GoodsClass">
+          <Key>
+            <PropertyRef Name="GdsClassID" />
+          </Key>
+          <Property Name="GdsClassID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GdsClass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="GdsSubClass" Relationship="Self.FK_GdsSubClass_GoodsClass" FromRole="GoodsClass" ToRole="GdsSubClass" />
+        </EntityType>
+        <EntityType Name="ManPower">
+          <Key>
+            <PropertyRef Name="MPID" />
+          </Key>
+          <Property Name="MPID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MPName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MPNeedCount" Type="Int32" Nullable="false" />
+          <Property Name="MPActuralCount" Type="Int32" Nullable="false" />
+          <Property Name="MPPoint" Type="Int32" Nullable="false" />
+          <Property Name="MPTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CaseID" Type="Int32" Nullable="false" />
+          <Property Name="MPSubClassID" Type="Int32" />
+          <Property Name="MPDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Cases" Relationship="Self.FK_ManPower_Case" FromRole="ManPower" ToRole="Cases" />
+          <NavigationProperty Name="MPSubClass" Relationship="Self.FK_ManPower_MPSubClass" FromRole="ManPower" ToRole="MPSubClass" />
+        </EntityType>
+        <EntityType Name="MC_Match">
+          <Key>
+            <PropertyRef Name="MemberID" />
+            <PropertyRef Name="CaseID" />
+          </Key>
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="CaseID" Type="Int32" Nullable="false" />
+          <Property Name="Match" Type="Int32" />
+          <NavigationProperty Name="Cases" Relationship="Self.FK_MC_Match_Case" FromRole="MC_Match" ToRole="Cases" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Stage" Type="Int32" Nullable="false" />
+          <Property Name="EXP" Type="Int32" Nullable="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="PointCount" Type="Int32" Nullable="false" />
+          <Property Name="RegionID" Type="Int32" Nullable="false" />
+          <Property Name="NickName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Board" Relationship="Self.FK_Board_Member" FromRole="Member" ToRole="Board" />
+          <NavigationProperty Name="Cases" Relationship="Self.FK_Article_Member" FromRole="Member" ToRole="Cases" />
+          <NavigationProperty Name="Chat" Relationship="Self.FK_Chat_Member" FromRole="Member" ToRole="Chat" />
+          <NavigationProperty Name="Content" Relationship="Self.FK_Content_Member" FromRole="Member" ToRole="Content" />
+          <NavigationProperty Name="MemberStage" Relationship="Self.FK_Member_MemberStage" FromRole="Member" ToRole="MemberStage" />
+          <NavigationProperty Name="Region" Relationship="Self.FK_Member_Region" FromRole="Member" ToRole="Region" />
+        </EntityType>
+        <EntityType Name="MemberStage">
+          <Key>
+            <PropertyRef Name="Stage" />
+          </Key>
+          <Property Name="Stage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RequiredEXP" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Member" Relationship="Self.FK_Member_MemberStage" FromRole="MemberStage" ToRole="Member" />
+        </EntityType>
+        <EntityType Name="MPClass">
+          <Key>
+            <PropertyRef Name="MPClassID" />
+          </Key>
+          <Property Name="MPClassID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MPClass1" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="MPSubClass" Relationship="Self.FK_MPSubClass_MPClass" FromRole="MPClass" ToRole="MPSubClass" />
+        </EntityType>
+        <EntityType Name="MPSCList">
+          <Key>
+            <PropertyRef Name="MPSubClassID" />
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MPSubClassID" Type="Int32" Nullable="false" />
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MPSubClass" Relationship="Self.FK_MPSCList_MPSubClass" FromRole="MPSCList" ToRole="MPSubClass" />
+        </EntityType>
+        <EntityType Name="MPSubClass">
+          <Key>
+            <PropertyRef Name="MPSubClassID" />
+          </Key>
+          <Property Name="MPSubClassID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MPClassID" Type="Int32" Nullable="false" />
+          <Property Name="MPSubClass1" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ManPower" Relationship="Self.FK_ManPower_MPSubClass" FromRole="MPSubClass" ToRole="ManPower" />
+          <NavigationProperty Name="MPClass" Relationship="Self.FK_MPSubClass_MPClass" FromRole="MPSubClass" ToRole="MPClass" />
+          <NavigationProperty Name="MPSCList" Relationship="Self.FK_MPSCList_MPSubClass" FromRole="MPSubClass" ToRole="MPSCList" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CaseID" Type="Int32" />
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="ShoppingCartID" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Point" Type="Int32" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FinishedDate" Type="DateTime" Precision="3" />
+          <Property Name="OrderStatusID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cases" Relationship="Self.FK_Order_Case" FromRole="Orders" ToRole="Cases" />
+          <NavigationProperty Name="Evaluation" Relationship="Self.FK_Evaluation_Order1" FromRole="Orders" ToRole="Evaluation" />
+          <NavigationProperty Name="OrderStatus" Relationship="Self.FK_Order_OrderStatus" FromRole="Orders" ToRole="OrderStatus" />
+        </EntityType>
+        <EntityType Name="OrderStatus">
+          <Key>
+            <PropertyRef Name="OrderStatusID" />
+          </Key>
+          <Property Name="OrderStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderStatus1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_OrderStatus" FromRole="OrderStatus" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Picture">
+          <Key>
+            <PropertyRef Name="ImageID" />
+          </Key>
+          <Property Name="ImageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Images" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="CaseID" Type="Int32" />
+          <NavigationProperty Name="Advertisement" Relationship="Self.FK_Advertisement_Picture" FromRole="Picture" ToRole="Advertisement" />
+          <NavigationProperty Name="Cases" Relationship="Self.FK_Picture_Case" FromRole="Picture" ToRole="Cases" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="RegionID" />
+          </Key>
+          <Property Name="RegionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityID" Type="Int32" Nullable="false" />
+          <Property Name="RegionName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="Self.FK_Region_City" FromRole="Region" ToRole="City" />
+          <NavigationProperty Name="Member" Relationship="Self.FK_Member_Region" FromRole="Region" ToRole="Member" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_AdminArticle_Administrator">
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="1" />
+          <End Role="AdminArticle" Type="Self.AdminArticle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administrator">
+              <PropertyRef Name="AdminID" />
+            </Principal>
+            <Dependent Role="AdminArticle">
+              <PropertyRef Name="AdminID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Advertisement_Picture">
+          <End Role="Picture" Type="Self.Picture" Multiplicity="0..1" />
+          <End Role="Advertisement" Type="Self.Advertisement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Picture">
+              <PropertyRef Name="ImageID" />
+            </Principal>
+            <Dependent Role="Advertisement">
+              <PropertyRef Name="ImageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Board_Member">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="Board" Type="Self.Board" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Board">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cart_Case">
+          <End Role="Cases" Type="Self.Cases" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cases">
+              <PropertyRef Name="CaseID" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="CaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_Member">
+          <End Role="Member" Type="Self.Member" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cases" Type="Self.Cases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Case_CaseStatus">
+          <End Role="CaseStatus" Type="Self.CaseStatus" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cases" Type="Self.Cases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CaseStatus">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Content_Article">
+          <End Role="Cases" Type="Self.Cases" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Content" Type="Self.Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cases">
+              <PropertyRef Name="CaseID" />
+            </Principal>
+            <Dependent Role="Content">
+              <PropertyRef Name="CaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Goods_Case">
+          <End Role="Cases" Type="Self.Cases" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Goods" Type="Self.Goods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cases">
+              <PropertyRef Name="CaseID" />
+            </Principal>
+            <Dependent Role="Goods">
+              <PropertyRef Name="CaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManPower_Case">
+          <End Role="Cases" Type="Self.Cases" Multiplicity="1" />
+          <End Role="ManPower" Type="Self.ManPower" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cases">
+              <PropertyRef Name="CaseID" />
+            </Principal>
+            <Dependent Role="ManPower">
+              <PropertyRef Name="CaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MC_Match_Case">
+          <End Role="Cases" Type="Self.Cases" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="MC_Match" Type="Self.MC_Match" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cases">
+              <PropertyRef Name="CaseID" />
+            </Principal>
+            <Dependent Role="MC_Match">
+              <PropertyRef Name="CaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Case">
+          <End Role="Cases" Type="Self.Cases" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cases">
+              <PropertyRef Name="CaseID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="ShoppingCartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Picture_Case">
+          <End Role="Cases" Type="Self.Cases" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Picture" Type="Self.Picture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cases">
+              <PropertyRef Name="CaseID" />
+            </Principal>
+            <Dependent Role="Picture">
+              <PropertyRef Name="CaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chat_Member">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="Chat" Type="Self.Chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Chat">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Region_City">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Region" Type="Self.Region" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="Region">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Content_Member">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="Content" Type="Self.Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Content">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evaluation_Order1">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Evaluation" Type="Self.Evaluation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="Evaluation">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GdsSubClass_GoodsClass">
+          <End Role="GoodsClass" Type="Self.GoodsClass" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GdsSubClass" Type="Self.GdsSubClass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GoodsClass">
+              <PropertyRef Name="GdsClassID" />
+            </Principal>
+            <Dependent Role="GdsSubClass">
+              <PropertyRef Name="GdsClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Goods_GdsSubClass">
+          <End Role="GdsSubClass" Type="Self.GdsSubClass" Multiplicity="0..1" />
+          <End Role="Goods" Type="Self.Goods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GdsSubClass">
+              <PropertyRef Name="GdsSubClassID" />
+            </Principal>
+            <Dependent Role="Goods">
+              <PropertyRef Name="GdsSubClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManPower_MPSubClass">
+          <End Role="MPSubClass" Type="Self.MPSubClass" Multiplicity="0..1" />
+          <End Role="ManPower" Type="Self.ManPower" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MPSubClass">
+              <PropertyRef Name="MPSubClassID" />
+            </Principal>
+            <Dependent Role="ManPower">
+              <PropertyRef Name="MPSubClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Member_MemberStage">
+          <End Role="MemberStage" Type="Self.MemberStage" Multiplicity="1" />
+          <End Role="Member" Type="Self.Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberStage">
+              <PropertyRef Name="Stage" />
+            </Principal>
+            <Dependent Role="Member">
+              <PropertyRef Name="Stage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Member_Region">
+          <End Role="Region" Type="Self.Region" Multiplicity="1" />
+          <End Role="Member" Type="Self.Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="RegionID" />
+            </Principal>
+            <Dependent Role="Member">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MPSubClass_MPClass">
+          <End Role="MPClass" Type="Self.MPClass" Multiplicity="1" />
+          <End Role="MPSubClass" Type="Self.MPSubClass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MPClass">
+              <PropertyRef Name="MPClassID" />
+            </Principal>
+            <Dependent Role="MPSubClass">
+              <PropertyRef Name="MPClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MPSCList_MPSubClass">
+          <End Role="MPSubClass" Type="Self.MPSubClass" Multiplicity="1" />
+          <End Role="MPSCList" Type="Self.MPSCList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MPSubClass">
+              <PropertyRef Name="MPSubClassID" />
+            </Principal>
+            <Dependent Role="MPSCList">
+              <PropertyRef Name="MPSubClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_OrderStatus">
+          <End Role="OrderStatus" Type="Self.OrderStatus" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderStatus">
+              <PropertyRef Name="OrderStatusID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="OrderStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ManPowerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdminArticle" EntityType="Self.AdminArticle" />
+          <EntitySet Name="Administrator" EntityType="Self.Administrator" />
+          <EntitySet Name="Advertisement" EntityType="Self.Advertisement" />
+          <EntitySet Name="Board" EntityType="Self.Board" />
+          <EntitySet Name="Cart" EntityType="Self.Cart" />
+          <EntitySet Name="Cases" EntityType="Self.Cases" />
+          <EntitySet Name="CaseStatus" EntityType="Self.CaseStatus" />
+          <EntitySet Name="Chat" EntityType="Self.Chat" />
+          <EntitySet Name="City" EntityType="Self.City" />
+          <EntitySet Name="Content" EntityType="Self.Content" />
+          <EntitySet Name="Evaluation" EntityType="Self.Evaluation" />
+          <EntitySet Name="GdsSubClass" EntityType="Self.GdsSubClass" />
+          <EntitySet Name="Goods" EntityType="Self.Goods" />
+          <EntitySet Name="GoodsClass" EntityType="Self.GoodsClass" />
+          <EntitySet Name="ManPower" EntityType="Self.ManPower" />
+          <EntitySet Name="MC_Match" EntityType="Self.MC_Match" />
+          <EntitySet Name="Member" EntityType="Self.Member" />
+          <EntitySet Name="MemberStage" EntityType="Self.MemberStage" />
+          <EntitySet Name="MPClass" EntityType="Self.MPClass" />
+          <EntitySet Name="MPSCList" EntityType="Self.MPSCList" />
+          <EntitySet Name="MPSubClass" EntityType="Self.MPSubClass" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" />
+          <EntitySet Name="OrderStatus" EntityType="Self.OrderStatus" />
+          <EntitySet Name="Picture" EntityType="Self.Picture" />
+          <EntitySet Name="Region" EntityType="Self.Region" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_AdminArticle_Administrator" Association="Self.FK_AdminArticle_Administrator">
+            <End Role="Administrator" EntitySet="Administrator" />
+            <End Role="AdminArticle" EntitySet="AdminArticle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Advertisement_Picture" Association="Self.FK_Advertisement_Picture">
+            <End Role="Picture" EntitySet="Picture" />
+            <End Role="Advertisement" EntitySet="Advertisement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Board_Member" Association="Self.FK_Board_Member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Board" EntitySet="Board" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cart_Case" Association="Self.FK_Cart_Case">
+            <End Role="Cases" EntitySet="Cases" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_Member" Association="Self.FK_Article_Member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Case_CaseStatus" Association="Self.FK_Case_CaseStatus">
+            <End Role="CaseStatus" EntitySet="CaseStatus" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Content_Article" Association="Self.FK_Content_Article">
+            <End Role="Cases" EntitySet="Cases" />
+            <End Role="Content" EntitySet="Content" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Goods_Case" Association="Self.FK_Goods_Case">
+            <End Role="Cases" EntitySet="Cases" />
+            <End Role="Goods" EntitySet="Goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManPower_Case" Association="Self.FK_ManPower_Case">
+            <End Role="Cases" EntitySet="Cases" />
+            <End Role="ManPower" EntitySet="ManPower" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MC_Match_Case" Association="Self.FK_MC_Match_Case">
+            <End Role="Cases" EntitySet="Cases" />
+            <End Role="MC_Match" EntitySet="MC_Match" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Case" Association="Self.FK_Order_Case">
+            <End Role="Cases" EntitySet="Cases" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Picture_Case" Association="Self.FK_Picture_Case">
+            <End Role="Cases" EntitySet="Cases" />
+            <End Role="Picture" EntitySet="Picture" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chat_Member" Association="Self.FK_Chat_Member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Chat" EntitySet="Chat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Region_City" Association="Self.FK_Region_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Region" EntitySet="Region" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Content_Member" Association="Self.FK_Content_Member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Content" EntitySet="Content" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evaluation_Order1" Association="Self.FK_Evaluation_Order1">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Evaluation" EntitySet="Evaluation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GdsSubClass_GoodsClass" Association="Self.FK_GdsSubClass_GoodsClass">
+            <End Role="GoodsClass" EntitySet="GoodsClass" />
+            <End Role="GdsSubClass" EntitySet="GdsSubClass" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Goods_GdsSubClass" Association="Self.FK_Goods_GdsSubClass">
+            <End Role="GdsSubClass" EntitySet="GdsSubClass" />
+            <End Role="Goods" EntitySet="Goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManPower_MPSubClass" Association="Self.FK_ManPower_MPSubClass">
+            <End Role="MPSubClass" EntitySet="MPSubClass" />
+            <End Role="ManPower" EntitySet="ManPower" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Member_MemberStage" Association="Self.FK_Member_MemberStage">
+            <End Role="MemberStage" EntitySet="MemberStage" />
+            <End Role="Member" EntitySet="Member" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Member_Region" Association="Self.FK_Member_Region">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="Member" EntitySet="Member" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MPSubClass_MPClass" Association="Self.FK_MPSubClass_MPClass">
+            <End Role="MPClass" EntitySet="MPClass" />
+            <End Role="MPSubClass" EntitySet="MPSubClass" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MPSCList_MPSubClass" Association="Self.FK_MPSCList_MPSubClass">
+            <End Role="MPSubClass" EntitySet="MPSubClass" />
+            <End Role="MPSCList" EntitySet="MPSCList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_OrderStatus" Association="Self.FK_Order_OrderStatus">
+            <End Role="OrderStatus" EntitySet="OrderStatus" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <EntitySet Name="AdminLog" EntityType="ManPowerModel.AdminLog" />
+        </EntityContainer>
+        <EntityType Name="AdminLog">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AdminName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SaveData" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Data_Action" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Orignal_Page" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ActionName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ControllersName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ManPowerModelStoreContainer" CdmEntityContainer="ManPowerEntities">
+          <EntitySetMapping Name="AdminArticle">
+            <EntityTypeMapping TypeName="ManPowerModel.AdminArticle">
+              <MappingFragment StoreEntitySet="AdminArticle">
+                <ScalarProperty Name="AdminArticleID" ColumnName="AdminArticleID" />
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+                <ScalarProperty Name="AdminArticleContent" ColumnName="AdminArticleContent" />
+                <ScalarProperty Name="AdminArticleTime" ColumnName="AdminArticleTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Administrator">
+            <EntityTypeMapping TypeName="ManPowerModel.Administrator">
+              <MappingFragment StoreEntitySet="Administrator">
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+                <ScalarProperty Name="Apassword" ColumnName="Apassword" />
+                <ScalarProperty Name="Authority" ColumnName="Authority" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Advertisement">
+            <EntityTypeMapping TypeName="ManPowerModel.Advertisement">
+              <MappingFragment StoreEntitySet="Advertisement">
+                <ScalarProperty Name="AdID" ColumnName="AdID" />
+                <ScalarProperty Name="AdContent" ColumnName="AdContent" />
+                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Board">
+            <EntityTypeMapping TypeName="ManPowerModel.Board">
+              <MappingFragment StoreEntitySet="Board">
+                <ScalarProperty Name="BoardID" ColumnName="BoardID" />
+                <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="CaseTitle" ColumnName="CaseTitle" />
+                <ScalarProperty Name="CaseContent" ColumnName="CaseContent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cart">
+            <EntityTypeMapping TypeName="ManPowerModel.Cart">
+              <MappingFragment StoreEntitySet="Cart">
+                <ScalarProperty Name="CartID" ColumnName="CartID" />
+                <ScalarProperty Name="ShoppingCartID" ColumnName="ShoppingCartID" />
+                <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="Point" ColumnName="Point" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Recipient" ColumnName="Recipient" />
+                <ScalarProperty Name="RecipientPhone" ColumnName="RecipientPhone" />
+                <ScalarProperty Name="RecipientAddress" ColumnName="RecipientAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cases">
+            <EntityTypeMapping TypeName="ManPowerModel.Cases">
+              <MappingFragment StoreEntitySet="Cases">
+                <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+                <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
+                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="CaseTitle" ColumnName="CaseTitle" />
+                <ScalarProperty Name="CaseContent" ColumnName="CaseContent" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Recommendation" ColumnName="Recommendation" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CaseStatus">
+            <EntityTypeMapping TypeName="ManPowerModel.CaseStatus">
+              <MappingFragment StoreEntitySet="CaseStatus">
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Chat">
+            <EntityTypeMapping TypeName="ManPowerModel.Chat">
+              <MappingFragment StoreEntitySet="Chat">
+                <ScalarProperty Name="MChatID" ColumnName="MChatID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="MChatRoomID" ColumnName="MChatRoomID" />
+                <ScalarProperty Name="MChat" ColumnName="MChat" />
+                <ScalarProperty Name="MDate" ColumnName="MDate" />
+                <ScalarProperty Name="DeleteChat" ColumnName="DeleteChat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="City">
+            <EntityTypeMapping TypeName="ManPowerModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Content">
+            <EntityTypeMapping TypeName="ManPowerModel.Content">
+              <MappingFragment StoreEntitySet="Content">
+                <ScalarProperty Name="ContentID" ColumnName="ContentID" />
+                <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="MessageContent" ColumnName="MessageContent" />
+                <ScalarProperty Name="MessageDateTime" ColumnName="MessageDateTime" />
+                <ScalarProperty Name="AuthorRepeat" ColumnName="AuthorRepeat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Evaluation">
+            <EntityTypeMapping TypeName="ManPowerModel.Evaluation">
+              <MappingFragment StoreEntitySet="Evaluation">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="Evaluation1" ColumnName="Evaluation" />
+                <ScalarProperty Name="EvaID" ColumnName="EvaID" />
+                <ScalarProperty Name="Evacontent" ColumnName="Evacontent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GdsSubClass">
+            <EntityTypeMapping TypeName="ManPowerModel.GdsSubClass">
+              <MappingFragment StoreEntitySet="GdsSubClass">
+                <ScalarProperty Name="GdsSubClassID" ColumnName="GdsSubClassID" />
+                <ScalarProperty Name="GdsClassID" ColumnName="GdsClassID" />
+                <ScalarProperty Name="GdsSubClass1" ColumnName="GdsSubClass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Goods">
+            <EntityTypeMapping TypeName="ManPowerModel.Goods">
+              <MappingFragment StoreEntitySet="Goods">
+                <ScalarProperty Name="GdsID" ColumnName="GdsID" />
+                <ScalarProperty Name="GdsName" ColumnName="GdsName" />
+                <ScalarProperty Name="GdsCount" ColumnName="GdsCount" />
+                <ScalarProperty Name="GdsPoint" ColumnName="GdsPoint" />
+                <ScalarProperty Name="GdsDeadline" ColumnName="GdsDeadline" />
+                <ScalarProperty Name="GdsSubClassID" ColumnName="GdsSubClassID" />
+                <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GoodsClass">
+            <EntityTypeMapping TypeName="ManPowerModel.GoodsClass">
+              <MappingFragment StoreEntitySet="GoodsClass">
+                <ScalarProperty Name="GdsClassID" ColumnName="GdsClassID" />
+                <ScalarProperty Name="GdsClass" ColumnName="GdsClass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ManPower">
+            <EntityTypeMapping TypeName="ManPowerModel.ManPower">
+              <MappingFragment StoreEntitySet="ManPower">
+                <ScalarProperty Name="MPID" ColumnName="MPID" />
+                <ScalarProperty Name="MPName" ColumnName="MPName" />
+                <ScalarProperty Name="MPNeedCount" ColumnName="MPNeedCount" />
+                <ScalarProperty Name="MPActuralCount" ColumnName="MPActuralCount" />
+                <ScalarProperty Name="MPPoint" ColumnName="MPPoint" />
+                <ScalarProperty Name="MPTime" ColumnName="MPTime" />
+                <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+                <ScalarProperty Name="MPSubClassID" ColumnName="MPSubClassID" />
+                <ScalarProperty Name="MPDate" ColumnName="MPDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MC_Match">
+            <EntityTypeMapping TypeName="ManPowerModel.MC_Match">
+              <MappingFragment StoreEntitySet="MC_Match">
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+                <ScalarProperty Name="Match" ColumnName="Match" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Member">
+            <EntityTypeMapping TypeName="ManPowerModel.Member">
+              <MappingFragment StoreEntitySet="Member">
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MAccount" ColumnName="MAccount" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MPassword" ColumnName="MPassword" />
+                <ScalarProperty Name="Stage" ColumnName="Stage" />
+                <ScalarProperty Name="EXP" ColumnName="EXP" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="PointCount" ColumnName="PointCount" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="NickName" ColumnName="NickName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemberStage">
+            <EntityTypeMapping TypeName="ManPowerModel.MemberStage">
+              <MappingFragment StoreEntitySet="MemberStage">
+                <ScalarProperty Name="Stage" ColumnName="Stage" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="RequiredEXP" ColumnName="RequiredEXP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MPClass">
+            <EntityTypeMapping TypeName="ManPowerModel.MPClass">
+              <MappingFragment StoreEntitySet="MPClass">
+                <ScalarProperty Name="MPClassID" ColumnName="MPClassID" />
+                <ScalarProperty Name="MPClass1" ColumnName="MPClass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MPSCList">
+            <EntityTypeMapping TypeName="ManPowerModel.MPSCList">
+              <MappingFragment StoreEntitySet="MPSCList">
+                <ScalarProperty Name="MPSubClassID" ColumnName="MPSubClassID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MPSubClass">
+            <EntityTypeMapping TypeName="ManPowerModel.MPSubClass">
+              <MappingFragment StoreEntitySet="MPSubClass">
+                <ScalarProperty Name="MPSubClassID" ColumnName="MPSubClassID" />
+                <ScalarProperty Name="MPClassID" ColumnName="MPClassID" />
+                <ScalarProperty Name="MPSubClass1" ColumnName="MPSubClass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="ManPowerModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="ShoppingCartID" ColumnName="ShoppingCartID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Point" ColumnName="Point" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="FinishedDate" ColumnName="FinishedDate" />
+                <ScalarProperty Name="OrderStatusID" ColumnName="OrderStatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderStatus">
+            <EntityTypeMapping TypeName="ManPowerModel.OrderStatus">
+              <MappingFragment StoreEntitySet="OrderStatus">
+                <ScalarProperty Name="OrderStatusID" ColumnName="OrderStatusID" />
+                <ScalarProperty Name="OrderStatus1" ColumnName="OrderStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Picture">
+            <EntityTypeMapping TypeName="ManPowerModel.Picture">
+              <MappingFragment StoreEntitySet="Picture">
+                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+                <ScalarProperty Name="Images" ColumnName="Images" />
+                <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Region">
+            <EntityTypeMapping TypeName="ManPowerModel.Region">
+              <MappingFragment StoreEntitySet="Region">
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ManPowerModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdminLog">
+            <EntityTypeMapping TypeName="ManPowerModel.AdminLog">
+              <MappingFragment StoreEntitySet="AdminLog">
+                <ScalarProperty Name="ControllersName" ColumnName="ControllersName" />
+                <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+                <ScalarProperty Name="Orignal_Page" ColumnName="Orignal_Page" />
+                <ScalarProperty Name="Data_Action" ColumnName="Data_Action" />
+                <ScalarProperty Name="SaveData" ColumnName="SaveData" />
+                <ScalarProperty Name="AdminName" ColumnName="AdminName" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="LogId" ColumnName="LogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,227 @@
+﻿@model Msit115BestOne.Areas.MyMember.Models.Memberview
+@{
+    ViewBag.Title = "修改會員資料";
+    Layout = "~/Areas/MyMember/Views/Shared/_Layoutcreate.cshtml";
+}
+
+<br />
+<br />
+<br />
+<h1 style="font-family:DFKai-sb;margin-left:400px">會員資料修改</h1>
+<hr />
+
+<form method="post" action="~/MyMember/Member/Edit" enctype="multipart/form-data" style="margin-left:300px">
+    <div class="form-horizontal" style="background-image:url('@Url.Content("~/Images/create.jpeg")') ;background-size:cover; background-repeat:no-repeat; background-position:center;">
+        @*<h2 style="color:white">會員註冊</h2>
+            <hr />*@
+
+        <br />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MAccount, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.HiddenFor(model => model.MemberID)
+            @Html.HiddenFor(model => model.Stage)
+            @Html.HiddenFor(model => model.EXP)
+            @Html.HiddenFor(model => model.Birthday)
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.MAccount, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.MAccount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.MPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.MPassword, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MPassword, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.MPassword, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MPassword, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @*check password*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.ConfirmPassword, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+            </div>
+            <div id="psw"></div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NickName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.NickName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NickName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        @*-------------------*@
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+
+                @Html.DropDownList("CityID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("RegionID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                @*<select id="CityID" name="CityID"></select>
+                    <select id="RegionID" name="RegionID"></select>*@
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.strPhoto, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(m => m.strPhoto, new { htmlAttributes = new { type = "file", @class = "form-control", placeholder = "照片" } })
+                @Html.ValidationMessageFor(model => model.strPhoto, "", new { @class = "text-danger" })
+            </div>
+            <br />
+            <div class="col-md-3">
+                <img id="blah" src="@Url.Action("GetImage","Member" ,new { id =Model.MemberID,area="MyMember" })" style="max-width:200px;max-height:200px; " />
+            </div>
+        </div>
+
+
+        @*<img id="blah" src="@Url.Action("GetImage","Member" ,new { id =Model.MemberID,area="MyMember" })" style="max-width:200px;max-height:200px; margin-left:400px " />*@
+
+        <input type="submit" value="修改" class="btn btn-default " style="margin-left:500px" />
+
+        <br />
+        <br />
+        <br />
+        <br />
+    </div>
+</form>
+
+@section scripts{
+    <script>
+        $(function () {
+            var selCity = $('#CityID');
+            //var defaultCity = $('<option></option>').val(0).text('所有城市');
+            var selRegion = $('#RegionID');
+            //var defaultRegion = $('<option></option>').val(0).text('所有行政區');
+            var urlCity = "@Url.Action("GetCity", "Member")";
+            var psw = $("#MPassword")
+            var cpsw = $("#ConfirmPassword")
+
+            //selCity.html(defaultCity);
+            //selRegion.html(defaultRegion);
+
+
+            $.getJSON(urlCity, function (datas) {
+                var doc = $(document.createDocumentFragment());
+                doc.append(defaultCity);
+                $.each(datas, function (idx, city) {
+                    var opt = $('<option></option>').val(city.CityID).text(city.CityName);
+                    doc.append(opt);
+                })
+                selCity.html(doc);
+            })
+            selCity.change(function () {
+                //if (selCity.val() == 0) {
+                //    selRegion.html(defaultRegion);
+                //}
+                //else {
+                
+           
+                    var urlRegion = "@Url.Action("GetRegion", "Member")?CityID=" + selCity.val();
+                    $.getJSON(urlRegion, function (datas) {
+                        var doc = $(document.createDocumentFragment());
+                        //doc.append(defaultRegion);
+                        $.each(datas, function (idx, region) {
+                            var opt = $('<option></option>').val(region.RegionID).text(region.RegionName);
+                            doc.append(opt);
+                        });
+                        selRegion.html(doc);
+                    });
+                //}
+                    $("#Address").val("");
+            });
+
+            cpsw.blur(function () {
+
+                if (psw.val() != null) {
+                    var pswcontent = psw.val();
+                    var cpawcontent = cpsw.val();
+
+                    if (pswcontent != cpawcontent) {
+                        $("#psw").html("<span class='glyphicon glyphicon-remove' >密碼不一致</span>")
+                    }
+                    else {
+                        $("#psw").html("");
+
+                    }
+
+
+                }
+
+
+            })
+
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#blah').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $("#strPhoto").change(function () {
+                readURL(this);
+            });
+
+
+        });
+    </script>
+}
+
+

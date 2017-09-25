@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Msit115BestOne.Areas.ShoppingCart.Models.ShoppingCarts>
+@{
+    ViewBag.Title = "清單";
+    Layout = "~/Areas/MyMember/Views/Shared/_Layoutcreate.cshtml";
+}
+
+
+<div class="form-horizontal" style="background-image:url('@Url.Content("~/Images/cartlist.jpg")') ;background-size:cover; background-repeat:no-repeat; background-position:center;">
+  
+    <br />
+    <h1 style="font-family:DFKai-sb;margin-left:400px">未送審核清單</h1>
+    <hr size="2" />
+ 
+
+
+    <div style="margin-left:250px; ">
+        <br />
+        <br />
+        <form action="~/ShoppingCart/Cart/editedit" method="post">
+            <table class="table table-bordered" id="cartTable" style="background-color:seashell ;width:700px">
+                <thead>
+                    <tr>
+                        @*<th>@Html.DisplayNameFor(c=>c.CartID)</th>*@
+                        <th>
+                            @Html.DisplayNameFor(c => c.CaseTitle)
+                        </th>
+                        @*<th>@Html.DisplayNameFor(c => c.Point)</th>*@
+                        <th style="width:100px">@Html.DisplayNameFor(c => c.Quantity)</th>
+                        @*<th>@Html.DisplayNameFor(c => c.Amount)</th>*@
+                        @*<th>@Html.DisplayNameFor(c => c.isDelete)</th>*@
+                        <th style="width:70px">刪除</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody1">
+                    @*@{int sh=0;}*@
+                    @foreach (var cart in Model)
+            {
+                        <row>
+                            <tr id="tr1">
+                                <td>
+                                    @Html.DisplayFor(c => cart.CaseTitle)
+                                    @Html.HiddenFor(c => cart.CartID)
+                                </td>
+                                @*<td>@Html.DisplayFor(c => cart.Point)</td>*@
+                                <td>@Html.EditorFor(c => cart.Quantity, new { htmlAttributes = new { min = 1, max = 10, } })</td>
+                                @*<td>@Html.DisplayFor(c => cart.Amount)</td>*@
+                                <td>
+                                    @*   @Html.EditorFor(c=>cart.isDelete)*@
+                                    @* @Html.ActionLink("刪除",)*@
+                                    @*<a href="~/Cart/Edit/@cart.CaseID" class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span>修改</a>*@
+                                    <a href="~/ShoppingCart/Cart/Delete/@cart.CartID" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>刪除</a>
+                                    @*@{sh = cart.CartID;}*@
+                            </tr>
+                        </row>
+                    }
+                </tbody>
+            </table>
+            <row class="text-right">
+                @*<h5>總計：@TempData["TotalAmount"] 點</h5>*@
+            </row>
+
+            <div class="text-left">
+                @* <a href="~/ShoppingCart/Cart/editedit" class="btn btn-danger"><span class="glyphicon glyphicon-pencil"></span>修改</a>*@
+                <button type="submit" class="btn btn-success" id="buttonUpdate"><span class="glyphicon glyphicon-pencil"></span>修改</button>
+                @Html.ActionLink("確認送出", "CartDatainOrders", "Recipient", new { @ViewBag.ShoppingCartID }, new { @class = "btn btn-primary" })
+                @*@Html.ActionLink("下一步","Edit","Recipient",new {c}, new {@class= "btn btn-primary" })*@
+                @*<a href="~/ShoppingCart/Recipient/Edit/@sh" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span>下一步</a>*@
+                @*<button type="button" class="btn btn-primary" id="buttonSubmit"><span class="glyphicon glyphicon-shopping-cart"></span>下一步</button>*@
+            </div>
+        </form>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+
+    </script>
+}
+
+
+
+

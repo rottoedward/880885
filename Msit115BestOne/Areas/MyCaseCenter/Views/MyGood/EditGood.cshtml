@@ -1,0 +1,235 @@
+﻿@model Msit115BestOne.Areas.MyCaseCenter.Models.Partial.CaseGood
+@{
+    ViewBag.Title = "編輯案件";
+    Layout = "~/Areas/MyMember/Views/Shared/_Layoutcreate.cshtml";
+}
+@section styles{
+    <link href="~/Areas/MyCaseCenter/css/style.css" rel="stylesheet" />
+    <style>
+        .box {
+            float: left;
+        }
+    </style>
+}
+<br />
+<br />
+<br />
+<h1 style="font-family:DFKai-sb;margin-left:400px">編輯我的案件</h1>
+<hr />
+@{
+    var cou = @ViewBag.count;
+}
+@using (Html.BeginForm("EditGood", "MyGood", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+{<div class="form-horizontal" style="background-image:url('@Url.Content("~/Images/create.jpeg")') ;background-size:cover; background-repeat:no-repeat; background-position:center;">
+        
+        @Html.HiddenFor(p => cou)
+        @Html.HiddenFor(p => p.CaseID)
+        @Html.HiddenFor(p => p.GdsID)
+
+        <div class="form-group">
+            @Html.LabelFor(p => p.CaseTitle, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+
+                @Html.EditorFor(p => p.CaseTitle, new { htmlAttributes = new { @class = "form-control", placeholder = "CaseTitle", style = "Width:500px" } })
+                @Html.ValidationMessageFor(p => p.CaseTitle, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @*<div class="form-group">
+                @Html.LabelFor(p => p.GdsName, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+
+                    @Html.EditorFor(p => p.GdsName, new { htmlAttributes = new { @class = "form-control", placeholder = "GdsName" } })
+                </div>
+            </div>*@
+        <div class="form-group">
+            @Html.LabelFor(p => p.GdsSubClass1, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.DropDownList("GdsClassID", null, htmlAttributes: new { @class = "form-control", style = "Width:500px" })
+                @Html.DropDownList("GdsSubClassID", null, htmlAttributes: new { @class = "form-control", style = "Width:500px" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(p => p.CaseContent, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+
+                @Html.EditorFor(p => p.CaseContent, new { htmlAttributes = new { @class = "form-control", placeholder = "CaseContent", style = "Width:500px" } })
+                @Html.ValidationMessageFor(p => p.CaseContent, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @*<div class="form-group">
+                @Html.LabelFor(p => p.GdsPoint, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+
+                    @Html.EditorFor(p => p.GdsPoint, new { htmlAttributes = new { @class = "form-control", placeholder = "GdsPoint" } })
+                </div>
+            </div>*@
+        <div class="form-group">
+            @Html.LabelFor(p => p.GdsCount, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+
+                @Html.EditorFor(p => p.GdsCount, new { htmlAttributes = new { @class = "form-control", placeholder = "GdsCount", style = "Width:500px" } })
+                @Html.ValidationMessageFor(p => p.GdsCount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(p => p.Location, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+
+                @Html.DropDownList("CityID", null, htmlAttributes: new { @class = "form-control", style = "Width:500px" })
+                @Html.DropDownList("RegionID", null, htmlAttributes: new { @class = "form-control", style = "Width:500px" })
+                @Html.EditorFor(p => p.Location, new { htmlAttributes = new { @class = "form-control", placeholder = "Location", style = "Width:500px" } })
+                @Html.ValidationMessageFor(p => p.Location, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(p => p.Contact, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+
+                @Html.EditorFor(p => p.Contact, new { htmlAttributes = new { @class = "form-control", placeholder = "Contact", style = "Width:500px" } })
+                @Html.ValidationMessageFor(p => p.Contact, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="files">瀏覽圖檔</label>
+            <div class="col-sm-10 multiUpload">
+                <button id="add">增加上傳檔案</button>
+                @Html.Raw(TempData["message"])
+                <input type="file" id="file" name="files" multiple class="form-control" style="width:300px" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-10">
+                <button type="button" id="removeall" class="btn btn-danger"><span class="glyphicon glyphicon-trash"> </span>清除圖檔</button>
+                <div id="Picturebox" style="width:900px;height:270px;overflow:auto;border:1px solid black;" class="form-group">
+
+                    <div id="ppp" style="width:10000px;">
+                        @Html.Action("ManyImages")
+                    </div>
+
+                </div>
+                @*submit*@
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom:0px">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary" style="margin-bottom:10px"><span class="glyphicon glyphicon-pencil"> </span> 確定修改</button>
+            </div>
+            @*<div>@ViewBag.Message</div>*@
+        </div>
+    </div>
+}
+
+
+
+
+        @section scripts{
+            <script src="~/Scripts/jquery.validate.min.js"></script>
+            <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+            <script>
+                $(document).ready(function () {
+                    var sel = $('#GdsClassID');
+                    var se2 = $('#GdsSubClassID');
+                    sel.change(function () {
+                        var id = $(this).val();
+                        var url = "@Url.Action("SubClass", "MyGood")/" + id;
+                        $.getJSON(url, function (datas) {
+                            var docFrag = $(document.createDocumentFragment());
+                            $.each(datas, function (idx, SubClass1) {
+                                var opt = $('<option></option>').val(SubClass1.GdsSubClassID).text(SubClass1.GdsSubClass1);
+                                docFrag.append(opt);
+                            });
+                            se2.html(docFrag);
+                        })
+                    })
+
+                    var sell = $('#CityID');
+                    var sell2 = $('#RegionID');
+                    sell.change(function () {
+                        var id = $(this).val();
+                        var url = "@Url.Action("RegionC", "MyGood")/" + id;
+                        $.getJSON(url, function (datas) {
+                            var docFrag = $(document.createDocumentFragment());
+                            $.each(datas, function (idx, region1) {
+                                var opt = $('<option></option>').val(region1.RegionID).text(region1.RegionName);
+                                docFrag.append(opt);
+                            });
+                            sell2.html(docFrag);
+                            $('#Location').val("");
+                        })
+                    })
+
+                    //增加上傳檔案
+                    $('#add').on('click', function () {
+                        $('.multiUpload').append("<input type='file' id='file1' name='files' multiple class='form-control' style='width:300px'/>");
+                        event.preventDefault();
+                    });
+
+                    //清除全部圖
+                    var c = $('#cou');
+                    var ppp = $('#ppp');
+                    var casid = $('#CaseID').val();
+                    $('#removeall').on('click', function () {
+                        var count = $('#cou').val();
+                        event.preventDefault();
+                        var url = "@Url.Action("RemoveAllPicture", "MyGood")/" + casid;
+                        if (count > 0) {
+                            $.getJSON(url, function (datas) {
+                                //var docFrag = $(document.createDocumentFragment());
+                                ppp.html('');
+                                c.val('0');
+                                $.each(datas, function (idx, remove) {
+                                    //var opt = ;
+                                    //docFrag.append(opt);
+                                });
+                                //sell2.html(docFrag);
+                            })
+                        }
+                        else {
+                            alert('您的圖庫空囉~~');
+                        }
+
+
+                    });
+
+                    $('#file').on('click', function () {
+                        c.val('2');
+                    });
+
+
+                    //預覽圖的方法
+                    function readURL(input) {
+                        if (input.files && input.files[0]) {
+                            var reader = new FileReader();
+
+                            reader.onload = function (e) {
+                                //$('#blah').attr('src', e.target.result);
+                                var aa = $('<a></a>').addClass("box");
+                                var imge = $('<img/>').css({
+                                    "width": "260px",
+                                    "height": "230px",
+                                    "margin-top": "10px",
+                                }).attr('src', e.target.result);
+                                aa.append(imge);
+                                $('#ppp').append(aa);
+                            }
+
+                            reader.readAsDataURL(input.files[0]);
+                        }
+                    }
+                    //預覽圖
+                    $("#file").change(function () {
+                        readURL(this);
+                    });
+                    //預覽圖 由於太慢產生只能用以下方式  一般on不能
+                    $(document).on('change', '#file1', function (event) {
+                        event.preventDefault();
+                        readURL(this);
+                    });
+
+                })
+
+            </script>
+        }

@@ -1,0 +1,283 @@
+﻿@model Msit115BestOne.Areas.TotalCase.Models.CaseGoods
+
+@{
+    ViewBag.Title = "建立物品案件";
+    Layout = "~/Areas/MyMember/Views/Shared/_Layoutcreate.cshtml";
+}
+@section heads{
+    @Html.Partial("~/Areas/TotalCase/Views/Common/piccoloUI_Css.cshtml")
+}
+@section styles{
+    <style>
+ .img {
+    max-width: 150px;
+    max-height: 150px;
+    margin: 5px;
+}
+    </style>
+   }
+<br />
+<br />
+<br />
+
+<div style="margin-left:300px">
+    <h1 style="font-family:DFKai-sb;margin-left:300px">新增物品案件</h1><a href="~/TotalCase/ManPowers/ManPowerCreate" class="btn btn-info">人力案件</a>
+    <hr />
+
+
+
+
+
+    @using (Html.BeginForm("GoodsCreate", "Goods", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data", id = "form1" }))
+    {
+        <div class="form-horizontal">
+
+            @*<hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+            @*<div class="input-prepend">
+                    <span class="add-on" style="height:30px;"><i class="icon-user"></i></span>
+                    <input class="span4" id="prependedInput" size="16" type="text" placeholder="Name" style="height:30px;">
+                </div>*@
+            <div class="form-group">
+                @Html.LabelFor(p => p.CaseTitle, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.EditorFor(p => p.CaseTitle, new { htmlAttributes = new { @class = "form-control", placeholder = "案件名稱" } })
+                    @Html.ValidationMessageFor(model => model.CaseTitle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            @*<div class="form-group">
+                    @Html.LabelFor(p => p.GdsName, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+
+                        @Html.EditorFor(p => p.GdsName, new { htmlAttributes = new { @class = "form-control", placeholder = "GdsName" } })
+                        @Html.ValidationMessageFor(model => model.GdsName, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+            <div class="form-group">
+                @Html.LabelFor(p => p.GdsSubClass1, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.DropDownList("GdsClassID", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("GdsSubClassID", null, htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(p => p.CaseContent, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+
+                    @Html.EditorFor(p => p.CaseContent, new { htmlAttributes = new { @class = "form-control", placeholder = "案件內容" } })
+                    @Html.ValidationMessageFor(model => model.CaseContent, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            @*<div class="form-group">
+                    @Html.LabelFor(p => p.GdsPoint, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+
+                        @Html.EditorFor(p => p.GdsPoint, new { htmlAttributes = new { @class = "form-control", placeholder = "GdsPoint" } })
+                    </div>
+                </div>*@
+            <div class="form-group">
+                @Html.LabelFor(p => p.GdsCount, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+
+                    @Html.EditorFor(p => p.GdsCount, new { htmlAttributes = new { @class = "form-control", placeholder = "數量" } })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(p => p.Location, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+
+                    @Html.DropDownList("CityID", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("RegionID", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.EditorFor(p => p.Location, new { htmlAttributes = new { @class = "form-control", placeholder = "地點" } })
+
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.StatusName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select name="StatusID" id="StatusID">
+                        <option value="4">捐贈物品</option>
+                        <option value="5">需求物品</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(p => p.Contact, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+
+                    @Html.EditorFor(p => p.Contact, new { htmlAttributes = new { @class = "form-control", placeholder = "聯絡方式" } })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(p => p.GdsDeadline, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+
+                    @Html.EditorFor(p => p.GdsDeadline, new { htmlAttributes = new { @class = "form-control", placeholder = "截止時間" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="files">上傳圖片</label>
+                <button type="button" class="btn btn-default" id="clear">重新選擇圖片</button>
+                @Html.Raw(TempData["message"])
+                @*<input type="file" id="file" name="files" multiple class="form-control" style="width:300px" />*@
+
+                <input type='file' class="upl" id="file" name="files" multiple>
+                <div class="preview">
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="確定新增" class="btn btn-default" />
+                    <button type="button" onclick="demo()" >DEMO</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+    @section scripts{
+        @Html.Partial("~/Areas/TotalCase/Views/Common/piccoloUI_Js.cshtml")
+        <script>
+            function demo() {
+                $("#CaseTitle").val("需要棒球練習球");
+                $("#CaseContent").val("給中外野手練習的");
+                $("#GdsCount").val("10");
+                $("#Location").val("忠誠路二段77號");
+                $("#Contact").val("0920123123");
+        
+
+            }
+        $(document).ready(function () {
+            var sel = $('#GdsClassID');
+            var se2 = $('#GdsSubClassID');
+            sel.change(function () {
+                var id = $(this).val();
+                var url = "@Url.Action("SubClass", "MyGood",new { area="MyCaseCenter"})/" + id;
+                $.getJSON(url, function (datas) {
+                    var docFrag = $(document.createDocumentFragment());
+                    $.each(datas, function (idx, SubClass1) {
+                        var opt = $('<option></option>').val(SubClass1.GdsSubClassID).text(SubClass1.GdsSubClass1);
+                        docFrag.append(opt);
+                    });
+                    se2.html(docFrag);
+                })
+            })
+
+            var sell = $('#CityID');
+            var sell2 = $('#RegionID');
+            sell.change(function () {
+                var id = $(this).val();
+                var url = "@Url.Action("RegionC", "MyGood", new { area = "MyCaseCenter" })/" + id;
+                $.getJSON(url, function (datas) {
+                    var docFrag = $(document.createDocumentFragment());
+                    $.each(datas, function (idx, region1) {
+                        var opt = $('<option></option>').val(region1.RegionID).text(region1.RegionName);
+                        docFrag.append(opt);
+                    });
+                    sell2.html(docFrag);
+                    $('#Location').val("");
+                })
+            })
+
+            
+            var Preview = new function () {
+
+                var root = $("#form1");
+
+                // 連續的圖片編碼
+                var imgcode = '';
+
+                // 選取發生改變
+                this.change_file = function () {
+                    root.on("change", ".upl", function () {
+                        show(this);
+                    });
+                }
+
+                // 批次圖片，先清空後再插入
+                var show = function (input) {
+                    if (input.files && input.files[0]) {
+                        clean();
+                        each_img(input.files);
+                    }
+                }
+
+                // 批次讀取，最後再一次寫入
+                var each_img = function (files) {
+
+                    $.each(files, function (index, file) {
+                        var src = URL.createObjectURL(file);
+                        create_imgcode(src);
+                    });
+
+                    // 放置預覽元素後重設
+                    root.find(".preview").html(imgcode);
+                    //reset(); 
+                }
+
+
+                // 建立圖片
+                var create_imgcode = function (src) {
+                    imgcode += '<img class="img" src="' + src + '">';
+                }
+
+
+                // 清空預覽區域
+                var clean = function () {
+                    root.find(".preview").empty();
+                }
+
+                // 還原 input[type=file]
+                var reset = function () {
+                    imgcode = '';
+                    root.find(".upl").val(null);
+                }
+            }
+
+            // 執行
+            Preview.change_file();
+
+            $("#clear").click(function (){
+
+                var root = $("#form1");
+                root.find(".preview").empty();
+                imgcode = '';
+                root.find(".upl").val(null);
+                
+
+           
+            });
+        
+
+
+        })
+
+
+            
+        </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }

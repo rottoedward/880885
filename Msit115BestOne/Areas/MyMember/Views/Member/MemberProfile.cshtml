@@ -1,0 +1,337 @@
+﻿@model Msit115BestOne.Areas.MyMember.Models.Memberview
+@{
+    ViewBag.Title = "我的基本資料";
+}
+
+
+
+
+@section styles{
+    <style>
+        .user-row {
+            margin-bottom: 14px;
+        }
+
+            .user-row:last-child {
+                margin-bottom: 0;
+            }
+
+        .dropdown-user {
+            margin: 13px 0;
+            padding: 5px;
+            height: 100%;
+        }
+
+            .dropdown-user:hover {
+                cursor: pointer;
+            }
+
+        .table-user-information > tbody > tr {
+            border-top: 1px solid rgb(221, 221, 221);
+        }
+
+            .table-user-information > tbody > tr:first-child {
+                border-top: 0;
+            }
+
+
+            .table-user-information > tbody > tr > td {
+                border-top: 0;
+                width: 50px;
+            }
+
+        .toppad {
+            margin-top: 20px;
+        }
+    </style>
+    <style>
+        .modal {
+            top: 10%; /* 向上的距離*/
+            left: -3%;
+            outline: none;
+        }
+
+        .vertical-alignment-helper {
+            display: table;
+            height: 100%;
+            width: 100%;
+        }
+
+        .vertical-align-center {
+            /* To center vertically */
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .modal-content {
+            /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+            width: inherit;
+            height: inherit;
+            /* To center horizontally */
+            margin: 0 auto;
+        }
+    </style>
+
+}
+<div class="container">
+    <div class="row">
+
+        <div class="panel panel-info" style="width:900px">
+            <div class="panel-heading">
+                <h3 class="panel-title">我的基本資料</h3>
+            </div>
+
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-5 col-lg-5 " align="center">
+                        @{
+                            if (@Model.Photo == null)
+                            {
+                                <img alt="User Pic" src="~/Images/2302205385_0741c067c1_o.jpg" class="img-polaroid img-responsive">
+                            }
+
+                            else
+                            {
+                                <img src='@Url.Action("GetPhoto", "Member", new { area = "MyMember" })' class="img-polaroid img-responsive" style="width:400px">
+                            }
+
+                        }
+                        <div>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-7 col-lg-7">
+                        <table class="table table-user-information">
+                            <thead></thead>
+                            <tbody>
+                                <tr>
+                                    <td>會員ID:</td>
+                                    <td>@Html.DisplayFor(m => m.MemberID)</td>
+                                </tr>
+                                <tr>
+                                    <td>姓名:</td>
+                                    <td>@Html.DisplayFor(m => m.LastName) @Html.DisplayFor(m => m.FirstName)</td>
+                                </tr>
+                                <tr>
+                                    <td>@Html.DisplayNameFor(m => m.Birthday)</td>
+                                    <td>@Html.DisplayFor(p => p.Birthday)</td>
+                                </tr>
+                                <tr>
+                                    <td>@Html.DisplayNameFor(m => m.Phone)</td>
+                                    <td>@Html.DisplayFor(p => p.Phone)</td>
+                                </tr>
+                                <tr>
+                                    <td>地址:</td>
+                                    <td>@Html.DisplayFor(p => p.CityName) @Html.DisplayFor(p => p.RegionName) @Html.DisplayFor(p => p.Address)  </td>
+                                </tr>
+                                <tr>
+                                    <td>@Html.DisplayNameFor(m => m.Email)</td>
+                                    <td>@Html.DisplayFor(m => m.Email)</td>
+                                </tr>
+                                <tr>
+                                    <td>@Html.DisplayNameFor(m => m.Stage)</td>
+                                    <td>@Html.DisplayFor(m => m.Title)</td>
+                                </tr>
+                                <tr>
+                                    <td>@Html.DisplayNameFor(m => m.NickName)</td>
+                                    <td>@Html.DisplayFor(m => m.NickName)</td>
+
+                                </tr>
+                                <tr>
+                                    <td>@Html.DisplayNameFor(m => m.sumpoint)</td>
+                                    <td>@Html.DisplayFor(m => m.sumpoint)</td>
+
+                                </tr>
+                                <tr>
+                                    <td>專長:<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-user"></span></button></td>
+                                    <td>
+                                        <div id="skill" class="skill">
+                                        @foreach (var a in @ViewBag.Myskill)
+                                        {
+                                            <span>@a</span>
+
+                                        }</div>
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                </div>
+
+                <div class="panel-footer">
+                    <table class="table table-user-information">
+
+                        <thead>
+                            <tr>會員案件數量</tr>
+
+                        </thead>
+                        <tbody>
+
+                            <tr>
+
+
+                                <th>@Html.DisplayNameFor(m => m.casecount)</th>
+                                <th>@Html.DisplayNameFor(m => m.GDcasecount)</th>
+                                <th>@Html.DisplayNameFor(m => m.GDcasegive)</th>
+                                <th>@Html.DisplayNameFor(m => m.GDcaseneed)</th>
+                                <th>@Html.DisplayNameFor(m => m.MPcasecount)</th>
+                                <th>@Html.DisplayNameFor(m => m.MPcasegive)</th>
+                                <th>@Html.DisplayNameFor(m => m.MPcaseneed)</th>
+
+                            </tr>
+                            <tr>
+                                <td>@Html.DisplayFor(m => m.casecount)</td>
+                                <td>@Html.DisplayFor(m => m.GDcasecount)</td>
+                                <td>@Html.DisplayFor(m => m.GDcasegive)</td>
+                                <td>@Html.DisplayFor(m => m.GDcaseneed)</td>
+                                <td>@Html.DisplayFor(m => m.MPcasecount)</td>
+                                <td>@Html.DisplayFor(m => m.MPcasegive)</td>
+                                <td>@Html.DisplayFor(m => m.MPcaseneed)</td>
+
+
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <a href="@Url.Action("Edit", "Member", new { id = Model.MemberID })" class="btn btn-primary">編輯個人資料</a>
+                <a href="@Url.Action("OtherMember", "Member")" class="btn btn-primary">查詢其他會員資料</a>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog vertical-align-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">我的專長</h4>
+
+                </div>
+                <div class="modal-body">
+                    <div id="test">
+                        @foreach (var s in @ViewBag.skill)
+                        {
+
+                            <input type="checkbox" name="CheckBoxCities" id="@s.MPSubClassID" />@s.MPSubClass1
+
+                        }
+                    </div>
+
+                    <hr />
+                    <p>目前專長</p>
+                    <div id="skill2" class="skill"> 
+                        @foreach (var a in @ViewBag.Myskill)
+                        {
+                            <span>@(a)</span>
+
+
+                        }
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button id="check" type="button" class="btn btn-default" data-dismiss="modal">確認修改</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            var panels = $('.user-infos');
+            var panelsButton = $('.dropdown-user');
+            panels.hide();
+
+            //Click dropdown
+            panelsButton.click(function () {
+                //get data-for attribute
+                var dataFor = $(this).attr('data-for');
+                var idFor = $(dataFor);
+
+                //current button
+                var currentButton = $(this);
+                idFor.slideToggle(400, function () {
+                    //Completed slidetoggle
+                    if (idFor.is(':visible')) {
+                        currentButton.html('<i class="glyphicon glyphicon-chevron-up text-muted"></i>');
+                    }
+                    else {
+                        currentButton.html('<i class="glyphicon glyphicon-chevron-down text-muted"></i>');
+                    }
+                })
+            });
+
+
+            $('[data-toggle="tooltip"]').tooltip();
+
+            var mid = @Session["MEMBERID"];
+
+            $("#check").click(function () {
+
+                var items = [];
+                $('#test input:checkbox:checked').each(function () {
+                    items.push($(this).prop('id'));
+                    
+                });
+
+                var url = "@Url.Action("MemberSkills", "Member")";
+                $.ajax({
+                    url: url,
+                    data: {
+                        id: mid,
+                        Area: items
+                    },
+                    type: "POST",
+                    dataType: "json",
+                    traditional: true,
+                    crossDomain: true,
+                    async: false,
+                    success: function (doc) {
+                        var docFrag = $(document.createDocumentFragment());
+                        //var docFrag1 = $(document.createDocumentFragment());
+                       
+                        $.each(doc,function(idx,item){
+                           
+                            var sp = $("<span></span>").text(item+"  ");
+                            docFrag.append(sp);
+                            //docFrag1.append(sp);
+
+
+                        })
+                        $(".skill").html(docFrag);
+                        //$("#skill").html(docFrag);
+                        
+                    },
+                    error: function (xhr) {
+                        //window.location.href = xhr;
+                    }
+                })
+            })
+
+
+        });
+    </script>
+
+}

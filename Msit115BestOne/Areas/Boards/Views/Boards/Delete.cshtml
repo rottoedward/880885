@@ -1,0 +1,45 @@
+﻿@model Msit115BestOne.Models.Board
+
+@{
+    ViewBag.Title = "Delete";
+}
+<h2>確認要刪除嗎?</h2>
+<div>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.CaseTitle)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CaseTitle)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CaseContent)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CaseContent)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.StartDateTime)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.StartDateTime)
+            </dd>
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="刪除" class="btn btn-danger" />
+                @Html.ActionLink("返回", "Index","Home",new {@class = "btn btn-primary", area = "" },null)
+            </div>
+        }  
+</div>
+<br />
+<br />

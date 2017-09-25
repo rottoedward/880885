@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "登入";
+    Layout = "~/Areas/MyMember/Views/Shared/_Layout.cshtml";
+}
+
+    @section heads{<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery UI Dialog - Animation</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+}
+@section scripts{
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+    <script>
+        function user01() {
+            //取欄位id,填值進去
+            $("#username").val("i");
+            $("#password").val("i");
+        }
+        //呼叫Demo2
+        function user02() {
+            $("#username").val("j");
+            $("#password").val("j");
+        }
+
+
+        $(function () {
+            $(".modal-content").dialog({
+                //autoOpen: false,
+                height: 500,
+                closeOnEscape: false,
+                dialogClass: "dlg-no-close",
+                width: 350,
+                show: {
+                    effect: "Slide",
+                    duration: 1000
+                },
+                hide: {
+                    effect: "explode",
+                    duration: 1000
+                },
+
+            });
+
+            //$( "#opener" ).on( "click", function() {
+            //  $( "#dialog" ).dialog( "open" );
+            //});
+        });
+    </script>
+
+}
+
+@section styles{
+
+    <style>
+        .dlg-no-close .ui-dialog-titlebar-close {
+            display: none;
+        }
+    </style>
+}
+
+
+@{Session["Lo"] = 10;}
+
+
+<div id="login-overlay" class="modal-dialog">
+    <div class="modal-content" title="登入/註冊">
+
+        <div class="modal-body">
+            <div class="row">
+               
+                    <div class="well">
+
+                        <form id="loginForm" method="post" action="~/MyMember/Member/Login" novalidate="novalidate">
+                            <div class="form-group">
+                                <label for="username" class="control-label">帳號</label>
+                                <input type="text" class="form-control" id="username" name="Account" value="" required="" title="Please enter you username" placeholder="請輸入帳號">
+                                <span class="help-block"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="control-label">密碼</label>
+                                <input type="password" class="form-control" id="password" name="Password" value="" required="" title="Please enter your password">
+                                <span class="help-block"></span>
+                            </div>
+                            <div id="loginErrorMsg"><span class="text-danger">@TempData["error"]</span></div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="remember" id="remember">   記住我
+                                </label>
+                                <p class="help-block">(公用電腦不打勾)</p>
+                            </div>
+                            <button type="submit" class="btn btn-success btn-block">登入</button>
+                            <a href="~/MyMember/Member/ForgetPassword" class="btn btn-default btn-block">忘記密碼</a>
+                            <a href="~/MyMember/Member/Create" class="btn btn-info btn-block">註冊</a>
+                            <button type="button" onclick="user01()">鯰魚哥</button>
+                            <button type="button" onclick="user02()">Akria</button>
+                        </form>
+                    </div>
+                </div>
+               
+            </div>
+       
+    </div>
+</div>
+

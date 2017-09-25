@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Msit115BestOne.Areas.SearchCase.Models.CaseResultViewModel>
+@{
+    if (Model.Count() > 0)
+    {
+        <p>共找到@(Model.Count())筆人力案件</p>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>案件圖片</th>
+                    <th>@Html.DisplayNameFor(c => c.CaseID)</th>
+                    <th>@Html.DisplayNameFor(c => c.GiveOrNeed)</th>
+                    <th>@Html.DisplayNameFor(c => c.CaseTitle)</th>
+                    <th>@Html.DisplayNameFor(c => c.CaseContent)</th>
+                    <th>@Html.DisplayNameFor(c => c.Location)</th>
+                    <th>詳細資料</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var c in Model)
+                {
+                    <tr>
+                        <td><img src="~/MyCaseCenter/MyGood/BytesImage/@c.CaseID" alt="Gallery" class="img" width="200"></td>
+                        <td>@c.CaseID</td>
+                        <td>@c.GiveOrNeed</td>
+                        <td>@c.CaseTitle</td>
+                        <td>@c.CaseContent</td>
+                        <td>@c.Location</td>
+                        <td>@Html.ActionLink("詳細資料", "ManPowerRead", "ManPowers", new { id = c.CaseID, area = "TotalCase" }, new { target = "_blank", title = "詳細資料", @class = "btn btn-primary" })</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>找不到符合搜尋條件的結果</p>
+        <p>建議：</p>
+        <ul>
+            <li>請檢查有無錯別字</li>
+            <li>試試以其他條件搜尋。</li>
+            <li>試試以較籠統的條件搜尋。</li>
+        </ul>
+    }
+}
+

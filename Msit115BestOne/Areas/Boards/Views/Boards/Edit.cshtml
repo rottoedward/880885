@@ -1,0 +1,42 @@
+﻿@model Msit115BestOne.Models.Board
+
+@{
+    ViewBag.Title = "修改";
+}
+
+<h2>修改</h2>
+<form method="post" action="~/Boards/Boards/Edit" class="form-horizontal">
+    <div class="form-group">
+        <label for="CaseTitle" class="col-md-2 control-label">
+            標題
+        </label>
+        <div class="col-md-10">
+            <input type="hidden" name="BoardID"
+                   value="@Model.BoardID" />
+            @*<input type="text" class="form-control" name="CaseTitle"
+                   value="@Model.CaseTitle" />*@
+            @Html.EditorFor(Model => Model.CaseTitle, new { htmlAttributes = new { @class = "form-control", id = "CaseTitle", name = "CaseTitle", placeholder = "CaseTitle" } })
+            @Html.ValidationMessageFor(Model => Model.CaseTitle, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="CaseContent" class="col-md-2 control-label">
+            內容
+        </label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" name="CaseContent"
+                   value="@Model.CaseContent" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-warning">修改</button>
+            @Html.ActionLink("返回", "Index", "Home", new { @class = "btn btn-primary", area = "" }, null)
+        </div>
+    </div>
+</form>
+<br />
+<br />
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

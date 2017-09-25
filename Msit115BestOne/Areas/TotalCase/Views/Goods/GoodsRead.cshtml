@@ -1,0 +1,626 @@
+﻿@model Msit115BestOne.Areas.TotalCase.Models.CaseGoods
+@{
+    ViewBag.Title = "查看個人物品案件";
+}
+@section heads{
+    @*@Html.Partial("~/Areas/TotalCase/Views/Common/piccoloUI_Css.cshtml")*@
+
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    @*<link href="~/Areas/MyCaseCenter/css/bootstrap.css" rel="stylesheet" />*@
+    <link href="~/Areas/MyCaseCenter/css/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="~/Areas/MyCaseCenter/css/prettyPhoto.css" rel="stylesheet" />
+    <link href="~/Areas/MyCaseCenter/css/custom-styles.css" rel="stylesheet" />
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <link rel="stylesheet" href="css/style-ie.css"/>
+    <![endif]-->
+    <!-- Favicons
+    ================================================== -->
+    <link rel="shortcut icon" href="~/Areas/MyCaseCenter/img/favicon.ico">
+    <link rel="apple-touch-icon" href="~/Areas/MyCaseCenter/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="~/Areas/MyCaseCenter/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="~/Areas/MyCaseCenter/img/apple-touch-icon-114x114.png">
+    <!-- JS
+    ================================================== -->
+
+}
+
+@section styles{
+    <style>
+        .ProductsImg {
+            height: 400px;
+            width: 450px;
+        }
+
+        .box {
+            float: left;
+        }
+    </style>
+    <style>
+        .modal {
+            top: 10%; /* 向上的距離*/
+            left: -3%;
+            outline: none;
+        }
+
+        .vertical-alignment-helper {
+            display: table;
+            height: 100%;
+            width: 100%;
+        }
+
+        .vertical-align-center {
+            /* To center vertically */
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .modal-content {
+            /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+            width: inherit;
+            height: inherit;
+            /* To center horizontally */
+            margin: 0 auto;
+        }
+    </style>
+    <style>
+        /*body {
+            padding-top: 30px;
+        }*/
+
+        .widget .panel-body {
+            padding: 0px;
+        }
+
+        .widget .list-group {
+            margin-bottom: 0;
+        }
+
+        .widget .panel-title {
+            display: inline;
+        }
+
+        .widget .label-info {
+            float: right;
+        }
+
+        .widget li.list-group-item {
+            border-radius: 0;
+            border: 0;
+            border-top: 1px solid #ddd;
+        }
+
+            .widget li.list-group-item:hover {
+                background-color: rgba(86,61,124,.1);
+            }
+
+        .widget .mic-info {
+            color: #666666;
+            font-size: 11px;
+        }
+
+        .widget .action {
+            margin-top: 5px;
+        }
+
+        .widget .comment-text {
+            font-size: 12px;
+        }
+
+        .widget .btn-block {
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+        }
+
+        .ui-group-buttons .or {
+            position: relative;
+            float: left;
+            width: .3em;
+            height: 1.3em;
+            z-index: 3;
+            font-size: 12px;
+        }
+
+            .ui-group-buttons .or:before {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                content: '';
+                background-color: #5a5a5a;
+                margin-top: -.1em;
+                margin-left: -.9em;
+                width: 1.8em;
+                height: 1.8em;
+                line-height: 1.55;
+                color: #fff;
+                font-style: normal;
+                font-weight: 400;
+                text-align: center;
+                border-radius: 500px;
+                -webkit-box-shadow: 0 0 0 1px rgba(0,0,0,0.1);
+                box-shadow: 0 0 0 1px rgba(0,0,0,0.1);
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                -ms-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+
+            .ui-group-buttons .or:after {
+                position: absolute;
+                top: 0;
+                left: 0;
+                content: ' ';
+                width: .3em;
+                height: 2.84em;
+                background-color: rgba(0,0,0,0);
+                border-top: .6em solid #5a5a5a;
+                border-bottom: .6em solid #5a5a5a;
+            }
+
+            .ui-group-buttons .or.or-lg {
+                height: 1.3em;
+                font-size: 16px;
+            }
+
+                .ui-group-buttons .or.or-lg:after {
+                    height: 2.85em;
+                }
+
+            .ui-group-buttons .or.or-sm {
+                height: 1em;
+            }
+
+                .ui-group-buttons .or.or-sm:after {
+                    height: 2.5em;
+                }
+
+            .ui-group-buttons .or.or-xs {
+                height: .25em;
+            }
+
+                .ui-group-buttons .or.or-xs:after {
+                    height: 1.84em;
+                    z-index: -1000;
+                }
+
+        .ui-group-buttons {
+            display: inline-block;
+        }
+
+            .ui-group-buttons:after {
+                content: ".";
+                display: block;
+                height: 0;
+                clear: both;
+                visibility: hidden;
+            }
+
+            .ui-group-buttons .btn {
+                float: left;
+                border-radius: 0;
+            }
+
+                .ui-group-buttons .btn:first-child {
+                    margin-left: 0;
+                    border-top-left-radius: .25em;
+                    border-bottom-left-radius: .25em;
+                    padding-right: 15px;
+                }
+
+                .ui-group-buttons .btn:last-child {
+                    border-top-right-radius: .25em;
+                    border-bottom-right-radius: .25em;
+                    padding-left: 15px;
+                }
+
+        .project-info li {
+            width: 300px;
+        }
+
+        #Picturebox {
+            margin-top: 5px;
+            padding: 5px;
+            border-width: 7px;
+            border-style: outset;
+            border-color: #E1AF57;
+        }
+    </style>
+}
+
+
+
+<h2>詳細案件-@Model.StatusName </h2>
+
+
+@*@Html.Action("CRUD_Button", "Common", new { categoryName = "Goods" })*@
+
+<!-- Modal -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog vertical-align-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">明細</h4>
+
+                </div>
+                <div class="modal-body">
+                    <span>數量</span>
+                    <form action="~/TotalCase/Goods/DetailtoCart" method="post">
+                        <input type="hidden" value="@Model.CaseID" name="caseid" />
+                        <select id="se1" name="quantity">
+
+                            @for (int i = 1; i <= Model.GdsCount; i++)
+                            {
+                                <option>@(i)</option>
+
+                            }
+
+                        </select><div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">確定</button>
+                            <button type="button" class="btn btn-success" data-dismiss="modal">取消</button>
+
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>   @*彈出視窗的div*@
+
+<div class="color-bar-1"></div>
+<div class="color-bar-2 color-bg"></div>
+
+<div class="container main-container">
+
+    <div class="row">
+        <!-- Gallery Items
+        ================================================== -->
+        <div class="span9 gallery-single">
+            <div class="row">
+                <div class="span4">
+                    <h3>@Model.GdsClass >> @Model.GdsSubClass1 </h3>
+                    <a @*href="post.html"*@ class="box" id="aaaaa">
+                        <img style="width:300px;height:300px;margin-left:40px" src='@Url.Action("BytesImage2", "Goods", new { area = "TotalCase", id = Model.ImageID })' class="align-left thumbnail ProductsImg" alt="image">
+                    </a>
+                    <div>
+                        <div id="Picturebox" style="width:350px;height:170px; margin-left:20px;overflow:auto;">
+
+                            <div style="width:10000px;">
+                                @Html.Action("TotalCaseManyImages")
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="span7" id="mp" style="width:400px">
+
+                    <h2>@Model.CaseTitle</h2>
+                    @*<p class="lead">@Model.GdsName</p>*@
+                    <p>@Model.CaseContent</p>
+                    <ul class="project-info">
+
+                        <li><h6>發文者:</h6>@Model.NickName<button class="btn btn-primary btn-lg icon-user" data-toggle="modal" data-target="#myModal2" style="width:25px;height:25px ;padding:1px"></button></li>
+
+                        @*<li><h6>價格:</h6> @Model.GdsPoint</li>*@
+                        <li><h6>數量:</h6> @Model.GdsCount</li>
+                        <li><h6>案件狀態:</h6> @Model.StatusName</li>
+                        <li><h6>截止時間:</h6>@Html.DisplayFor(p => p.GdsDeadline)</li>
+
+                        <li><h6>聯絡方式:</h6> @Model.Contact</li>
+                        <li id="locmap">
+                            <h6>地址:</h6>@Model.CityName @Model.RegionName @Model.Location
+                        </li>
+                        @*<li><button id="btnMap">查看位置</button></li>*@
+
+                    </ul>
+
+                    @{
+
+                        var t = Model.StatusID;
+                        switch (t)
+                        {
+                            case 4:
+                                if (Session["MEMBERID"] != null)
+
+                                {
+                                    if ((int)Session["MEMBERID"] != ViewBag.mid)
+                                    {
+                                        <button style="width:250px;margin-left:10px" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">我要領取</button> //彈出視窗
+                                    }
+                                }
+                                else
+                                {
+                                    <button style="width:250px;margin-left:10px" class="btn btn-primary btn-lg">請先登入</button> //彈出視窗
+
+                                }
+                                break;
+                            case 5:
+                                if (Session["MEMBERID"] != null)
+                                {
+                                    if ((int)Session["MEMBERID"] != ViewBag.mid)
+                                    {
+                                        <button style="width:250px;margin-left:10px" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">我要提供</button>
+                                    }
+                                }
+                                else
+                                {
+                                    <button style="width:250px;margin-left:10px" class="btn btn-primary btn-lg">請先登入</button> //彈出視窗
+
+                                }
+                                break;
+                            case 7:
+                                <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">我要出力</button>
+                                break;
+                            case 8:
+                                <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">我要人力</button>
+
+                                break;
+                            case 6:
+
+                                <button type="button" class="btn btn-info btn-lg">結案</button>
+                                break;
+                        } }
+                    <a href="~/TotalCase/Goods/BrowseGoodsAll" class="btn btn-default" style="margin-top:10px;margin-left:300px"><i class="icon-arrow-left"></i>上一頁</a><br /><br /><hr />
+                </div>
+            </div>
+        </div><!-- End gallery-single-->
+        <div>
+            <div class="col-md-12 pull-right">
+                @*<h3 style="color:blue">地圖</h3>*@
+                <iframe id="map" src="" width="900" height="400" frameborder="1"></iframe>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="container">
+        <div class="row" style="width:900px">
+
+
+            <div class="panel panel-default widget">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-comment"></span>
+                    <h3 class="panel-title">
+                        Reply
+                    </h3>
+                </div>
+                <div class="col">
+                    <div class="panel-body">
+                        @*<form role="form" action="~/TotalCase/Goods/MemberContent" method="post" enctype="multipart/form-data">*@
+                        <input hidden id="pho" value="@ViewBag.pho" />
+                        <input hidden name="id" id="caseid" value="@Model.CaseID" />
+
+                        <div class="form-group">
+                            <textarea name="Content" id="memcontent" class="form-control" rows="3" placeholder="Write in your wall"></textarea>
+
+                        </div>
+
+                        <button id="btnsend" type="button" class="btn btn-success" data-loading-text="Loading...">回復</button>
+
+
+                        @*</form>*@
+                    </div>
+                </div>
+                <hr />
+                <div id="content" class="panel-body">
+
+
+                    @foreach (var c in @ViewBag.ContentData)
+                    {
+
+                        <ul class="list-group">
+
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-xs-2 col-md-1">
+                                        @{
+                                            if (@c.Photo == null)
+                                            {
+                                                <img alt="User Pic" src="~/Images/2302205385_0741c067c1_o.jpg" class="img-polaroid img-responsive">
+                                            }
+
+                                            else
+                                            {
+                                                <img src='@Url.Action("GetOtherPhoto", "Member", new { area = "MyMember", id = @c.MemberID })' class="img-polaroid img-responsive">
+                                            }
+
+                                        }
+                                    </div>
+                                    <div class="col-xs-10 col-md-11">
+                                        <div class="comment-text">
+                                            <p>@c.MessageContent</p>
+
+                                        </div>
+                                        <div class="mic-info">
+                                            <p>@c.NickName & @c.MessageDateTime </p>
+                                        </div>
+
+                                        <div>
+                                            <p>   案主回覆:   @c.AuthorRepeat</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                                            }
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="vertical-alignment-helper">
+            <div class="modal-dialog vertical-align-center">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">基本資料</h4>
+
+                    </div>
+                    <div class="modal-body">
+                        <table>
+
+                            <tbody>
+                                <tr>
+
+                                    <td>
+                                        <div class="img">
+                                            <a href="#"><img src="~/MyCaseCenter/MyManPower/BytesImagess/@ViewBag.MSP.MemberID" alt="Gallery" class="img"></a>
+                                        </div>
+
+                                    </td>
+                                    <td>
+
+                                        <ul class="project-info">
+                                            <li style="width:200px"><h6>會員:</h6>@ViewBag.MSP.NickName</li>
+                                            <li style="width:200px"><h6>信箱:</h6>@ViewBag.MSP.Email</li>
+                                            <li style="width:200px"><h6>總評價點數:</h6>@ViewBag.MSP.sumpoint</li>
+                                            <li style="width:200px">
+                                                <h6>專長:</h6>@foreach (var a in @ViewBag.Myskill)
+                                                {
+                                                    <span>@a</span>
+
+                                                }
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+    @Html.Partial("~/Areas/TotalCase/Views/Common/piccoloUI_Js.cshtml")
+
+    <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+    <script src="~/Areas/MyCaseCenter/js/jquery.easing.1.3.js"></script>
+    <script src="~/Areas/MyCaseCenter/js/bootstrap.js"></script>
+    <script src="~/Areas/MyCaseCenter/js/jquery.prettyPhoto.js"></script>
+    <script src="~/Areas/MyCaseCenter/js/jquery.quicksand.js"></script>
+    <script src="~/Areas/MyCaseCenter/js/jquery.custom.js"></script>
+
+
+
+    <script>
+        $(document).ready(function () {
+
+            //window.scrollTo(0, document.body.scrollHeight);
+            var q;
+            var pp = $("#pho").val();
+
+            var loc = $("#locmap").text().substr(32);
+            $('#map').attr('src', 'http://maps.google.com/maps?f=q&hl=zh-TW&geocode=&q="' + loc + '"&z=16&output=embed&t=');
+            //$('#mp').on('click', '#btnMap', function () {
+            //    //alert('aaa'+loc+'aaa');
+            //    $('#map').attr('src', 'http://maps.google.com/maps?f=q&hl=zh-TW&geocode=&q="' + loc + '"&z=16&output=embed&t=');
+            //})
+
+
+
+            $("#Picturebox").on("click", "a", function () {
+                q = $(this).children("img").attr("id");
+                var s = $("#aaaaa img");
+                var url = '@Url.Action("BytesImage2", "MyGood", new { area = "MyCaseCenter", id ="-1"  })'
+
+                url = url.replace("-1", q);  // q 取代 "-1"
+                s.attr("src", url);
+            })
+
+            var b = $("#btnsend");
+            b.click(function () {
+
+                var p2 = $("#caseid").val();
+
+
+                LoadProducts(p2);
+
+            })
+
+
+            function LoadProducts(id) {
+
+                var url = "@Url.Action("MemberContent", "Goods")";
+                var contentt = $("#memcontent").val();
+
+                $.getJSON(url, { id: id, Content: contentt }, function (datas) {
+                    var docFrag = $(document.createDocumentFragment());
+                    var me = datas.MessageContent
+                    var ni = datas.NickName
+                    var mdt = datas.MessageDateTime
+                    var mid = datas.MemberID
+
+                    var aa = datas.AuthorRepeat
+
+                    var dddd = parseInt(mdt.replace(/\D/igm, ""));
+                    //实例化一个新的日期格式，使用1970 年 1 月 1 日至今的毫秒数为参数
+                    var birthday = new Date(dddd);
+
+
+
+
+                    var p1 = $('<p></p>').html(me);
+                    var p2 = $('<p></p>').html(ni + " &" + birthday);
+                    var p3 = $('<p></p>').html(aa);
+                    var divv1 = $('<div></div>').append(p1).addClass("comment-text");
+                    var divv2 = $('<div></div>').append(p2).addClass("mic-info");
+                    var divv3 = $('<div></div>').append(p3);
+                    var divv4 = $('<div></div>').append([divv1, divv2, divv3]).addClass("col-xs-10 col-md-11");
+
+                    var img1;
+                    var imgurl = "@Url.Action("GetOtherPhoto", "Member", new { area = "MyMember",id="-1"})";
+
+                    imgUrl = imgurl.replace("-1", mid)
+                    if (pp != null) {
+                        img1 = $("<img src='" + imgUrl + "' class='img-polaroid img-responsive'>");
+
+                    }
+                    else {
+                        img1 = $("<img src='~/Images/2302205385_0741c067c1_o.jpg' class='img-polaroid img-responsive'>");
+                    }
+
+                    var divv5 = $('<div></div>').append(img1).addClass("col-xs-2 col-md-1");
+                    var divv6 = $('<div></div>').append([divv5, divv4]).addClass("row");
+
+                    var li1 = $('<li></li>').append(divv6).addClass("list-group-item");
+                    var ul1 = $('<ul></ul>').append(li1).addClass("list-group");
+
+                    docFrag.append(ul1);
+
+
+                    $('#content').prepend(docFrag);
+                    $("#memcontent").val("");
+                })
+            }
+        })
+    </script>
+
+}

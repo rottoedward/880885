@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<table class="table table-bordered" id="cartsTable">
+    <thead>
+        <tr>
+            <th>案件名稱</th>
+            <th>點數</th>
+            <th>購買數量</th>
+            <th>小計</th>
+            <th>編輯</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+@section scripts{
+  <script>
+      $(document).ready(function () {
+          var tb = $('#cartsTable>tbody');
+          loadData();
+      })
+
+    </script>  
+    
+    
+    
+    
+    }

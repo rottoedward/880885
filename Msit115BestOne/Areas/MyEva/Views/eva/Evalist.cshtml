@@ -1,0 +1,127 @@
+﻿@model IEnumerable<Msit115BestOne.Models.Evaluation>
+@{
+    ViewBag.Title = "Evalist";
+    var mid = Session["MEMBERID"];
+    Layout = "~/Areas/MyMember/Views/Shared/_Layoutcreate.cshtml";
+}
+@section styles{
+    <style>
+        .user-row {
+            margin-bottom: 14px;
+        }
+
+            .user-row:last-child {
+                margin-bottom: 0;
+            }
+
+        .dropdown-user {
+            margin: 13px 0;
+            padding: 5px;
+            height: 100%;
+        }
+
+            .dropdown-user:hover {
+                cursor: pointer;
+            }
+
+        .table-user-information > tbody > tr {
+            border-top: 1px solid rgb(221, 221, 221);
+        }
+
+            .table-user-information > tbody > tr:first-child {
+                border-top: 0;
+            }
+
+
+            .table-user-information > tbody > tr > td {
+                border-top: 0;
+                width: 50px;
+            }
+
+        .toppad {
+            margin-top: 20px;
+        }
+    </style>}
+
+<div class="form-horizontal" style="background-image:url('@Url.Content("~/Images/cartlist.jpg")') ;background-size:cover; background-repeat:no-repeat; background-position:center;">
+
+    <br />
+    <h1 style="font-family:DFKai-sb;margin-left:400px">@(ViewBag.nickname)的評價歷史</h1>
+    <hr size="2" />
+
+
+    @using (Html.BeginForm("Edit", "eva", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        <div class="container" style="margin-left:500px">
+            <div class="row" style="width:600px">
+                <div class="panel panel-info">
+                    <div class="panel-body">
+                        <div class="row">
+                            <table class="table table-user-information">
+                                <thead>
+
+                                    <tr>
+
+                                        <th style="width:50px">@Html.DisplayNameFor(p => p.OrderID)</th>
+                                        <th style="width:10px">@Html.DisplayNameFor(p => p.Evaluation1)</th>
+                                        <th style="width:150px">@Html.DisplayNameFor(p => p.Evacontent)</th>
+
+                                        @*<th>編輯</th>*@
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody1">
+                                    @foreach (var e in Model)
+            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(p => e.OrderID)
+                                        @Html.HiddenFor(p => e.EvaID)
+                                    </td>
+                                    <td id="tdlevel">
+                                        @*@Html.DisplayFor(p => e.Evaluation1)*@
+                                        @Html.DisplayFor(p => e.Evaluation1)
+                                    </td>
+                                    <td id="tdcon">@Html.DisplayFor(p => e.Evacontent)</td>
+                                    @*<td id="td1"><button id="@e.OrderID" type="button" class="btn btn-primary">修改</button></td>*@
+
+                                </tr>
+
+
+            }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*<button type="button" class="btn btn-success"></button>*@
+        </div>
+     
+
+
+    }
+    </div>
+
+
+    @*@section scripts{
+            <script>
+                $(document).ready(function () {
+
+                    $("#tbody1").on("click", ".btn-primary", function () {
+
+                        var q = $(this).attr("id");
+
+                        var tdl = $(this).parent("td").prev("td").prev("td")
+                        var tdec = $(this).parent("td").prev("td")
+
+                      var l=  tdl.text();
+                       var c=  tdec.text();
+
+                        tdl.text("");
+                        tdec.text("");
+                        tdl.html("<input type='text' class='form-control' name='e.Evaluation1' value=" +l+"/>");
+                        tdec.html("<input type='text' class='form-control' name='e.Evacontent'value=" + c + " />");
+                       })
+                })
+            </script>
+        }*@

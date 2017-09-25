@@ -1,0 +1,50 @@
+﻿@model Msit115BestOne.Models.Board
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Board</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CaseTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CaseTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CaseContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CaseContent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Member.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Member.FirstName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BoardID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

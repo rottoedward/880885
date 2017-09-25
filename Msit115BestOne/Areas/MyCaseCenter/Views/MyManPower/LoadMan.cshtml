@@ -1,0 +1,323 @@
+﻿@model Msit115BestOne.Areas.MyCaseCenter.Models.Partial.CaseManPower
+@{
+    ViewBag.Title = "詳細資訊";
+}
+@section heads{
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    @*<link href="~/Areas/MyCaseCenter/css/bootstrap.css" rel="stylesheet" />*@
+    <link href="~/Areas/MyCaseCenter/css/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="~/Areas/MyCaseCenter/css/prettyPhoto.css" rel="stylesheet" />
+    <link href="~/Areas/MyCaseCenter/css/custom-styles.css" rel="stylesheet" />
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <link rel="stylesheet" href="css/style-ie.css"/>
+    <![endif]-->
+    <!-- Favicons
+    ================================================== -->
+    <link rel="shortcut icon" href="~/Areas/MyCaseCenter/img/favicon.ico">
+    <link rel="apple-touch-icon" href="~/Areas/MyCaseCenter/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="~/Areas/MyCaseCenter/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="~/Areas/MyCaseCenter/img/apple-touch-icon-114x114.png">
+    <!-- JS
+    ================================================== -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+}
+@section styles{
+    <style>
+        .ProductsImg {
+            height: 400px;
+            width: 450px;
+        }
+
+        .box {
+            float: left;
+        }
+    </style>
+    <style>
+        .img {
+            width: 270px;
+            height: 220px;
+        }
+
+        .modal {
+            top: 10%; /* 向上的距離*/
+            left: -3%;
+            outline: none;
+        }
+
+        .vertical-alignment-helper {
+            display: table;
+            height: 100%;
+            width: 100%;
+        }
+
+        .vertical-align-center {
+            /* To center vertically */
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .modal-content {
+            /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+            width: inherit;
+            height: inherit;
+            /* To center horizontally */
+            margin: 0 auto;
+        }
+    </style>
+<style>
+    .myButton {
+        -moz-box-shadow: 4px 5px 0px -1px #9fb4f2;
+        -webkit-box-shadow: 4px 5px 0px -1px #9fb4f2;
+        box-shadow: 4px 5px 0px -1px #9fb4f2;
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #7892c2), color-stop(1, #476e9e));
+        background: -moz-linear-gradient(top, #7892c2 5%, #476e9e 100%);
+        background: -webkit-linear-gradient(top, #7892c2 5%, #476e9e 100%);
+        background: -o-linear-gradient(top, #7892c2 5%, #476e9e 100%);
+        background: -ms-linear-gradient(top, #7892c2 5%, #476e9e 100%);
+        background: linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7892c2', endColorstr='#476e9e',GradientType=0);
+        background-color: #7892c2;
+        -moz-border-radius: 18px;
+        -webkit-border-radius: 18px;
+        border-radius: 18px;
+        border: 3px solid #4e6096;
+        display: inline-block;
+        cursor: pointer;
+        color: #ffffff;
+        font-family: Arial;
+        font-size: 17px;
+        font-weight: bold;
+        font-style: italic;
+        padding: 8px 20px;
+        text-decoration: none;
+        text-shadow: 0px 1px 0px #283966;
+    }
+
+        .myButton:hover {
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #476e9e), color-stop(1, #7892c2));
+            background: -moz-linear-gradient(top, #476e9e 5%, #7892c2 100%);
+            background: -webkit-linear-gradient(top, #476e9e 5%, #7892c2 100%);
+            background: -o-linear-gradient(top, #476e9e 5%, #7892c2 100%);
+            background: -ms-linear-gradient(top, #476e9e 5%, #7892c2 100%);
+            background: linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#476e9e', endColorstr='#7892c2',GradientType=0);
+            background-color: #476e9e;
+        }
+
+        .myButton:active {
+            position: relative;
+            top: 1px;
+        }
+
+    .mybtn {
+        -moz-box-shadow: 4px 5px 0px -1px #91b8b3;
+        -webkit-box-shadow: 4px 5px 0px -1px #91b8b3;
+        box-shadow: 4px 5px 0px -1px #91b8b3;
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #768d87), color-stop(1, #6c7c7c));
+        background: -moz-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+        background: -webkit-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+        background: -o-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+        background: -ms-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+        background: linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#768d87', endColorstr='#6c7c7c',GradientType=0);
+        background-color: #768d87;
+        -moz-border-radius: 18px;
+        -webkit-border-radius: 18px;
+        border-radius: 18px;
+        border: 3px solid #566963;
+        display: inline-block;
+        cursor: pointer;
+        color: #ffffff;
+        font-family: Arial;
+        font-size: 17px;
+        font-weight: bold;
+        font-style: italic;
+        padding: 8px 20px;
+        text-decoration: none;
+        text-shadow: 0px 1px 0px #2b665e;
+        margin-left: 5px;
+    }
+
+        .mybtn:hover {
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #6c7c7c), color-stop(1, #768d87));
+            background: -moz-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+            background: -webkit-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+            background: -o-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+            background: -ms-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+            background: linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6c7c7c', endColorstr='#768d87',GradientType=0);
+            background-color: #6c7c7c;
+        }
+
+        .mybtn:active {
+            position: relative;
+            top: 1px;
+        }
+             .project-info li {
+            width: 300px;
+        }
+
+        #Picturebox {
+            margin-top: 5px;
+            padding: 5px;
+            border-width: 7px;
+            border-style: outset;
+            border-color: #E1AF57;
+        }
+</style>
+}
+<h2>詳細內容</h2>
+@Html.HiddenFor(p => p.StatusID)
+@Html.HiddenFor(p => p.MPNeedCount)
+
+<div class="color-bar-1"></div>
+<div class="color-bar-2 color-bg"></div>
+<div class="container main-container">
+    <div class="row">
+        <!-- Gallery Items
+        ================================================== -->
+        <div class="span9 gallery-single">
+            <div class="row">
+                <div class="span4">
+                    <h3>@Model.MPClass1 >> @Model.MPSubClass1 </h3>
+                    <a @*href="post.html"*@ class="box" id="aaaaa">
+                        <img style="width:340px;height:340px" src='@Url.Action("BytesImage2", "MyManPower", new { area = "MyCaseCenter", id = Model.ImageID })' class="align-left thumbnail ProductsImg" alt="image">
+                    </a>
+                </div>
+                <div class="span8" style="width:370px;">
+                    <h2>@Model.CaseTitle</h2><hr />
+                    <p class="lead">@Model.CaseContent</p>
+                    @*<p>@Model.CaseContent</p>*@
+                    <ul class="project-info">
+                        @*<li><p style="margin-bottom:1px">開始時間:@Model.StartDateTime</p></li>*@
+                        <li><p style="margin-bottom:1px">截止時間:@Html.DisplayFor(p => p.MPDate) @Html.DisplayFor(p => p.MPTime)</p></li>
+                        <li><p style="margin-bottom:1px" id="mp">需求人數: @Model.MPNeedCount</p></li>
+                        <li><p style="margin-bottom:1px">實際人數: @Model.MPActuralCount</p></li>
+                        <li><p style="margin-bottom:1px">案件狀態: @Model.StatusName</p></li>
+                        <li><p style="margin-bottom:1px">聯絡方式: @Model.Contact</p></li>
+                        <li><p style="margin-bottom:1px">地址: @Model.CityName @Model.RegionName @Model.Location</p></li>
+                    </ul>
+                    @Html.ActionLink("編輯案件", "EditMan", new { id = @Model.CaseID }, new { @class = "myButton pull-left", id = "edit" })
+                    @Html.ActionLink("進入審核", "ManCheck", new { id = @Model.CaseID }, new { @class = "mybtn pull-left" })
+                    @*<button class="btn btn-inverse pull-left" type="button">Visit Website</button>*@
+                    <a href="~/MyCaseCenter/MyManPower/Indexx" class="btn btn-warning pull-right" style="margin-top:10px;margin-left:300px"><i class="icon-arrow-left"></i>上一頁</a><br /><br /><hr />
+                </div>
+            </div>
+        </div><!-- End gallery-single-->
+        <div class="span9 logo">
+            <hr style="border:1px #7700BB solid;" />
+            <h2>Q & A</h2>
+        </div>
+        @foreach (var v in @ViewBag.ContentMember)
+        {
+
+            <div class="span9 blog">
+                <!-- Blog Post 1 -->
+                <article class="clearfix">
+                    <a href="blog-single.htm"><img src="~/MyCaseCenter/MyManPower/BytesImagess/@v.MemberID" alt="Post Thumb" class="align-left" style="width:250px;height:230px;border:1px solid black;"></a>
+                    <h4 class="title-bg"><a href="blog-single.htm">@v.MessageContent</a></h4>
+                    <textarea style="width:600px;height:80px;" class="form-control" id="AuthorRepeat" name="@v.MemberID" placeholder="AuthorRepeat">@v.AuthorRepeat</textarea>
+                    <button id="answers" class="btn btn-mini btn-inverse" type="button" name="@v.ContentID">回覆問題</button>
+                    <div class="post-summary-footer">
+                        <ul class="post-data-3">
+                            <li><i class="icon-calendar"></i> @v.MessageDateTime</li>
+                            <li><i class="icon-user" data-toggle="modal" data-target="#@v.MemberID"></i>@v.NickName</li>
+                            @*<li><i class="icon-comment"></i> <a href="#">5 Comments</a></li>
+                                <li><i class="icon-tags"></i> <a href="#">photoshop</a>, <a href="#">tutorials</a></li>*@
+                        </ul>
+                    </div>
+                </article>
+            </div>
+
+            <div class="modal fade" id="@v.MemberID" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="vertical-alignment-helper">
+                    <div class="modal-dialog vertical-align-center">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">
+                                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+
+                                </button>
+                                <h4 class="modal-title" id="myModalLabel">基本資料</h4>
+
+                            </div>
+                            <div class="modal-body">
+                                <div class="img">
+                                    <a href="#"><img src="~/MyCaseCenter/MyManPower/BytesImagess/@v.MemberID" alt="Gallery" class="img"></a>
+                                </div>
+                                <ul class="project-info">
+                                    <li><h6>會員:</h6>@v.NickName</li>
+                                    @*<li><h6>生日:</h6>@v.Birthday</li>*@
+                                    <li><h6>連絡電話:</h6>@v.Phone</li>
+                                    <li><h6>專長:</h6>@v.MPSubClass1</li>
+                                    <li><h6>地址:</h6> @v.CityName @v.RegionName @v.Address</li>
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+@section scripts{
+    <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+    <script src="~/Areas/MyCaseCenter/js/jquery.easing.1.3.js"></script>
+    <script src="~/Areas/MyCaseCenter/js/bootstrap.js"></script>
+    <script src="~/Areas/MyCaseCenter/js/jquery.prettyPhoto.js"></script>
+    <script src="~/Areas/MyCaseCenter/js/jquery.quicksand.js"></script>
+    <script src="~/Areas/MyCaseCenter/js/jquery.custom.js"></script>
+    <script>
+        $(document).ready(function () {
+            var statusid = $('#StatusID').val();
+            var nee=$('#MPNeedCount').val();
+            var ed = $('#edit')
+            if (statusid == 6) {
+                ed.attr('href', '#');
+                ed.click(function () {
+                    alert('已結案');
+                })
+            }
+            else if (statusid == 8)
+            {
+                $('#mp').text('提供人數: ' + nee);
+            }
+
+            //var a = $('textarea');
+            //if (a.text() != "")
+            //{
+            //a.css('background-color', '#C9FFFF');
+            //}
+
+            $('.clearfix :button').click(function () {
+                var conid = $(this).attr('name');
+                var text = $(this).prev("textarea").val();
+                var xx = $(this).prev("textarea").attr('name');
+                if (text != "") {
+                    var url = "@Url.Action("Answer", "MyManPower")";
+                    $.getJSON(url, { id: xx, ans: text, con: conid }, function (datas) {
+                        //var docFrag = $(document.createDocumentFragment());
+
+                        $.each(datas, function (idx, remove) {
+                            //var opt = ;
+                            //docFrag.append(opt);
+                        });
+                        //sell2.html(docFrag);
+                    })
+                    alert('回覆完畢');
+                    //$(this).prev("textarea").css('background-color', '#C9FFFF');
+                }
+            })
+
+
+        })
+    </script>
+}

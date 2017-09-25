@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "寄信";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Kendo Editor Test</title>
+    <link rel="stylesheet" href="//kendo.cdn.telerik.com/2016.2.714/styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="//kendo.cdn.telerik.com/2016.2.714/styles/kendo.default.min.css" />
+    <script src="//kendo.cdn.telerik.com/2016.2.714/js/jquery.min.js"></script>
+    <script src="//kendo.cdn.telerik.com/2016.2.714/js/kendo.all.min.js"></script>
+</head>
+<body>
+    <h2>E-Mail</h2>
+    <div>
+        @using (Html.BeginForm("Submit", "Home", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data", style = "padding:5px;" }))
+        {
+            <div class="row">
+                @*<div class="form-group">
+                    <label for="aaa" class="col-sm-2 control-label">寄件人:</label>
+                    <div class="col-sm-10">
+
+                        <input type="text" class="form-control" id="aaa" name="aaa" placeholder="E-Mail" style="width: 480px;">
+                    </div>
+                </div>*@
+                <div class="form-group">
+                    <label for="bbb" class="col-sm-2 control-label">收件人:</label>
+                    <div class="col-sm-10">
+
+                        <input type="text" class="form-control" id="bbb" name="bbb" placeholder="E-Mail" style="width: 480px;">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ccc" class="col-sm-2 control-label">主旨:</label>
+                    <div class="col-sm-10">
+
+                        <input type="text" class="form-control" id="ccc" name="ccc" placeholder="主旨" style="width: 480px;">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="editor" class="col-sm-2 control-label">內容:</label>
+                    <div class="col-sm-10" id="zz">
+                        <textarea id="editor" style="width: 480px; height: 200px;" class="form-control"></textarea>
+                        <input type="hidden" id="content" name="content" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        
+                        <button id="submit" type="submit" class="btn btn-success" style="margin-right:100px;" >寄出</button><button id="demo" type="button" class="btn btn-default">DEMO</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <script>
+        $("#editor").kendoEditor({
+            tools: [
+                "formatting",
+                "bold",
+                "italic",
+                "underline",
+                "strikethrough",
+                "foreColor",
+                "backColor"
+            ]
+        });
+        var editor = $("#editor").data("kendoEditor");
+        $("#submit").click(function () {
+            $("#content").val(editor.value());
+        });
+    </script>
+</body>
+</html>
+@section scripts{
+    <script>
+    $(document).ready(function() {
+        var demo = $('#demo');
+        demo.click(function () {
+            //$('#aaa').val("MSIT115@gmail.com");
+            $('#bbb').val("MSIT115bestone@gmail.com");
+            $('#ccc').val("分享消息");
+            
+        })
+    })
+
+</script>
+}

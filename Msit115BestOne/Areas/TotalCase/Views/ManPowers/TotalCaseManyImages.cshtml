@@ -1,0 +1,7 @@
+﻿@model IEnumerable<Msit115BestOne.Models.Picture>
+@foreach (var _image in Model)
+{
+
+    <a class="box"><img style="width:100px;height:100px ;margin-top:10px" alt="Img" title="" id="@_image.ImageID" src='@Url.Action("BytesImage2","Goods",new {area="TotalCase",id=_image.ImageID })' /></a>
+
+}

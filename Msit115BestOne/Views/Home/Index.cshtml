@@ -1,0 +1,694 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@using Msit115BestOne.Models;
+@model IPagedList<Msit115BestOne.Models.Board>
+@section styles{
+    <link href="~/Content/fullcalendar.min.css" rel="stylesheet" />
+    <link href="~/Content/fullcalendar.print.min.css" rel="stylesheet" media='print' />
+    <style>
+        .modal {
+            top: 10%; /* 向上的距離*/
+            left: -3%;
+            outline: none;
+        }
+
+        .vertical-alignment-helper {
+            display: table;
+            height: 100%;
+            width: 100%;
+        }
+
+        .vertical-align-center {
+            /* To center vertically */
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .modal-content {
+            /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+            width: inherit;
+            height: inherit;
+            /* To center horizontally */
+            margin: 0 auto;
+        }
+    </style>
+}
+<div class="slider">
+    <div class="fullwidthbanner-container">
+        <div class="fullwidthbanner">
+            <ul>
+                <li class="first-slide" data-transition="fade" data-slotamount="10" data-masterspeed="300">
+
+
+                    <div class="tp-caption first-line lft tp-resizeme start" data-x="center" data-hoffset="0" data-y="250" data-speed="1000" data-start="200" data-easing="Power4.easeOut" data-splitin="none" data-splitout="none" data-elementdelay="0" data-endelementdelay="0">
+                        團結力量大-人多好辦事
+                    </div>
+                    @*<div style="width:100%; height:500px;background-image:url('@Url.Content("~/Images/pexels-photo-398532.jpeg")'); background-size:cover; background-repeat:no-repeat; background-position:center top;"></div>*@
+
+                    <img src="~/Images/pexels-photo-398532.jpeg" data-fullwidthcentering="on" alt="slide" />
+                    <div class="tp-caption second-line lfb tp-resizeme start" data-x="center" data-hoffset="0" data-y="340" data-speed="1000" data-start="800" data-easing="Power4.easeOut" data-splitin="none" data-splitout="none" data-elementdelay="0" data-endelementdelay="0">
+                        <h3>四海之內皆兄弟</h3>
+                    </div>
+
+                </li>
+                <li class="first-slide" data-transition="fade" data-slotamount="10" data-masterspeed="300">
+                    <img src="~/Images/pexels-photo-164531.jpeg" data-fullwidthcentering="on" alt="slide" />
+
+                    <div class="tp-caption first-line lft tp-resizeme start" data-x="center" data-hoffset="0" data-y="250" data-speed="1000" data-start="200" data-easing="Power4.easeOut" data-splitin="none" data-splitout="none" data-elementdelay="0" data-endelementdelay="0">
+                        <span style="color:sandybrown"> 東西可免錢-喜歡就自取</span>
+                    </div>
+                    <div class="tp-caption second-line lfb tp-resizeme start" data-x="center" data-hoffset="0" data-y="340" data-speed="1000" data-start="800" data-easing="Power4.easeOut" data-splitin="none" data-splitout="none" data-elementdelay="0" data-endelementdelay="0">
+                        <h3 style="color:sandybrown">二手物品再利用</h3>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+@if (Session["MEMBERID"] != null)
+            {
+    <section class="portfolio" style="background-color:honeydew;">
+        <h1 style="font-family:DFKai-sb;margin-left:500px; color:saddlebrown">與您有關的案件...</h1>
+
+      
+            <div class="container"  >
+                <div class="row" >
+                    <div id="article1submenu11111" hover="false">
+                        @foreach (var a in @ViewBag.MatchCase)
+                        { <div class="col-md-2">
+                        <div style="background-color:#FFFFFF;border-radius:5px; overflow:hidden; height:auto; padding:0px; text-align:center; border:1px solid #CCCCCC;">
+                            <div style="width:100%; height:150px; background-image:url('@Url.Action("BytesImage", "Goods" , new { area="TotalCase" , id=a.CaseID})'); background-size: contain; background-repeat:no-repeat; background-position:center;"></div>
+
+                            <a href="@Url.Action("ChooseCase", "Home", new { area = "Calendar",id=a.CaseID })"><h4>@a.CaseTitle</h4></a>
+                            
+                            
+                        </div>
+                    </div>
+                        }
+                    </div>
+                </div>
+            </div>
+       
+    </section>
+}
+
+
+
+
+
+
+<section class="team" style="background-color:#E8E8E8">
+    <div @*class="container"*@ style="background-color:#E8E8E8;padding:50px;">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="section-dec" @*style="background-color:lightskyblue"*@>
+                    <div id="article1" class="col-md-3" style="padding:1%;">
+                        <div style="border-radius:5px; overflow:hidden; height:auto; padding:0px; text-align:center; border:1px solid #CCCCCC;background-color:white;">
+                            <div style="width:100%; height:150px; background-image:url('@Url.Content("~/Images/newitem.jpg")'); background-size:cover; background-repeat:no-repeat; background-position:center top;"></div>
+                            <h3>最新物品案件</h3>
+                        </div>
+                    </div>
+                    <div id="article2" class="col-md-3" style="padding:1%">
+                        <div style="border-radius:5px; overflow:hidden; height:auto; padding:0px; text-align:center; border:1px solid #CCCCCC;background-color:white;">
+                            <div style="width:100%; height:150px; background-image:url('@Url.Content("~/Images/Most-Popula.jpg")'); background-size:cover;  background-position:center; "></div>
+                            <h3>人氣物品案件</h3>
+                        </div>
+
+                    </div>
+                    <div id="article3" class="col-md-3" style="padding:1%">
+                        <div style="border-radius:5px; overflow:hidden; height:auto; padding:0px; text-align:center; border:1px solid #CCCCCC;background-color:white;">
+                            <div style="width:100%; height:150px; background-image:url('@Url.Content("~/Images/newmp.jpg")'); background-size:contain; background-repeat:no-repeat; background-position:center;"></div>
+                            <h3>最新人力案件</h3>
+
+                        </div>
+                    </div>
+                    <div id="article4" class="col-md-3" style="padding:1%">
+                        <div style="border-radius:5px; overflow:hidden; height:auto; padding:0px; text-align:center; border:1px solid #CCCCCC;background-color:white;">
+                            <div style="width:100%; height:150px; background-image:url('@Url.Content("~/Images/popularservice.jpg")'); background-size: contain; background-repeat:no-repeat; background-position:center;"></div>
+                            <h3>人氣人力案件</h3>
+                        </div>
+                    </div>
+                    @{
+                        var case1 = @ViewBag.casess;
+                    }
+                    <div id="article1submenu" hover="false">
+                        @*最新贈物*@
+                        @foreach (var a in case1)
+                        {
+                            <div class="col-md-3" style="padding:1%">
+                                <div style="background-color:#FFFFFF;border-radius:5px; overflow:hidden; height:300px; padding:0px; text-align:center; border:1px solid #CCCCCC;">
+
+                                    @*<div style="width:100%; height:300px; background-size: contain; background-repeat:no-repeat; background-position:center top;">*@<img src="@Url.Action("BytesImage", "MyGood", new { area = "MyCaseCenter", id = a.CaseID})" style="height:150px" />@*</div>*@
+
+                                    <a href="~/TotalCase/Goods/GoodsRead/@a.CaseID"><h4>標題: @a.CaseTitle</h4></a>
+                                    <h6> @a.StartDateTime</h6>
+                                    <h5>內容: @a.CaseContent</h5>
+                                    <div style="padding:15px; margin-top:-20px;"></div>
+                                </div>
+                            </div>
+                        }
+                        @*<div class="col-md-3" id="article1submenu" style="padding:1%">
+                                <div style=" background-color:#FFFFFF;border-radius:5px; overflow:hidden; height:auto; padding:0px; text-align:center; border:1px solid #CCCCCC;">
+                                    <div style="width:100%; height:300px; background-image:url(files/images/article2.jpg); background-size: contain; background-repeat:no-repeat; background-position:center top;"></div>
+                                    <h3>人氣文章A</h3>
+                                    <div style="padding:15px; margin-top:-20px;"></div>
+                                </div>
+                            </div>*@
+
+                    </div>
+                    @{
+                        var caseq = @ViewBag.CaseG;
+                    }
+                    <div id="article2submenu" hover="false">
+                        @*人氣贈物*@
+                        @foreach (var a in caseq)
+                        {
+                            <div class="col-md-3" style="padding:1%">
+                                <div style="background-color:#FFFFFF;border-radius:5px; overflow:hidden; height:300px; padding:0px; text-align:center; border:1px solid #CCCCCC;">
+                                    @* <div style="width:100%; height:300px; background-image:url('@Url.Action("BytesImage", "MyGood", new { area = "MyCaseCenter", id = a.CaseID})'); background-size: contain; background-repeat:no-repeat; background-position:center top;"></div>*@
+                                    <img src="@Url.Action("BytesImage", "MyGood", new { area = "MyCaseCenter", id = a.CaseID})" style="height:150px" />
+                                    <a href="~/TotalCase/Goods/GoodsRead/@a.CaseID"><h4>標題: @a.CaseTitle</h4></a>
+                                    <h6>人氣:@a.Recommendation</h6>
+                                    <h5>內容:@a.CaseContent</h5>
+                                    <div style="padding:15px; margin-top:-20px;"></div>
+                                </div>
+                            </div>
+                        }
+                        @*<div class="col-md-3" id="article2submenu" style="padding:1%">
+                                <div style="background-color:#FFFFFF;border-radius:5px; overflow:hidden; height:auto; padding:0px; text-align:center; border:1px solid #CCCCCC;">
+                                    <div style="width:100%; height:300px; background-image:url(files/images/article2.jpg); background-size: contain; background-repeat:no-repeat; background-position:center top;"></div>
+                                    <h3>標題:提供水果</h3>
+                                    <h3>內容:送香蕉</h3>
+                                    <div style="padding:15px; margin-top:-20px;"></div>
+                                </div>
+                            </div>*@
+
+                    </div>
+                    @{
+                        var case2 = @ViewBag.Case;
+                    }
+                    <div id="article3submenu" hover="false">
+                        @*最新服務*@
+                        @foreach (var a in case2)
+            {
+                            <div class="col-md-3" style="padding:1%">
+                                <div style="background-color:#FFFFFF;border-radius:5px; overflow:hidden; height:300px; padding:0px; text-align:center; border:1px solid #CCCCCC;">
+                                    @*<div style="width:100%; height:300px; background-image:url('@Url.Action("BytesImage", "MyGood", new { area = "MyCaseCenter", id = a.CaseID})'); background-size: contain; background-repeat:no-repeat; background-position:center top;"></div>*@
+                                    <img src="@Url.Action("BytesImage", "MyGood", new { area = "MyCaseCenter", id = a.CaseID})" style="height:150px" />
+                                    <a href="~/TotalCase/ManPowers/ManPowerRead/@a.CaseID"><h4>標題: @a.CaseTitle</h4></a>
+                                    <h6> @a.StartDateTime</h6>
+                                    <h5>內容: @a.CaseContent</h5>
+                                    <div style="padding:15px; margin-top:-20px;"></div>
+                                </div>
+                            </div>
+                        }
+
+                        @*<div class="col-md-3" id="article3submenu" style="padding:1%">
+                                <div style="background-color:#FFFFFF;border-radius:5px; overflow:hidden; height:auto; padding:0px; text-align:center; border:1px solid #CCCCCC;">
+                                    <div style="width:100%; height:300px; background-image:url(files/images/article2.jpg); background-size: contain; background-repeat:no-repeat; background-position:center top;"></div>
+                                    <h3>標題:54</h3>
+                                    <h3>內容:54</h3>
+                                    <div style="padding:15px; margin-top:-20px;"></div>
+                                </div>
+                            </div>*@
+
+                    </div>
+                    @{
+                        var casem = @ViewBag.CaseM;
+                    }
+                    <div id="article4submenu" hover="false">
+                        @*人氣服務*@
+                        @foreach (var a in casem)
+                        {
+                            <div class="col-md-3" style="padding:1%">
+                                <div style="background-color:#FFFFFF;border-radius:5px; overflow:hidden; height:300px; padding:0px; text-align:center; border:1px solid #CCCCCC;">
+                                    @*<div style="width:100%; height:300px; background-image:url('@Url.Action("BytesImage", "MyGood", new { area = "MyCaseCenter", id = a.CaseID})'); background-size: contain; background-repeat:no-repeat; background-position:center top;"></div>*@
+                                    <img src="@Url.Action("BytesImage", "MyGood", new { area = "MyCaseCenter", id = a.CaseID})" style="height:150px" />
+                                    <a href="~/TotalCase/ManPowers/ManPowerRead/@a.CaseID"><h4>標題: @a.CaseTitle</h4></a>
+                                    <h6>人氣:@a.Recommendation</h6>
+                                    <h5>內容: @a.CaseContent</h5>
+                                    <div style="padding:15px; margin-top:-20px;"></div>
+                                </div>
+                            </div>
+                        }
+                        @*<div class="col-md-3" style="padding:1%">
+                                <div style=" background-color:#FFFFFF;border-radius:5px; overflow:hidden; height:auto; padding:0px; text-align:center; border:1px solid #CCCCCC;">
+                                    <div style="width:100%; height:300px; background-image:url(files/images/article1.jpg); background-size: contain; background-repeat:no-repeat; background-position:center top;"></div>
+                                    <h3>最新文章D</h3>
+                                    <div style="padding:15px; margin-top:-20px;"></div>
+                                </div>
+                            </div>*@
+                    </div>
+                </div>
+
+                <div class="section-heading">
+                    <h2 style="color:#000000; " >地區</h2>
+                    <div class="section-dec"></div>
+                </div>
+                <div id="Norths" class="col-md-3" style="padding:1%">
+                    <div style="background-color:#FFFFFF; border-radius:5px; overflow:hidden; height:auto; padding:0px; text-align:center; border:1px solid #CCCCCC;">
+                        <div style="width:100%; height:150px;  background-image:url('@Url.Content("~/Images/Taiwan_A.gif")'); background-size: contain; background-repeat:no-repeat; background-position:center top;"></div>
+                        <h3>北部</h3>
+                        <div style="padding:15px; margin-top:-20px;"></div>
+                    </div>
+                </div>
+                <div id="Centrals1" class="col-md-3" style="padding:1%">
+                    <div style="background-color:#FFFFFF; border-radius:5px; overflow:hidden; height:auto; padding:0px; text-align:center; border:1px solid #CCCCCC;">
+                        <div style="width:100%; height:150px;  background-image:url('@Url.Content("~/Images/Taiwan_B.gif")'); background-size: contain; background-repeat:no-repeat; background-position:center top;"></div>
+                        <h3>中部</h3>
+                        <div style="padding:15px; margin-top:-20px;"></div>
+                    </div>
+                </div>
+                <div id="Souths" class="col-md-3" style="padding:1%">
+                    <div style="background-color:#FFFFFF;border-radius:5px; overflow:hidden; height:auto; padding:0px; text-align:center; border:1px solid #CCCCCC;">
+                        <div style="width:100%; height:150px;  background-image:url('@Url.Content("~/Images/Taiwan_C.gif")'); background-size: contain; background-repeat:no-repeat; background-position:center top;"></div>
+                        <h3>南部</h3>
+                        <div style="padding:15px; margin-top:-20px;"></div>
+                    </div>
+                </div>
+                <div id="easts" class="col-md-3" style="padding:1%">
+                    <div style="background-color:#FFFFFF;border-radius:5px; overflow:hidden; height:auto; padding:0px; text-align:center; border:1px solid #CCCCCC;">
+                        <div style="width:100%; height:150px;  background-image:url('@Url.Content("~/Images/Taiwan_D.gif")'); background-size: contain; background-repeat:no-repeat; background-position:center top;"></div>
+                        <h3>東部</h3>
+                        <div style="padding:15px; margin-top:-20px;"></div>
+                    </div>
+                </div>
+
+                <div id="areas1">
+                    <a href="javascript:SearchCity('7');">
+                        <div class="col-md-3" style="padding:1%">
+                            <div style="background-color:#FFFFFF;border-radius:5px; overflow:hidden; height:auto; padding:0px; text-align:center; border:1px solid #CCCCCC;">
+                                <div style="width:100%; height:150px;  background-image: url('@Url.Content("~/Images/Keelung.png")'); background-size: contain; background-repeat:no-repeat; background-position:center top;"></div>
+                                <h3>基隆</h3>
+                                <div style="padding:15px; margin-top:-20px;"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="javascript:SearchCity('1,2');">
+                        <div class="col-md-3" style="padding:1%">
+                            <div style="background-color:#FFFFFF;border-radius:5px; overflow:hidden; height:auto; padding:0px; text-align:center; border:1px solid #CCCCCC;">
+                                <div style="width:100%; height:150px;  background-image: url('@Url.Content("~/Images/Taipei.png")'); background-size: contain; background-repeat:no-repeat; background-position:center top;"></div>
+                                <h3>台北</h3>
+                                <div style="padding:15px; margin-top:-20px;"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="javascript:SearchCity('3');">
+                        <div class="col-md-3" style="padding:1%">
+                            <div style="background-color:#FFFFFF;border-radius:5px; overflow:hidden; height:auto; padding:0px; text-align:center; border:1px solid #CCCCCC;">
+                                <div style="width:100%; height:150px;  background-image: url('@Url.Content("~/Images/Taoyuan.png")'); background-size: contain; background-repeat:no-repeat; background-position:center top;"></div>
+                                <h3>桃園</h3>
+                                <div style="padding:15px; margin-top:-20px;"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="javascript:SearchCity('8,10');">
+                        <div class="col-md-3" style="padding:1%">
+                            <div style="background-color:#FFFFFF; border-radius:5px; overflow:hidden; height:auto; padding:0px; text-align:center; border:1px solid #CCCCCC;">
+                                <div style="width:100%; height:150px;  background-image: url('@Url.Content("~/Images/Hsinchu.png")'); background-size: contain; background-repeat:no-repeat; background-position:center top;"></div>
+                                <h3>新竹</h3>
+                                <div style="padding:15px; margin-top:-20px;"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="javascript:SearchCity('17');">
+                        <div class="col-md-3" style="padding:1%">
+                            <div style="background-color:#FFFFFF;border-radius:5px; overflow:hidden; height:auto; padding:0px; text-align:center; border:1px solid #CCCCCC;">
+                                <div style="width:100%; height:150px;  background-image: url('@Url.Content("~/Images/Yilan.png")');background-size: contain; background-repeat:no-repeat; background-position:center top;"></div>
+                                <h3>宜蘭</h3>
+                                <div style="padding:15px; margin-top:-20px;"></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div id="areas2">
+                    <a href="javascript:SearchCity('11');">
+                        <div id="Norths" class="col-md-3" style="padding:1%">
+                            <div style="background-color:#FFFFFF;border-radius:5px; overflow:hidden; height:auto; padding:0px; text-align:center; border:1px solid #CCCCCC;">
+                                <div style="width:100%; height:150px;  background-image: url('@Url.Content("~/Images/Miaoli.png")'); background-size: contain; background-repeat:no-repeat; background-position:center top;"></div>
+                                <h3>苗栗</h3>
+                                <div style="padding:15px; margin-top:-20px;"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="javascript:SearchCity('4');">
+                        <div id="Norths" class="col-md-3" style="padding:1%">
+                            <div style="background-color:#FFFFFF;border-radius:5px; overflow:hidden; height:auto; padding:0px; text-align:center; border:1px solid #CCCCCC;">
+                                <div style="width:100%; height:150px;  background-image: url('@Url.Content("~/Images/Taichung.png")'); background-size: contain; background-repeat:no-repeat; background-position:center top;"></div>
+                                <h3>台中</h3>
+                                <div style="padding:15px; margin-top:-20px;"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="javascript:SearchCity('12');">
+                        <div class="col-md-3" style="padding:1%">
+                            <div style="background-color:#FFFFFF; border-radius:5px; overflow:hidden; height:auto; padding:0px; text-align:center; border:1px solid #CCCCCC;">
+                                <div style="width:100%; height:150px;  background-image: url('@Url.Content("~/Images/Changhua.png")'); background-size: contain; background-repeat:no-repeat; background-position:center top;"></div>
+                                <h3>彰化</h3>
+                                <div style="padding:15px; margin-top:-20px;"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="javascript:SearchCity('14');">
+                        <div class="col-md-3" style="padding:1%">
+                            <div style="background-color:#FFFFFF; border-radius:5px; overflow:hidden; height:auto; padding:0px; text-align:center; border:1px solid #CCCCCC;">
+                                <div style="width:100%; height:150px;  background-image: url('@Url.Content("~/Images/Yunlin.png")'); background-size: contain; background-repeat:no-repeat; background-position:center top;"></div>
+                                <h3>雲林</h3>
+                                <div style="padding:15px; margin-top:-20px;"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="javascript:SearchCity('13');">
+                        <div id="Norths" class="col-md-3" style="padding:1%">
+
+                            <div style="background-color:#FFFFFF;border-radius:5px; overflow:hidden; height:auto; padding:0px; text-align:center; border:1px solid #CCCCCC;">
+                                <div style="width:100%; height:150px;  background-image: url('@Url.Content("~/Images/Nantou.png")');background-size: contain; background-repeat:no-repeat; background-position:center top;"></div>
+                                <h3>南投</h3>
+                                <div style="padding:15px; margin-top:-20px;"></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div id="areas3">
+                    <a href="javascript:SearchCity('9,15');">
+                        <div id="Norths" class="col-md-3" style="padding:1%">
+
+                            <div style="background-color:#FFFFFF;border-radius:5px; overflow:hidden; height:auto; padding:0px; text-align:center; border:1px solid #CCCCCC;">
+                                <div style="width:100%; height:150px;  background-image: url('@Url.Content("~/Images/Chiayi.png")'); background-size: contain; background-repeat:no-repeat; background-position:center top;"></div>
+                                <h3>嘉義</h3>
+                                <div style="padding:15px; margin-top:-20px;"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="javascript:SearchCity('5');">
+                        <div class="col-md-3" style="padding:1%">
+                            <div style="background-color:#FFFFFF;border-radius:5px; overflow:hidden; height:auto; padding:0px; text-align:center; border:1px solid #CCCCCC;">
+                                <div style="width:100%; height:150px;  background-image: url('@Url.Content("~/Images/Tainan.png")'); background-size: contain; background-repeat:no-repeat; background-position:center top;"></div>
+                                <h3>台南</h3>
+                                <div style="padding:15px; margin-top:-20px;"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="javascript:SearchCity('6');">
+                        <div class="col-md-3" style="padding:1%">
+                            <div style="background-color:#FFFFFF; border-radius:5px; overflow:hidden; height:auto; padding:0px; text-align:center; border:1px solid #CCCCCC;">
+                                <div style="width:100%; height:150px;  background-image: url('@Url.Content("~/Images/Kaohsiung.png")'); background-size: contain; background-repeat:no-repeat; background-position:center top;"></div>
+                                <h3>高雄</h3>
+                                <div style="padding:15px; margin-top:-20px;"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="javascript:SearchCity('16');">
+                        <div class="col-md-3" style="padding:1%">
+                            <div style="background-color:#FFFFFF; border-radius:5px; overflow:hidden; height:auto; padding:0px; text-align:center; border:1px solid #CCCCCC;">
+                                <div style="width:100%; height:150px;  background-image: url('@Url.Content("~/Images/Pingtung.png")'); background-size: contain; background-repeat:no-repeat; background-position:center top;"></div>
+                                <h3>屏東</h3>
+                                <div style="padding:15px; margin-top:-20px;"></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div id="areas4">
+                    <a href="javascript:SearchCity('18');">
+                        <div id="Norths" class="col-md-3" style="padding:1%">
+
+                            <div style="background-color:#FFFFFF;border-radius:5px; overflow:hidden; height:auto; padding:0px; text-align:center; border:1px solid #CCCCCC;">
+                                <div style="width:100%; height:150px;  background-image: url('@Url.Content("~/Images/Hualien.png")'); background-size: contain; background-repeat:no-repeat; background-position:center top;"></div>
+                                <h3>花蓮</h3>
+                                <div style="padding:15px; margin-top:-20px;"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="javascript:SearchCity('19');">
+                        <div class="col-md-3" style="padding:1%">
+                            <div style="background-color:#FFFFFF;border-radius:5px; overflow:hidden; height:auto; padding:0px; text-align:center; border:1px solid #CCCCCC;">
+                                <div style="width:100%; height:150px;  background-image: url('@Url.Content("~/Images/Taitung.png")'); background-size: contain; background-repeat:no-repeat; background-position:center top;"></div>
+                                <h3>台東</h3>
+                                <div style="padding:15px; margin-top:-20px;"></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+
+            </div>
+            <div class="col-md-5">
+                <div class="col-md-12">
+                    <div class="section-heading-white">
+                        <h2 style="color:#000000; background-color:lightblue">好康分享</h2>
+                        <div class="section-dec" style="background-color:lightblue"></div>
+                    </div>
+                    <table class="table table-bordered">
+                        @Html.Action("Index", "Boards", new { area = "Boards" })
+                    </table>
+                </div>
+                <div class="col-md-12">
+                    <div class="section-heading-white">
+                        <h2 style="color:#000000;background-color:lightblue">行事曆</h2>
+                        <div class="section-dec" style="background-color:lightblue"></div>
+                    </div>
+                    <div id='calendar'></div>
+                    @*<div id='calendar' style="width:500px"></div>*@
+                    <div id="myModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title"><span id="eventTitle"></span></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p id="pDetails"></p>
+                                </div>
+                                <div class="modal-footer">
+                                    @*@Html.ActionLink("查看詳情", "Edit", "Recipient", new { id  }, new { @class = "btn btn-primary", id = "btnCase" })*@
+                                    <a id="cid" class="btn btn-success">查看詳情</a>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+@*<section class="team" style="background-image:url('@Url.Content("~/images/BackImage2.png")')">
+    <div class="container">
+
+
+    </div>
+</section>*@
+
+
+
+
+
+<section class="portfolio" style="background-color:#E8E8E8">
+    <div class="container">
+        <div class="section-heading-white">
+            <h2 style="color:#000000">贊助商</h2>
+            <div class="section-dec"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="owl-portfolio" class="owl-carousel owl-theme">
+                    <div class="item" style="margin:0px">
+                        <figure> <a href="http://www.htc.com/tw/"><img alt="portfolio" src="~/Images/trademark1.jpg" style="width:200px;height:200px"> </a> </figure>
+                    </div>
+
+                    <div class="item" style="margin:0px">
+                        <figure> <a href="https://zh.wikipedia.org/wiki/臺灣"><img alt="portfolio" src="~/Images/trademark2.jpeg" style="width:200px;height:200px"> </a> </figure>
+                    </div>
+
+                    <div class="item">
+                        <figure> <a href="https://www.apple.com/tw/"><img alt="portfolio" src="~/Images/trademark3.jpeg" style="width:200px;height:200px"></a> </figure>
+                    </div>
+                    <div class="item">
+                        <figure> <a href="https://www.asus.com/tw/"><img alt="portfolio" src="~/Images/trademark4.png" style="width:200px;height:200px"></a> </figure>
+                    </div>
+                    <div class="item">
+                        <figure> <a href="https://www.microsoft.com/zh-tw/"><img alt="portfolio" src="~/Images/trademark5.jpeg" style="width:200px;height:200px"> </a> </figure>
+                    </div>
+                    <div class="item">
+                        <figure> <a href="http://www.new-beats.com.tw"><img alt="portfolio" src="~/Images/trademark6.png" style="width:200px;height:200px"> </a> </figure>
+                    </div>
+                    <div class="item">
+                        <figure> <a href="https://www.bmw.com.tw/zh/index.html"><img alt="portfolio" src="~/Images/trademark7.jpeg" style="width:200px;height:200px"> </a> </figure>
+                    </div>
+                    <div class="item">
+                        <figure> <a href="https://www.google.com.tw"><img alt="portfolio" src="~/Images/trademark8.png" style="width:200px;height:200px"> </a> </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="owl-navigation"> <a class="btn prev fa fa-angle-left"></a> <a class="btn next fa fa-angle-right"></a> </div>
+    </div>
+</section>
+
+@section scripts{
+    @*<script src="~/Scripts/jquery-1.11.1.min.js"></script>*@
+    <script src="~/Scripts/moment.js"></script>
+    <script src="~/Scripts/fullcalendar.min.js"></script>
+    <script src="~/Scripts/zh-tw.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <script>
+        var cal = "@Url.Action("GetEvents", "Home", new { area= "Calendar" })";
+        $('#calendar').fullCalendar({
+            contentHeight: 400,
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,basicWeek,basicDay'
+            },
+            timeFormat: 'HH:mm',
+            defaultDate: '2017-09-18',
+            navLinks: true, // can click day/week names to navigate views
+            editable: false,
+            timezone: 'local',
+            ignoreTimezone: true,
+            eventLimit: true, // allow "more" link when too many events
+            events: cal,
+            eventClick: function (calEvent, jsEvent, view) {
+                Cid = calEvent.CaseID;
+
+                var $description = $('<div/>');
+                //$description.append($('<p/>').html('<b>開始時間:</b>' + calEvent.start.format("YYYY-MM-DD a HH:mm")));
+                $('#myModal #eventTitle').text(calEvent.title);
+                var $description = $('<div/>');
+                $description.append($('<p/>').html('<b>開始時間:</b>' + calEvent.start.format("YYYY-MM-DD a HH:mm")));
+                if (calEvent.end != null) {
+                    $description.append($('<p/>').html('<b>結束時間:</b>' + calEvent.end.format("YYYY-MM-DD a HH:mm")));
+                }
+                $description.append($('<p/>').html('<b>內容:</b>' + calEvent.description));
+
+                $('#myModal #pDetails').empty().html($description);
+                $('#myModal').modal();
+
+                $('#cid').attr('href', "@Url.Action("ChooseCase", "Home", new { area = "Calendar" })" + "?id=" + Cid)
+
+            }
+        });
+
+        function SearchCity(CityID) {
+            var url = "@Url.Action("SearchByCity","Search",new { area="SearchCase"})?CityID=" + CityID;
+            location.href = url;
+            //alert(CityID);
+        }
+        //$(document).ready(function () {
+        //    $('#slodeIn').hide();
+        //});
+        //$('#newarticle').hover(function () {
+        //    $('#slodeIn').slideDown();
+        //}, function () {
+        //    $('#slodeIn').slideUp();
+        //});
+        //$(document).ready(function () {
+        //    $('#areas').hide();
+        //});
+        ////$('#Norths').click(function(){
+        ////	$('#areas').slideToggle(
+        ////});
+        function slideSubMenu(article) {
+            $('#article' + article + ', #article' + article + 'submenu').hover(function () {
+
+                for (i = 1; i <= 4; i++) {
+                    if (i != article) {
+                        $('#article' + i + 'submenu').fadeOut();
+                    }
+                }
+
+                $('#article' + article + 'submenu').slideDown();
+                $('#article' + article + 'submenu').attr('hover', 'true');
+            }, function () {
+                $('#article' + article + 'submenu').attr('hover', 'false');
+
+                var callMethod = function () {
+                    if ($('#article' + article + 'submenu').attr('hover') == 'false') {
+                        $('#article' + article + 'submenu').slideUp();
+                    }
+                }
+                window.setTimeout(callMethod, 500);
+            });
+        }
+
+        $(document).ready(function () {
+
+            for (i = 1; i <= 4; i++) {
+                $('#article' + i + 'submenu').hide();
+                slideSubMenu(i);
+            }
+
+        });
+
+        $(document).ready(function () {
+            $('#areas1').hide();
+        });
+        $(document).ready(function () {
+            $('#areas2').hide();
+        });
+        $(document).ready(function () {
+            $('#areas3').hide();
+        });
+        $(document).ready(function () {
+            $('#areas4').hide();
+        });
+
+        $('#Norths').click(function () {
+            $('#areas1').slideToggle();
+            $(document).ready(function () {
+                $('#areas2').hide();
+            });
+            $(document).ready(function () {
+                $('#areas3').hide();
+            });
+            $(document).ready(function () {
+                $('#areas4').hide();
+            });
+        });
+        $('#Centrals1').click(function () {
+            $('#areas2').slideToggle();
+            $(document).ready(function () {
+                $('#areas1').hide();
+            });
+            $(document).ready(function () {
+                $('#areas3').hide();
+            });
+            $(document).ready(function () {
+                $('#areas4').hide();
+            });
+        });
+        $('#Souths').click(function () {
+            $('#areas3').slideToggle();
+            $(document).ready(function () {
+                $('#areas1').hide();
+            });
+            $(document).ready(function () {
+                $('#areas2').hide();
+            });
+            $(document).ready(function () {
+                $('#areas4').hide();
+            });
+        });
+        $('#easts').click(function () {
+            $('#areas4').slideToggle();
+            $(document).ready(function () {
+                $('#areas1').hide();
+            });
+            $(document).ready(function () {
+                $('#areas2').hide();
+            });
+            $(document).ready(function () {
+                $('#areas3').hide();
+            });
+        });
+    </script>
+
+}

@@ -1,0 +1,137 @@
+﻿@model IEnumerable<Msit115BestOne.Models.Administrator>
+@{
+    ViewBag.Title = "瀏覽管理員資料";
+}
+@section heads{
+    <!-- DATA TABLES -->
+    <link href="~/Areas/Admin/Admin_UI_Template/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            瀏覽管理員資料
+        </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <table>
+                            <thead></thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <a class="btn btn-block btn-success" href="@Url.Action("CreateAdmin","Admin")">新增管理員</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br />
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <!--表頭嵌入-->
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.AdminID)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Authority)
+                                    </th>
+                                    <th id="MyEdit"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!--內容嵌入-->
+                                @foreach (var item in Model)
+                                {
+                                    if (item.AdminID != "SYS")
+                                    {
+                                        if (Session["AdminID"].ToString() != "SYS" && item.AdminID == "Admin")
+                                        {
+                                            continue;
+                                        }
+                                        <tr> 
+                                            <td style="vertical-align:middle;">
+                                                @Html.DisplayFor(modelItem => item.AdminID)
+                                            </td>
+                                            
+                                            @if (item.Authority == 0)
+                                            {
+                                                <td style="vertical-align:middle;">
+                                                    @Html.Label("最高權限")
+                                                </td>
+                                            }
+                                            else if (item.Authority == 1)
+                                            {
+                                                <td style="vertical-align:middle;">
+                                                    @Html.Label("一般權限")
+                                                </td>
+                                            }
+
+                                            <td>
+                                                @Html.ActionLink("修改", "EditAdmin", "Admin", new { AdminID = item.AdminID }, new { @class = "btn btn-primary" })
+                                                @if (item.AdminID != "Admin")
+                                                {
+                                                    @Html.Hidden("AdminID", item.AdminID)
+                                                    <button type="button" class="btn btn-danger">刪除</button>
+                                                }
+                                                
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                            <tfoot>
+                                <!--表頭嵌入-->
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.AdminID)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Authority)
+                                    </th>
+                                    <th id="MyEdit"></th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+
+
+
+@section scripts{
+    <!-- DATA TABES SCRIPT -->
+    <script src="~/Areas/Admin/Admin_UI_Template/plugins/datatables/jquery.dataTables.js" type="text/javascript" charset = "big5"></script>
+    <script src="~/Areas/Admin/Admin_UI_Template/plugins/datatables/dataTables.bootstrap.js" type="text/javascript" charset = "big5"></script>
+    <!-- page script -->
+    <script type="text/javascript">
+        $(function () {
+            $("#example1").dataTable();
+            $('#example2').dataTable({
+                "bPaginate": true,
+                "bLengthChange": false,
+                "bFilter": false,
+                "bSort": true,
+                "bInfo": true,
+                "bAutoWidth": false
+            });
+
+            $(".table-striped").on('click', '.btn-danger', function () {
+                var currentRow = $(this).closest("td"); // get current row 1st table cell TD value 
+                showconfirm(currentRow.find("#AdminID").val(), '@Url.Action("DeleteAdmin", "Admin")'); 
+            });
+            
+        });
+    </script>
+    <script src="~/Areas/Admin/Scripts/MyDeleteDialog.js"></script>
+@*<script src="~/Scripts/jquery-1.10.2.js"></script>*@
+}

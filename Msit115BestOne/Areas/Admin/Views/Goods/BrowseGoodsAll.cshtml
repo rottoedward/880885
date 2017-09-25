@@ -1,0 +1,131 @@
+﻿@model IEnumerable<Msit115BestOne.Areas.Admin.Models.GoodsViewModel>
+
+@{
+    ViewBag.Title = "物品案件檢視";
+}
+@section heads{
+    <!-- DATA TABLES -->
+    <link href="~/Areas/Admin/Admin_UI_Template/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" /> 
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            物品案件檢視
+        </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <!--表頭嵌入-->
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CaseID)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.MemberName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CaseTitle)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.GdsCount)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.StartDateTime)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.StatusName)
+                                    </th>
+                                    @*<th id="MyEdit"></th>*@
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!--內容嵌入-->
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CaseID)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MemberName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CaseTitle)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.GdsCount)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.StartDateTime)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.StatusName)
+                                        </td>
+                                        @*<td>
+                                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                        </td>*@
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <!--表頭嵌入-->
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CaseID)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.MemberName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CaseTitle)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.GdsCount)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.StartDateTime)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.StatusName)
+                                    </th>
+                                    @*<th></th>*@
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+
+
+@section scripts{
+    <!-- DATA TABES SCRIPT -->
+    <script src="~/Areas/Admin/Admin_UI_Template/plugins/datatables/jquery.dataTables.js" type="text/javascript" charset = "big5"></script>
+    <script src="~/Areas/Admin/Admin_UI_Template/plugins/datatables/dataTables.bootstrap.js" type="text/javascript" charset = "big5"></script>
+    <!-- page script -->
+    <script type="text/javascript">
+        $(function () {
+            $("#example1").dataTable();
+            $('#example2').dataTable({
+                "bPaginate": true,
+                "bLengthChange": false,
+                "bFilter": false,
+                "bSort": true,
+                "bInfo": true,
+                "bAutoWidth": false
+            });
+        });
+    </script>
+}

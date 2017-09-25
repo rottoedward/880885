@@ -1,0 +1,346 @@
+﻿@model Msit115BestOne.Areas.SearchCase.Models.CaseViewModel
+@{
+    ViewBag.Title = "搜尋案件";
+}
+
+@section styles{
+    <link href="~/Areas/SearchCase/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+}
+
+<ul class="nav nav-pills">
+    <li class="active"><a data-toggle="pill" href="#Goods">搜尋物品</a></li>
+    <li><a data-toggle="pill" href="#Manpower">搜尋人力</a></li>
+</ul>
+<div class="tab-content">
+    <div id="Goods" class="tab-pane fade in active">
+        @using (Html.BeginForm("SearchGoods", "Search", FormMethod.Post, new { @class = "form-horizontal", area = "SearchCase", id = "form-searchgoods" }))
+        {
+            <div class="form-group">
+                @Html.LabelFor(c => c.KeyWord, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-5">
+                    @Html.EditorFor(c => c.KeyWord, new { htmlAttributes = new { @class = "form-control", placeholder = "關鍵字" } })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(c => c.gCityID, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    <select id="gCityID" name="gCityID" multiple></select>
+                    <select id="gRegionID" name="gRegionID" multiple></select>
+                    <p style="color:red">※城市及行政區皆可複選</p>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(c => c.Condition, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    <select id="gClassID" name="gClassID"></select>
+                    <select id="gSubClassID" name="gSubClassID"></select>                    
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(c => c.CaseStatus, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    <select id="CaseStatus" name="CaseStatus">
+                        <option value="0" selected>不拘</option>
+                        <option value="4">提供</option>
+                        <option value="5">徵求</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(c => c.EndDate, new { @class = "col-sm-2 control-label" })
+                <div id="gdatetimepicker" class="input-group date form_date col-md-10" data-date="" data-date-format="yyyy MM dd" data-link-field="EndDate" data-link-format="yyyy/mm/dd">
+                    <input class="form-control" size="16" type="text" value="" readonly="">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    <input type="hidden" id="EndDate" name="EndDate" value="">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <input type="hidden" id="icon" value="plus" />
+                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>搜尋</button>
+                </div>
+            </div>
+        }
+    </div>
+    <div id="Manpower" class="tab-pane fade">
+        @using (Html.BeginForm("SearchManPowers", "Search", FormMethod.Post, new { @class = "form-horizontal", area = "SearchCase", id = "form-searchmanpower" }))
+            {
+            <div class="form-group">
+                @Html.LabelFor(c => c.KeyWord, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-5">
+                    @Html.EditorFor(c => c.KeyWord, new { htmlAttributes = new { @class = "form-control", placeholder = "關鍵字" } })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(c => c.mCityID, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    <select id="mCityID" name="mCityID" multiple></select>
+                    <select id="mRegionID" name="mRegionID" multiple></select>
+                    <p style="color:red">※城市及行政區皆可複選</p>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(c => c.Condition, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    <select id="mClassID" name="mClassID"></select>
+                    <select id="mSubClassID" name="mSubClassID"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(c => c.CaseStatus, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    <select id="CaseStatus" name="CaseStatus">
+                        <option value="0" selected>不拘</option>
+                        <option value="8">提供</option>
+                        <option value="7">徵求</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(c => c.EndDate, new { @class = "col-sm-2 control-label" })
+                <div id="mdatetimepicker" class="input-group date form_date col-md-10" data-date="" data-date-format="yyyy MM dd" data-link-field="EndDate" data-link-format="yyyy/mm/dd">
+                    <input class="form-control" size="16" type="text" value="" readonly="">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    <input type="hidden" id="EndDate" name="EndDate" value="">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>搜尋</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<hr />
+<div id="result"></div>
+
+
+@section scripts{    
+    <script src="~/Areas/SearchCase/Scripts/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/Areas/SearchCase/Scripts/bootstrap-datetimepicker.zh-TW.js" charset="UTF-8"></script>
+    <script>
+        $(function () {
+            $('#gdatetimepicker').datetimepicker({
+                weekStart: 1,
+                todayBtn: 1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                minView: 2,
+                forceParse: 0,
+                language: 'zh-TW'
+            });
+            $('#mdatetimepicker').datetimepicker({
+                weekStart: 1,
+                todayBtn: 1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                minView: 2,
+                forceParse: 0,
+                language: 'zh-TW'
+            });
+            $('#form-advance').hide();
+            var selgCity = $('#gCityID');
+            var selmCity = $('#mCityID');
+            var defaultgCity = $('<option></option>').val(0).text('所有城市');
+            var defaultmCity = $('<option></option>').val(0).text('所有城市');
+            var selgRegion = $('#gRegionID');
+            var selmRegion = $('#mRegionID');
+            var defaultgRegion = $('<option></option>').val(0).text('所有行政區');
+            var defaultmRegion = $('<option></option>').val(0).text('所有行政區');
+            var selgClass = $('#gClassID');
+            var selmClass = $('#mClassID');
+            var defaultgClass = $('<option></option>').val(0).text('所有分類');
+            var defaultmClass = $('<option></option>').val(0).text('所有分類');
+            var selgSubClass = $('#gSubClassID');
+            var selmSubClass = $('#mSubClassID');
+            var defaultgSubClass = $('<option></option>').val(0).text('所有細項分類');
+            var defaultmSubClass = $('<option></option>').val(0).text('所有細項分類');
+            var urlCity = "@Url.Action("GetCity", "Search", new { area = "SearchCase" })";
+            selgCity.html(defaultgCity);
+            selgRegion.html(defaultgRegion);
+            selgRegion.val(0);
+            selmCity.html(defaultmCity);
+            selmRegion.html(defaultmRegion);
+            selmRegion.val(0);
+            selgClass.html(defaultgClass);
+            selgSubClass.html(defaultgSubClass);
+            selmClass.html(defaultmClass);
+            selmSubClass.html(defaultmSubClass);
+            $.getJSON(urlCity, function (datas) {
+                var gdoc = $(document.createDocumentFragment());
+                var mdoc = $(document.createDocumentFragment());
+                gdoc.append(defaultgCity);
+                mdoc.append(defaultmCity);
+                $.each(datas, function (idx, city) {
+                    var gopt = $('<option></option>').val(city.CityID).text(city.CityName);
+                    var mopt = $('<option></option>').val(city.CityID).text(city.CityName);
+                    gdoc.append(gopt);
+                    mdoc.append(mopt);
+                })
+                selgCity.html(gdoc);
+                selgCity.val(0);
+                selmCity.html(mdoc);
+                selmCity.val(0);
+            });
+            selgRegion.click(function (e) {
+                if (e.target.value == 0) {
+                    selgRegion.val(0);
+                }
+                else {
+                    if (selgRegion.val()[0] == 0) {
+                        var cut = selgRegion.val();
+                        cut.splice(0, 1);
+                        selgRegion.val(cut);
+                    }
+                }
+            });
+            selgCity.click(function (e) {
+                if (e.target.value == 0) {
+                    selgRegion.html(defaultgRegion);
+                    selgRegion.val(0);
+                    selgCity.val(0);
+                }
+                else {
+                    if (selgCity.val()[0] == 0) {
+                        var cut = selgCity.val();
+                        cut.splice(0, 1);
+                        selgCity.val(cut);
+                    }
+                    gchange();
+                    selgRegion.val(0);
+                }
+            });
+            selmRegion.click(function (e) {
+                if (e.target.value == 0) {
+                    selmRegion.val(0);
+                }
+                else {
+                    if (selmRegion.val()[0] == 0) {
+                        var cut = selmRegion.val();
+                        cut.splice(0, 1);
+                        selmRegion.val(cut);
+                    }
+                }
+            });
+            selmCity.click(function (e) {
+                if (e.target.value == 0) {
+                    selmRegion.html(defaultmRegion);
+                    selmRegion.val(0);
+                    selmCity.val(0);
+                }
+                else {
+                    if (selmCity.val()[0] == 0) {
+                        var cut = selmCity.val();
+                        cut.splice(0, 1);
+                        selmCity.val(cut);
+                    }
+                    mchange();
+                    selmRegion.val(0);
+                }
+            });
+            var gchange = function () {
+                var urlRegion = "@Url.Action("GetRegion", "Search", new { area = "SearchCase" })?CityID=" + selgCity.val();
+                $.getJSON(urlRegion, function (datas) {
+                    var doc = $(document.createDocumentFragment());
+                    doc.append(defaultgRegion);
+                    $.each(datas, function (idx, region) {
+                        var opt = $('<option></option>').val(region.RegionID).text(region.RegionName);
+                        doc.append(opt);
+                    });
+                    selgRegion.html(doc);
+                });
+            };
+            var mchange = function () {
+                var urlRegion = "@Url.Action("GetRegion", "Search", new { area = "SearchCase" })?CityID=" + selmCity.val();
+                $.getJSON(urlRegion, function (datas) {
+                    var doc = $(document.createDocumentFragment());
+                    doc.append(defaultmRegion);
+                    $.each(datas, function (idx, region) {
+                        var opt = $('<option></option>').val(region.RegionID).text(region.RegionName);
+                        doc.append(opt);
+                    });
+                    selmRegion.html(doc);
+                });
+            };
+            var urlgClass = "@Url.Action("GetClass", "Search", new { area = "SearchCase" })?Condition=1";
+            $.getJSON(urlgClass, function (datas) {
+                var doc = $(document.createDocumentFragment());
+                doc.append(defaultgClass);
+                $.each(datas, function (idx, _class) {
+                    var opt = $('<option></option>').val(_class.ClassID).text(_class.ClassName);
+                    doc.append(opt);
+                });
+                selgClass.html(doc);
+            });
+            selgClass.change(function () {
+                if (selgClass.val() == 0) {
+                    selgSubClass.html(defaultgSubClass);
+                }
+                else {
+                    var urlSubClass = "@Url.Action("GetSubClass", "Search", new { area = "SearchCase" })?Condition=1" + "&ClassID=" + selgClass.val();
+                    $.getJSON(urlSubClass, function (datas) {
+                        var doc = $(document.createDocumentFragment());
+                        doc.append(defaultgSubClass);
+                        $.each(datas, function (idx, _subclass) {
+                            var opt = $('<option></option>').val(_subclass.SubClassID).text(_subclass.SubClassName);
+                            doc.append(opt);
+                        });
+                        selgSubClass.html(doc);
+                    });
+                }
+            });
+            var urlmClass = "@Url.Action("GetClass", "Search", new { area = "SearchCase" })?Condition=2";
+            $.getJSON(urlmClass, function (datas) {
+                var doc = $(document.createDocumentFragment());
+                doc.append(defaultmClass);
+                $.each(datas, function (idx, _class) {
+                    var opt = $('<option></option>').val(_class.ClassID).text(_class.ClassName);
+                    doc.append(opt);
+                });
+                selmClass.html(doc);
+            });
+            selmClass.change(function () {
+                if (selmClass.val() == 0) {
+                    selmSubClass.html(defaultmSubClass);
+                }
+                else {
+                    var urlSubClass = "@Url.Action("GetSubClass", "Search", new { area = "SearchCase" })?Condition=2" + "&ClassID=" + selmClass.val();
+                    $.getJSON(urlSubClass, function (datas) {
+                        var doc = $(document.createDocumentFragment());
+                        doc.append(defaultmSubClass);
+                        $.each(datas, function (idx, _subclass) {
+                            var opt = $('<option></option>').val(_subclass.SubClassID).text(_subclass.SubClassName);
+                            doc.append(opt);
+                        });
+                        selmSubClass.html(doc);
+                    });
+                }
+            });
+            $(document).on('submit', '#form-searchgoods', function (e) {
+                e.preventDefault();
+                postForm(e.target);
+            });
+            $(document).on('submit', '#form-searchmanpower', function (e) {
+                e.preventDefault();
+                postForm(e.target);
+            });
+            var postForm = function (form) {
+                $.ajax({
+                    type: $(form).attr('method'),
+                    url: $(form).attr('action'),
+                    data: $(form).serialize(),
+                    success: function (datas) {
+                        $('#result').html(datas);
+                    }
+                });
+                return true;
+            };
+        });
+    </script>
+
+}

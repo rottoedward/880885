@@ -1,0 +1,132 @@
+﻿@model IEnumerable<Msit115BestOne.Areas.Admin.Models.MemberViewModel>
+@{
+    ViewBag.Title = "會員檢視";
+}
+@section heads{
+    <!-- DATA TABLES -->
+    <link href="~/Areas/Admin/Admin_UI_Template/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+}
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            瀏覽會員資料
+        </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <br />
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <!--表頭嵌入-->
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.MemberID)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.MAccount)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Birthday)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.RegionAddress)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Phone)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Email)
+                                    </th>
+                                    <th id="MyEdit"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!--內容嵌入-->
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td style="vertical-align:middle;">
+                                            @Html.DisplayFor(modelItem => item.MemberID)
+                                        </td>
+                                        <td style="vertical-align:middle;">
+                                            @Html.DisplayFor(modelItem => item.MAccount)
+                                        </td>
+                                        <td style="vertical-align:middle;">
+                                            @Html.DisplayFor(modelItem => item.Birthday)
+                                        </td>
+                                        <td style="vertical-align:middle;">
+                                            @Html.DisplayFor(modelItem => item.RegionAddress)
+                                        </td>
+                                        <td style="vertical-align:middle;">
+                                            @Html.DisplayFor(modelItem => item.Phone)
+                                        </td>
+                                        <td style="vertical-align:middle;">
+                                            @Html.DisplayFor(modelItem => item.Email)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("修改", "EditMember", "Member", new { MemberID = item.MemberID }, new { @class = "btn btn-primary" })
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <!--表頭嵌入-->
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.MemberID)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.MAccount)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Birthday)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.RegionAddress)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Phone)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Email)
+                                    </th>
+                                    <th id="MyEdit"></th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+
+@section scripts{
+    <!-- DATA TABES SCRIPT -->
+    <script src="~/Areas/Admin/Admin_UI_Template/plugins/datatables/jquery.dataTables.js" type="text/javascript" charset="big5"></script>
+    <script src="~/Areas/Admin/Admin_UI_Template/plugins/datatables/dataTables.bootstrap.js" type="text/javascript" charset="big5"></script>
+    <!-- page script -->
+    <script type="text/javascript">
+        $(function () {
+            $("#example1").dataTable();
+            $('#example2').dataTable({
+                "bPaginate": true,
+                "bLengthChange": false,
+                "bFilter": false,
+                "bSort": true,
+                "bInfo": true,
+                "bAutoWidth": false
+            });
+        });
+    </script>
+    @*<script src="~/Scripts/jquery-1.10.2.js"></script>*@
+}

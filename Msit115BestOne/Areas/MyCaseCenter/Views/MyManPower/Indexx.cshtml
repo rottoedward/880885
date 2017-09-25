@@ -1,0 +1,171 @@
+﻿@model IEnumerable<Msit115BestOne.Areas.MyCaseCenter.Models.Partial.CaseManPower>
+@{
+    ViewBag.Title = "我的人力案件";
+}
+@section heads{
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <link href="~/Areas/MyCaseCenter/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Areas/MyCaseCenter/css/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="~/Areas/MyCaseCenter/css/prettyPhoto.css" rel="stylesheet" />
+    <link href="~/Areas/MyCaseCenter/css/custom-styles.css" rel="stylesheet" />
+    <!-- CSS================================================== -->
+    <link rel="shortcut icon" href="~/Areas/MyCaseCenter/img/favicon.ico">
+    <link rel="apple-touch-icon" href="~/Areas/MyCaseCenter/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="~/Areas/MyCaseCenter/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="~/Areas/MyCaseCenter/img/apple-touch-icon-114x114.png">
+}
+@section styles{
+    <style>
+        .myButton {
+            -moz-box-shadow: 4px 5px 0px -1px #caefab;
+            -webkit-box-shadow: 4px 5px 0px -1px #caefab;
+            box-shadow: 4px 5px 0px -1px #caefab;
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #77d42a), color-stop(1, #5cb811));
+            background: -moz-linear-gradient(top, #77d42a 5%, #5cb811 100%);
+            background: -webkit-linear-gradient(top, #77d42a 5%, #5cb811 100%);
+            background: -o-linear-gradient(top, #77d42a 5%, #5cb811 100%);
+            background: -ms-linear-gradient(top, #77d42a 5%, #5cb811 100%);
+            background: linear-gradient(to bottom, #77d42a 5%, #5cb811 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#77d42a', endColorstr='#5cb811',GradientType=0);
+            background-color: #77d42a;
+            -moz-border-radius: 18px;
+            -webkit-border-radius: 18px;
+            border-radius: 18px;
+            border: 3px solid #268a16;
+            display: inline-block;
+            cursor: pointer;
+            color: #306108;
+            font-family: Arial;
+            font-size: 17px;
+            font-weight: bold;
+            font-style: italic;
+            padding: 8px 26px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #aade7c;
+            margin-bottom: 5px;
+        }
+
+            .myButton:hover {
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #5cb811), color-stop(1, #77d42a));
+                background: -moz-linear-gradient(top, #5cb811 5%, #77d42a 100%);
+                background: -webkit-linear-gradient(top, #5cb811 5%, #77d42a 100%);
+                background: -o-linear-gradient(top, #5cb811 5%, #77d42a 100%);
+                background: -ms-linear-gradient(top, #5cb811 5%, #77d42a 100%);
+                background: linear-gradient(to bottom, #5cb811 5%, #77d42a 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5cb811', endColorstr='#77d42a',GradientType=0);
+                background-color: #5cb811;
+            }
+
+            .myButton:active {
+                position: relative;
+                top: 1px;
+            }
+    </style>
+    <style>
+        .img {
+            width: 270px;
+            height: 220px;
+        }
+
+        .pageGroup {
+            width: auto;
+        }
+    </style>
+}
+<h2 style="display:inline">我的人力案件總覽&nbsp;&nbsp;</h2>@Html.ActionLink("物品案件", "Index", "MyGood", new { area = "MyCaseCenter" }, new { @class = "myButton" })
+<p> 我的所有案件總數 : @(ViewBag.allcase) / 我的所有人力案件總數 : @ViewBag.MPcase</p>
+<div class="row" style="width:1000px;">
+    <div class="col-sm-2">
+        <p style="margin-left:15px;">各案件需求單情況 : </p>
+    </div>
+    <div class="col-sm-10">
+        @foreach (var coun in @ViewBag.Count)
+        {
+            <div class="col-md-3"><p>@coun.CaseTitle:@coun.Cou</p></div>
+            
+        }
+    </div>
+</div>
+
+<div class="color-bar-1"></div>
+<div class="color-bar-2 color-bg"></div>
+
+<div class="container main-container">
+
+    <!-- Page Content
+    ================================================== -->
+    <div class="row">
+        <!-- Gallery Items
+        ================================================== -->
+        <div class="span9 gallery">
+            <!--分類-->
+            <ul id="filterOptions" class="gallery-cats clearfix">
+                @*<li class="active"><a href="#" class="all">All</a></li>*@
+                @*@foreach (var gc in Model.GoodsClass)
+                    {
+                        <li><a href="#" class="@gc.GdsClass">@gc.MPClass1</a></li>
+                    }*@
+                @*<li><a href="#" class="illustration">Illustration</a></li>
+                    <li><a href="#" class="design">Design</a></li>
+                    <li><a href="#" class="video">Video</a></li>
+                    <li><a href="#" class="web">Web</a></li>*@
+            </ul>
+            <div class="row clearfix">
+                <ul class="gallery-post-grid holder">
+                    @foreach (var manpower in Model)
+                    {
+                        <li class="span3 gallery-item" data-id="id-@manpower.CaseID" data-type="@manpower.MPClass1">
+                            <span class="gallery-hover-4col hidden-phone hidden-tablet">
+                                <span class="gallery-icons">
+                                    <a href="~/MyCaseCenter/MyManPower/BytesImage/@manpower.CaseID" class="item-zoom-link lightbox" title="@manpower.CaseTitle" data-rel="prettyPhoto"></a>
+                                    <a href="~/MyCaseCenter/MyManPower/LoadMan/@manpower.CaseID" class="item-details-link"></a>
+                                </span>
+                            </span>
+                            <div class="img">
+                                <a href="#"><img src="~/MyCaseCenter/MyManPower/BytesImage/@manpower.CaseID" alt="Gallery" class="img"></a>
+                            </div>
+                            <span class="project-details">
+                                <a href="~/MyCaseCenter/MyManPower/LoadMan/@manpower.CaseID">@manpower.CaseTitle</a>
+                                <span style="margin-right:30px">@Html.DisplayFor(p => manpower.StatusName)</span>
+                                <br />
+                                <span style="margin-right:0px">需要人數:@Html.DisplayFor(p => manpower.MPNeedCount)</span>
+                                <span style="margin-left:80px">實際人數:@Html.DisplayFor(p => manpower.MPActuralCount)</span>
+                                @*需要人數:@Html.DisplayFor(p => manpower.MPNeedCount)&nbsp;&nbsp;&nbsp;&nbsp;*@ @*實際人數:@Html.DisplayFor(p => manpower.MPActuralCount)*@
+                            </span>
+                        </li>
+                    }
+
+                    @{
+                        #region item
+
+                        //< !--Gallery Item 1-- >
+
+                        #endregion
+                    }
+                </ul>
+            </div>
+            <!-- Pagination -->
+            <div class="pagination pageGroup">
+                @*<ul>
+                        <li class="active"><a href="#">Prev</a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">Next</a></li>
+                    </ul>*@
+            </div>
+        </div><!-- End gallery list-->
+    </div><!-- End container row -->
+
+</div> <!-- End Container -->
+<!-- Scroll to Top -->
+<div id="toTop" class="hidden-phone hidden-tablet">Back to Top</div>
+@section scripts{
+    <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+    <script src="~/Areas/MyCaseCenter/js/jquery.easing.1.3.js"></script>
+    <script src="~/Areas/MyCaseCenter/js/bootstrap.js"></script>
+    <script src="~/Areas/MyCaseCenter/js/jquery.prettyPhoto.js"></script>
+    <script src="~/Areas/MyCaseCenter/js/jquery.quicksand.js"></script>
+    <script src="~/Areas/MyCaseCenter/js/jquery.custom.js"></script>
+}

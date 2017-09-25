@@ -1,0 +1,149 @@
+﻿@model IEnumerable<Msit115BestOne.Models.AdminLog>
+
+@{
+    ViewBag.Title = "後台操作記錄";
+}
+
+@section heads{
+    <!-- DATA TABLES -->
+    <link href="~/Areas/Admin/Admin_UI_Template/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            後台操作記錄
+        </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <!--表頭嵌入-->
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.LogId)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CreateDateTime)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.AdminName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.SaveData)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Data_Action)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Orignal_Page)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ActionName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ControllersName)
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!--內容嵌入-->
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td style="vertical-align:middle;">
+                                            @Html.DisplayFor(modelItem => item.LogId,new { htmlAttributes = new { @class = "sorting_desc" } })
+                                        </td>
+                                        <td style="vertical-align:middle;">
+                                            @Html.DisplayFor(modelItem => item.CreateDateTime)
+                                        </td>
+                                        <td style="vertical-align:middle;">
+                                            @Html.DisplayFor(modelItem => item.AdminName)
+                                        </td>
+                                        <td style="vertical-align:middle;">
+                                            @Html.DisplayFor(modelItem => item.SaveData)
+                                        </td>
+                                        <td style="vertical-align:middle;">
+                                            @Html.DisplayFor(modelItem => item.Data_Action)
+                                        </td>
+                                        <td style="vertical-align:middle;">
+                                            @Html.DisplayFor(modelItem => item.Orignal_Page)
+                                        </td>
+                                        <td style="vertical-align:middle;">
+                                            @Html.DisplayFor(modelItem => item.ActionName)
+                                        </td>
+                                        <td style="vertical-align:middle;">
+                                            @Html.DisplayFor(modelItem => item.ControllersName)
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <!--表頭嵌入-->
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.LogId)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CreateDateTime)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.AdminName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.SaveData)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Data_Action)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Orignal_Page)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ActionName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ControllersName)
+                                    </th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+
+
+
+@section scripts{
+    <!-- DATA TABES SCRIPT -->
+    <script src="~/Areas/Admin/Admin_UI_Template/plugins/datatables/jquery.dataTables.js" type="text/javascript" charset="big5"></script>
+    <script src="~/Areas/Admin/Admin_UI_Template/plugins/datatables/dataTables.bootstrap.js" type="text/javascript" charset="big5"></script>
+    <!-- page script -->
+@*<script src="~/Scripts/jquery-1.10.2.js"></script>*@
+
+
+    <script type="text/javascript">
+        $(function () {
+            $("#example1").dataTable();
+            $('#example2').dataTable({
+                "bPaginate": true,
+                "bLengthChange": false,
+                "bFilter": false,
+                "bSort": true,
+                "bInfo": true,
+                "bAutoWidth": false
+            });
+        });
+    </script>
+    <script src="~/Areas/Admin/Scripts/MyDeleteDialog.js"></script>
+}

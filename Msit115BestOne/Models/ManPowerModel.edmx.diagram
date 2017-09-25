@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ad41c5974539496c8b19f36f89b2872d" Name="Diagram1">
+        <EntityTypeShape EntityType="ManPowerModel.AdminArticle" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManPowerModel.Administrator" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManPowerModel.Advertisement" Width="1.5" PointX="12" PointY="36.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManPowerModel.Board" Width="1.5" PointX="7.5" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManPowerModel.Cart" Width="1.5" PointX="9.75" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManPowerModel.Cases" Width="1.5" PointX="7.5" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManPowerModel.CaseStatus" Width="1.5" PointX="5.25" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManPowerModel.Chat" Width="1.5" PointX="7.5" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManPowerModel.City" Width="1.5" PointX="0.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManPowerModel.Content" Width="1.5" PointX="9.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManPowerModel.Evaluation" Width="1.5" PointX="15" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManPowerModel.GdsSubClass" Width="1.5" PointX="10.5" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManPowerModel.Goods" Width="1.5" PointX="12.75" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManPowerModel.GoodsClass" Width="1.5" PointX="8.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManPowerModel.ManPower" Width="1.5" PointX="12.75" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManPowerModel.MC_Match" Width="1.5" PointX="9.75" PointY="29.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManPowerModel.Member" Width="1.5" PointX="5.25" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManPowerModel.MemberStage" Width="1.5" PointX="3" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManPowerModel.MPClass" Width="1.5" PointX="8.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManPowerModel.MPSCList" Width="1.5" PointX="12.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManPowerModel.MPSubClass" Width="1.5" PointX="10.5" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManPowerModel.Orders" Width="1.5" PointX="12.75" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManPowerModel.OrderStatus" Width="1.5" PointX="10.5" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManPowerModel.Picture" Width="1.5" PointX="9.75" PointY="36" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManPowerModel.Region" Width="1.5" PointX="3" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManPowerModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="ManPowerModel.FK_AdminArticle_Administrator" ManuallyRouted="false" />
+        <AssociationConnector Association="ManPowerModel.FK_Advertisement_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="ManPowerModel.FK_Board_Member" ManuallyRouted="false" />
+        <AssociationConnector Association="ManPowerModel.FK_Cart_Case" ManuallyRouted="false" />
+        <AssociationConnector Association="ManPowerModel.FK_Article_Member" ManuallyRouted="false" />
+        <AssociationConnector Association="ManPowerModel.FK_Case_CaseStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="ManPowerModel.FK_Content_Article" ManuallyRouted="false" />
+        <AssociationConnector Association="ManPowerModel.FK_Goods_Case" ManuallyRouted="false" />
+        <AssociationConnector Association="ManPowerModel.FK_ManPower_Case" ManuallyRouted="false" />
+        <AssociationConnector Association="ManPowerModel.FK_MC_Match_Case" ManuallyRouted="false" />
+        <AssociationConnector Association="ManPowerModel.FK_Order_Case" ManuallyRouted="false" />
+        <AssociationConnector Association="ManPowerModel.FK_Picture_Case" ManuallyRouted="false" />
+        <AssociationConnector Association="ManPowerModel.FK_Chat_Member" ManuallyRouted="false" />
+        <AssociationConnector Association="ManPowerModel.FK_Region_City" ManuallyRouted="false" />
+        <AssociationConnector Association="ManPowerModel.FK_Content_Member" ManuallyRouted="false" />
+        <AssociationConnector Association="ManPowerModel.FK_Evaluation_Order1" ManuallyRouted="false" />
+        <AssociationConnector Association="ManPowerModel.FK_GdsSubClass_GoodsClass" ManuallyRouted="false" />
+        <AssociationConnector Association="ManPowerModel.FK_Goods_GdsSubClass" ManuallyRouted="false" />
+        <AssociationConnector Association="ManPowerModel.FK_ManPower_MPSubClass" ManuallyRouted="false" />
+        <AssociationConnector Association="ManPowerModel.FK_Member_MemberStage" ManuallyRouted="false" />
+        <AssociationConnector Association="ManPowerModel.FK_Member_Region" ManuallyRouted="false" />
+        <AssociationConnector Association="ManPowerModel.FK_MPSubClass_MPClass" ManuallyRouted="false" />
+        <AssociationConnector Association="ManPowerModel.FK_MPSCList_MPSubClass" ManuallyRouted="false" />
+        <AssociationConnector Association="ManPowerModel.FK_Order_OrderStatus" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ManPowerModel.AdminLog" Width="1.5" PointX="3.375" PointY="3.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

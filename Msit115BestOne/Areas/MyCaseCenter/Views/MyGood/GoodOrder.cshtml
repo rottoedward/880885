@@ -1,0 +1,270 @@
+﻿@model IEnumerable<Msit115BestOne.Areas.MyCaseCenter.Models.OrderViewModel>
+
+@{
+    ViewBag.Title = "訂單";
+
+}
+@section styles{
+    <style>
+    .user-row {
+        margin-bottom: 14px;
+    }
+
+        .user-row:last-child {
+            margin-bottom: 0;
+        }
+
+    .dropdown-user {
+        margin: 13px 0;
+        padding: 5px;
+        height: 100%;
+    }
+
+        .dropdown-user:hover {
+            cursor: pointer;
+        }
+
+    .table-user-information > tbody > tr {
+        border-top: 1px solid rgb(221, 221, 221);
+    }
+
+        .table-user-information > tbody > tr:first-child {
+            border-top: 0;
+        }
+
+
+        .table-user-information > tbody > tr > td {
+            border-top: 0;
+            width: 50px;
+        }
+
+    .toppad {
+        margin-top: 20px;
+    }
+</style>
+    }
+<h3 style="color: blue; text-align: center;">
+    <strong><em style="font-size: 12px;"><span style="color: rgb(165, 42, 42);"><span style="font-size: 48px;"><cite><img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAAAYFBMVEX///9eiJ7Z4+iswc2pwMuBorP1+PnP3OJ3ma2atMLe5+uzx9Fmj6JylqrS3eT7/Pzt8vS9zteNqrttlaZrj6aQrbtfiKDD09vn7fFnj6GguMZ/oLN4ma6Gpra4y9SNq7nS6CZeAAAC4UlEQVR4nO2bbZeyIBCGwRTzFW2t3HZz//+/fOoprOSlUWA8u4f7S+dozn1FOMIIhFiIt8mh/Gq5TQwbsYT+V8JWAjjTu3br+KcX67hp4stHvQrAidLs+plRekK0ZVF916UHHK9HjpdeII5F3rvDpqRPKq6HCiod8qdXM1o2hPQdxSPgJZ0QZPvpoU9XaSFqi1e1hOQUoJ4Q6dJo9k8tKilwBQTICfmQLy5mNUy/VQS2AqB028D9G/nn2wPQDzhBogxsC0C/oP5HdWBrgFveWtwADgDOMH+mCWwPQGF3gs7FAUAPAojG73dDWj8UwQGip8vS4pGrYfloBDhIwA3A/yDdbf2YrWcCKJ7yefpWimbOFgJsQF8HKA4AASAABIAAYAnATpkkMf0o5FMP5Y4AlEO0W/BedWrUjyOAVhX8Fsv8fN77ByB1odcgRgY+AUAKAAHAIwDfbw0SUzGPAOZEJOqHHgHYtEDzIjGu99kHmsggMRX8y50wAKwPwJlBCACsU52bBlgtEYmakC1Arsg221v7sm8TwOAIwFoBIADYAvAiXiZRMPMyM4LI1cRkdQA+bJbJ1V9grQAQAGwBmp9kmVJHAMoBCUSuBiTpUoDMEQCJ3r8nUal2NTOyVgAIAD7mBSCJgvKvT0SgN8YquWoB8xQYYXZsrQDw+wF6fSkQtDbIFqA23GklZAGh10QEWZdiPSZM9AXxvTGUIwBrBYAAEAAwAVgzEUcF4OOqMaEdfx5TegeIzf7+AaargSf+/gEqsz82gOSPDCD74wIo/FEBVP6YAEp/RAC1Px6Axh8NQOePBaD1RwLQ++MAGPxRAEz+GABGfwQAs79/gJPZH2VQaqzpzQSIXfvPBUhc+88FoPHcjXPvaqpzAWg38yXRp9mf5u/dCWwny0IBd5sZl+bYqIL5X7fT+hH0tuoPngDA+/0GP/4t1F8xx3OhWXnt6LwjdtDNhnex4dw56wpltWt1FdV/GGw8LUQLO1EAAAAASUVORK5CYII=" style="width: 70px; height: 70px;" /></cite></span></span></em><span style="color:#008080;"><em><span style="font-size:48px;"><cite><u>供需管理&nbsp;<img alt="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa1s3utoyrSn_Q7WuM-sU7GVrqdxC6W84xMVnN2Aiq08mUV5Im" style="width: 60px; height: 60px;" /></u></cite></span></em></span></strong>
+</h3>
+
+<p>
+    &nbsp;
+</p>
+
+<div class="panel panel-info" style="width:800px">
+    <div class="panel-heading">
+        <h2 class="panel-title">需求單</h2>
+    </div>
+
+    <div class="panel-body">
+        <div class="row">
+                    <div class="col-md-12 col-lg-12">
+                <table id="table1" class="table table-user-information">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OrderID)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NickName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CaseTitle)
+                        </th>
+                        @*<th>
+                    @Html.DisplayNameFor(model => model.Point)
+                </th>*@
+                        <th>
+                            @Html.DisplayNameFor(model => model.Quantity)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OrderStatus1)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OrderDate)
+                        </th>
+                        @*<th>
+                    @Html.DisplayNameFor(model => model.FinishedDate)
+                </th>*@
+
+                        <th style="width:100px"></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OrderID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NickName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CaseTitle)
+                                @Html.HiddenFor(modelItem => item.OrderStatusID)
+                            </td>
+                            @*<td>
+                        @Html.DisplayFor(modelItem => item.Point)
+
+                    </td>*@
+                            <td>
+                                @Html.HiddenFor(modelItem => item.GdsCount)
+                                @Html.DisplayFor(modelItem => item.Quantity)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OrderStatus1)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OrderDate)
+                            </td>
+                            @*<td>
+                        @Html.DisplayFor(modelItem => item.FinishedDate)
+                    </td>*@
+
+                            <td id="qwe">
+                                @*@Html.ActionLink("出貨", "LoadGood", new { id = item.OrderID }, new { @class = "btn btn-warning" }) |
+                        @Html.ActionLink("取消", "LoadGood", new { id = item.OrderID }, new { @class = "btn btn-warning" }) |*@
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+    
+
+
+</div><a href="~/MyCaseCenter/MyGood/LoadGood" class="pull-right btn btn-warning" style="margin-bottom:200px;"><i class="icon-arrow-left"></i>上一頁</a>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            var t = $('#table1>tbody>tr td:last-child');
+            var docFrag = $(document.createDocumentFragment());
+            var opt = $('<button></button>').attr("id", "1").addClass('btn btn-success').text('接收');
+            var opt2 = $('<button></button>').attr("id", "2").addClass('btn btn-danger').text('取消');
+            var sp = $('<span></span>').text(' | ');
+            docFrag.append([opt, sp, opt2]);
+            t.html(docFrag);
+            //---------------------------------------------------
+            var btn1 = $('#table1>tbody>tr>td button:first-child');
+            var btn2 = $('#table1>tbody>tr>td button:last-child');
+            btn1.click(function () {
+                var statusid = $(this).parent("td").prev("td").prev("td").prev("td").prev("td").find(':hidden').val();
+                var status = $(this).parent("td").prev("td").prev("td").text();
+                //var point = $(this).parent("td").prev("td").prev("td").prev("td").prev("td").text();
+                var Quan = $(this).parent("td").prev("td").prev("td").prev("td").text();
+                var gdcount = $(this).parent("td").prev("td").prev("td").prev("td").find(':hidden').val();
+                var orderid = $(this).parent("td").parent("tr").find("td:first-child").text();
+                //alert("狀態ID" + statusid); alert("狀態" + status); alert("庫存" + gdcount); alert("購買總額" + point);
+                //alert("購買數量" + Quan);
+                //alert("OrderID" + orderid);
+
+                if (Quan > gdcount) {
+                    alert("貨品庫存數量不足!!");
+                }
+                if (statusid == 1) {
+                    //執行  扣庫存 & 加賣家錢 & 改訂單狀態   物品案件的庫存清空時也要改案件狀態(第一個一起做)
+                    var url = "@Url.Action("OrderOK", "MyGood")";
+                    $.getJSON(url, { id: orderid, Q: Quan}, function (datas) {
+                        var opt; var sta; var d;
+                        var docFra = $(document.createDocumentFragment());
+                        var docFra2 = $(document.createDocumentFragment());
+                        $.each(datas, function (idx, ord) {
+                            opt = ord.OrderStatusID;
+                            sta = "已完成";
+                            d = ord.FinishedDate;
+                            var opt2 = $('<input></input>').attr("id", "OrderStatusID").attr("type", "hidden").val(opt);
+                            var sta2 = $('<span></span>').text(sta);
+                            var d2 = $('<span></span>').text(d);
+                            //alert(opt + "+" + d)
+                            docFra.append([opt2, sta2]);
+                            docFra2.append(d2);
+                        });
+                        //se2.html(docFra);
+                        //alert($(this).text());
+                        $(this).parent("td").prev("td").prev("td").prev("td").html(docFra);
+                        $(this).parent("td").prev("td").html(docFra2);  //訂單完成時間
+                    });
+                    //寫在getjson外  治標不治本
+                    $(this).parent("td").prev("td").prev("td").text("物品已捐贈");
+                    $(this).parent("td").prev("td").prev("td").prev("td").prev("td").find(':hidden').val("1006");
+                }
+                else if (statusid == 2) {
+                    //執行  扣庫存 & 加賣家錢 & 改訂單狀態   物品案件的庫存清空時也要改案件狀態(第一個一起做)
+                    var url = "@Url.Action("OrderOK", "MyGood")";
+                    $.getJSON(url, { id: orderid, Q: Quan}, function (datas) {
+                        var opt; var sta; var d;
+                        var docFra = $(document.createDocumentFragment());
+                        var docFra2 = $(document.createDocumentFragment());
+                        $.each(datas, function (idx, ord) {
+                            opt = ord.OrderStatusID;
+                            sta = "已完成";
+                            d = ord.FinishedDate;
+                            var opt2 = $('<input></input>').attr("id", "OrderStatusID").attr("type", "hidden").val(opt);
+                            var sta2 = $('<span></span>').text(sta);
+                            var d2 = $('<span></span>').text(d);
+                            //alert(opt + "+" + d)
+                            docFra.append([opt2, sta2]);
+                            docFra2.append(d2);
+                        });
+                        //se2.html(docFra);
+                        //alert($(this).text());
+                        $(this).parent("td").prev("td").prev("td").prev("td").html(docFra);
+                        $(this).parent("td").prev("td").html(docFra2);  //訂單完成時間
+                    });
+                    //寫在getjson外  治標不治本
+                    $(this).parent("td").prev("td").prev("td").text("物品已接收");
+                    $(this).parent("td").prev("td").prev("td").prev("td").prev("td").find(':hidden').val("1007");
+                }
+                else if (statusid == 1006) {
+                    alert("物品已捐贈!!");
+                }
+                else if (statusid == 1007) {
+                    alert("物品已接收!!");
+                }
+                else if (statusid == 1008) {
+                    alert("已取消!!");
+                }
+            })
+
+            btn2.click(function () {
+                var statusid = $(this).parent("td").prev("td").prev("td").prev("td").prev("td").find(':hidden').val();
+                var status = $(this).parent("td").prev("td").prev("td").text();
+                //var point = $(this).parent("td").prev("td").prev("td").prev("td").prev("td").text();
+                var Quan = $(this).parent("td").prev("td").prev("td").prev("td").text();
+                //var gdcount = $(this).parent("td").prev("td").prev("td").prev("td").prev("td").find(':hidden').val();
+                var orderid = $(this).parent("td").parent("tr").find("td:first-child").text();
+                if (statusid == 1 || statusid == 2) {
+                    //執行  加庫存 & 還買家錢 & 改訂單狀態   物品案件的庫存不為零時也要開啟案件狀態(第一個一起做)
+                    var url = "@Url.Action("OrderNO", "MyGood")";
+                    $.getJSON(url, { id: orderid, Q: Quan}, function (datas) {
+                        var opt; var sta; var d;
+
+                        $.each(datas, function (idx, ord) {
+                            opt = ord.OrderStatusID;
+                            sta = "已取消";
+                            d = ord.FinishedDate;
+
+                        });
+                        //se2.html(docFra);
+                        $(this).parent("td").prev("td").prev("td").prev("td").text("已取消");
+                        $(this).parent("td").prev("td").html(d);  //訂單完成時間
+                    });
+                    //寫在getjson外  治標不治本
+                    $(this).parent("td").prev("td").prev("td").text("已取消");
+                    $(this).parent("td").prev("td").prev("td").prev("td").prev("td").find(':hidden').val("1008");
+                }
+                else if (statusid == 1006) {
+                    alert("物品已捐贈!!");
+                }
+                else if (statusid == 1007) {
+                    alert("物品已接收!!");
+                }
+                else if (statusid == 1008) {
+                    alert("已取消!!");
+                }
+            })
+        })
+
+    </script> }

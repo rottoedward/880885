@@ -1,0 +1,221 @@
+﻿@model Msit115BestOne.Areas.TotalCase.Models.CaseManPowers
+
+@{
+    ViewBag.Title = "建立人力案件";
+    Layout = "~/Areas/MyMember/Views/Shared/_Layoutcreate.cshtml";
+}
+@section heads{
+    @Html.Partial("~/Areas/TotalCase/Views/Common/piccoloUI_Css.cshtml")
+}
+
+<br />
+<br />
+<br />
+<div style="margin-left:300px">
+    <h1 style="font-family:DFKai-sb;margin-left:300px">新增人力案件</h1><a href="~/TotalCase/Goods/GoodsCreate" class="btn btn-info">物品案件</a>
+    <hr />
+
+    @using (Html.BeginForm("ManPowerCreate", "ManPowers", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data", id = "form1" }))
+    {
+        <div class="form-horizontal">
+
+            @*<hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+            @*<div class="input-prepend">
+                    <span class="add-on" style="height:30px;"><i class="icon-user"></i></span>
+                    <input class="span4" id="prependedInput" size="16" type="text" placeholder="Name" style="height:30px;">
+                </div>*@
+            <div class="form-group">
+                @Html.LabelFor(p => p.CaseTitle, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.EditorFor(p => p.CaseTitle, new { htmlAttributes = new { @class = "form-control", placeholder = "案件名稱" } })
+                    @Html.ValidationMessageFor(model => model.CaseTitle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            @*<div class="form-group">
+                    @Html.LabelFor(p => p.MPName, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+
+                        @Html.EditorFor(p => p.MPName, new { htmlAttributes = new { @class = "form-control", placeholder = "MPName" } })
+                        @Html.ValidationMessageFor(model => model.MPName, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+            <div class="form-group">
+                @Html.LabelFor(p => p.MPSubClass1, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.DropDownList("MPClassID", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("MPSubClassID", null, htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(p => p.CaseContent, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+
+                    @Html.EditorFor(p => p.CaseContent, new { htmlAttributes = new { @class = "form-control", placeholder = "案件內容" } })
+                    @Html.ValidationMessageFor(model => model.CaseContent, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            @*<div class="form-group">
+                    @Html.LabelFor(p => p.MPPoint, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+
+                        @Html.EditorFor(p => p.MPPoint, new { htmlAttributes = new { @class = "form-control", placeholder = "MPPoint" } })
+                    </div>
+                </div>*@
+            <div class="form-group">
+                @Html.LabelFor(p => p.MPNeedCount, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+
+                    @Html.EditorFor(p => p.MPNeedCount, new { htmlAttributes = new { @class = "form-control", placeholder = "所需人數" } })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(p => p.Location, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+
+                    @Html.DropDownList("CityID", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("RegionID", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.EditorFor(p => p.Location, new { htmlAttributes = new { @class = "form-control", placeholder = "地點" } })
+
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.StatusName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select name="StatusID" id="StatusID">
+                        <option value="8">提供人力</option>
+                        <option value="7">需求人力</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(p => p.Contact, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+
+                    @Html.EditorFor(p => p.Contact, new { htmlAttributes = new { @class = "form-control", placeholder = "聯絡方式" } })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(p => p.MPDate, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+
+                    @Html.EditorFor(p => p.MPDate, new { htmlAttributes = new { @class = "form-control", placeholder = "截止日期" } })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(p => p.MPTime, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+
+                    @Html.EditorFor(p => p.MPTime, new { htmlAttributes = new { @class = "form-control", placeholder = "截止時間" } })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="files">上傳圖片</label>
+                <div class="col-md-3"><img id="blah" src="#" alt="預覽" /></div>
+                @Html.Raw(TempData["message"])
+                <input type="file" id="file" name="files" style="width:300px" multiple/>
+
+
+            </div>
+
+
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="確定新增" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section scripts{
+    @Html.Partial("~/Areas/TotalCase/Views/Common/piccoloUI_Js.cshtml")
+    <script>
+        $(document).ready(function () {
+            var sel = $('#MPClassID');
+            var se2 = $('#MPSubClassID');
+            sel.change(function () {
+                var id = $(this).val();
+                var url = "@Url.Action("SubClass", "MyManPower",new { area="MyCaseCenter"})/" + id;
+                $.getJSON(url, function (datas) {
+                    var docFrag = $(document.createDocumentFragment());
+                    $.each(datas, function (idx, SubClass1) {
+                        var opt = $('<option></option>').val(SubClass1.MPSubClassID).text(SubClass1.MPSubClass1);
+                        docFrag.append(opt);
+                    });
+                    se2.html(docFrag);
+                })
+            })
+
+
+            @*se2.change(function () {
+                var id = $(this).val();
+                var url = "@Url.Action("MyClass", "Goods")/" + id;
+                $.getJSON(url, function (datas) {
+                    var docFrag = $(document.createDocumentFragment());
+                    $.each(datas, function (idx, Class) {
+                        var opt = $('<option></option>').val(Class.GdsClassID).text(Class.GdsClass);
+                        docFrag.append(opt);
+                    });
+                    sel.html(docFrag);
+                })
+
+            });*@
+
+            var sell = $('#CityID');
+            var sell2 = $('#RegionID');
+            sell.change(function () {
+                var id = $(this).val();
+                var url = "@Url.Action("RegionC", "MyGood", new { area = "MyCaseCenter" })/" + id;
+                $.getJSON(url, function (datas) {
+                    var docFrag = $(document.createDocumentFragment());
+                    $.each(datas, function (idx, region1) {
+                        var opt = $('<option></option>').val(region1.RegionID).text(region1.RegionName);
+                        docFrag.append(opt);
+                    });
+                    sell2.html(docFrag);
+                    $('#Location').val("");
+                })
+            })
+        })
+
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#file").change(function () {
+            readURL(this);
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

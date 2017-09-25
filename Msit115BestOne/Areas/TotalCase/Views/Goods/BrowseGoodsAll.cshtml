@@ -1,0 +1,182 @@
+﻿@model  Msit115BestOne.Areas.TotalCase.Models.GoodsGroupViewModel
+@{
+    ViewBag.Title = "全部物品案件";
+}
+@section heads{
+    @Html.Partial("~/Areas/TotalCase/Views/Common/piccoloUI_Css.cshtml")
+}
+@section styles{
+    <style>
+        .GoodpageGroup {
+            width: auto;
+        }
+        .Goodimg{
+            width:270px;
+            height:220px;
+        }
+       #myButton {
+	-moz-box-shadow: 0px 10px 14px -7px #9fb4f2;
+	-webkit-box-shadow: 0px 10px 14px -7px #9fb4f2;
+	box-shadow: 0px 10px 14px -7px #9fb4f2;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #7892c2), color-stop(1, #476e9e));
+	background:-moz-linear-gradient(top, #7892c2 5%, #476e9e 100%);
+	background:-webkit-linear-gradient(top, #7892c2 5%, #476e9e 100%);
+	background:-o-linear-gradient(top, #7892c2 5%, #476e9e 100%);
+	background:-ms-linear-gradient(top, #7892c2 5%, #476e9e 100%);
+	background:linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#7892c2', endColorstr='#476e9e',GradientType=0);
+	background-color:#7892c2;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	border-radius:10px;
+	border:4px solid #4e6096;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+font-size:10px;
+	font-weight:bold;
+	padding:5px 5px;
+       margin-bottom:7px;
+	text-decoration:none;
+}
+#myButton:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #476e9e), color-stop(1, #7892c2));
+	background:-moz-linear-gradient(top, #476e9e 5%, #7892c2 100%);
+	background:-webkit-linear-gradient(top, #476e9e 5%, #7892c2 100%);
+	background:-o-linear-gradient(top, #476e9e 5%, #7892c2 100%);
+	background:-ms-linear-gradient(top, #476e9e 5%, #7892c2 100%);
+	background:linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#476e9e', endColorstr='#7892c2',GradientType=0);
+	background-color:#476e9e;
+}
+#myButton:active {
+	position:relative;
+	top:1px;
+}
+
+    #myButton1 {
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9));
+	background:-moz-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+	background:-webkit-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+	background:-o-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+	background:-ms-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+	background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e9e9e9',GradientType=0);
+	background-color:#f9f9f9;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#666666;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+}
+#myButton1:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9));
+	background:-moz-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+	background:-webkit-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+	background:-o-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+	background:-ms-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+	background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9',GradientType=0);
+	background-color:#e9e9e9;
+}
+#myButton1:active {
+	position:relative;
+	top:1px;
+}
+
+    </style>
+
+}
+@{Session["Lo"] = 1;}
+<h2 style="display:inline" >物品案件</h2><a href="~/TotalCase/ManPowers/ManPowerAll" id="myButton1" class="all"  style="margin-bottom:5px;margin-left:5px">切換到人力案件</a>
+<a href="~/TotalCase/Goods/Goodsneed" id="myButton1" style="margin-left:300px;">物品需求</a><a href="~/TotalCase/Goods/Goodsgive" id="myButton1">物品贈予</a>
+
+<br />
+   
+
+    @*@Html.Action("CRUD_Button", "Common", new { categoryName = "Goods" })*@
+
+    <div class="color-bar-1"></div>
+    <div class="color-bar-2 color-bg"></div>
+    <br />
+
+    <div class="container main-container">
+
+        <!-- Page Content
+        ================================================== -->
+        <div class="row">
+            <!-- Gallery Items
+            ================================================== -->
+            <div class="span9 gallery">
+                <!--分類-->
+                <ul id="filterOptions" class="gallery-cats clearfix">
+                    <li class="active"><a href="#" id="myButton" class="all">全部案件</a></li>
+                    @foreach (var gc in Model.GoodsClass)
+                    {
+                        <li><a href="#" id="myButton" class="@gc.GdsClass">@gc.GdsClass</a></li>
+                    }
+
+                </ul>
+                <div class="row clearfix">
+                    <ul class="gallery-post-grid holder">
+                        @foreach (var gi in Model.Goods)
+                        {
+
+
+
+
+                            <li class="span3 gallery-item" data-id="id-@gi.CaseID" data-type="@gi.GdsClass">
+                                <span class="gallery-hover-4col hidden-phone hidden-tablet">
+                                    <span class="gallery-icons">
+                                        <a href="~/MyCaseCenter/MyGood/BytesImage/@gi.CaseID" class="item-zoom-link lightbox" title="@gi.CaseTitle" data-rel="prettyPhoto"></a>
+                                        <a href="~/TotalCase/Goods/GoodsRead/@gi.CaseID" class="item-details-link"></a>
+                                    </span>
+                                </span>
+                                <a href="#"><img src="~/TotalCase/Goods/BytesImage/@gi.CaseID" alt="Gallery" class="Goodimg"></a>
+                                <span class="project-details">
+                                    <a href="~/TotalCase/Goods/GoodsRead/@gi.CaseID">@gi.CaseTitle</a>
+
+                                    <span style="margin-right:30px">會員:@(gi.NickName) </span>
+                                    <br />
+                                    <span style="margin-left:0px">@(gi.StatusName)</span>
+                                    <span style="margin-left:50px"> 數量:@(gi.GdsCount)個</span>
+
+                                    @*@(gi.GdsName)  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  會員:@(gi.NickName) <br />
+                                    @(gi.StatusName) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  數量:@(gi.GdsCount)個*@
+                                </span>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <!-- Pagination -->
+                @*<div class="pagination GoodpageGroup">
+                        <ul>
+                            <li class="active"><a href="#">Prev</a></li>
+                            <li class="active"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">Next</a></li>
+                        </ul>
+                    </div>*@
+            </div><!-- End gallery list-->
+        </div><!-- End container row -->
+
+    </div> <!-- End Container -->
+    <!-- Scroll to Top -->
+    @*<div id="toTop" class="hidden-phone hidden-tablet">Back to Top</div>*@
+    @section scripts{
+        @Html.Partial("~/Areas/TotalCase/Views/Common/piccoloUI_Js.cshtml")
+    }

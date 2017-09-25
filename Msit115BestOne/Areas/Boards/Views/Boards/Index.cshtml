@@ -1,0 +1,76 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<Msit115BestOne.Models.Board>
+@*@{
+    ViewBag.Title = "Index";
+}*@
+@*<h2>好康分享</h2>*@
+<style>
+    .pag1 ul {
+    width:auto;
+    }
+</style>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th >
+                @Html.DisplayNameFor(b => b.First().Member.FirstName)
+            </th>
+            <th >
+                @Html.DisplayNameFor(b => b.First().CaseTitle)
+            </th>
+            <th >
+                @Html.DisplayNameFor(b => b.First().CaseContent)
+            </th>
+            <th style="width:20px">
+                @*@Html.DisplayNameFor(model => model.StartDateTime)*@
+                @Html.ActionLink(@Html.DisplayNameFor(b => b.First().StartDateTime).ToHtmlString(), "Index","Home",new { area = "", sortBy = ViewBag.SortStartDateTime },null)
+            </th>
+            <th style="width:20px"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Member.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CaseTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CaseContent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDateTime)
+                </td>
+                <td>
+                    @if (Session["MEMBERID"] != null)
+                {
+                    if (item.MemberID == (int)Session["MEMBERID"])
+                    {
+                        @Html.ActionLink("修改", "Edit",null, new { id = item.BoardID }, new { @class = "btn btn-warning " })
+                        @*   @Html.ActionLink("Details", "Details", new { id=item.BoardID }) |*@
+                        @Html.ActionLink("刪除", "Delete", null, new { id = item.BoardID }, new { @class = "btn btn-danger" })
+                    }
+                }
+            </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<p class="text-right">
+    @Html.ActionLink("我要分享", "Create", null, new { @class = "btn btn-success" })
+</p>
+<div class="pag1">
+    @Html.PagedListPager(Model, b => Url.Action("Index", "Home", new { page = b, sortBy = Request.QueryString["sortBy"], area = "" }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+</div>
+<br />
+<br />
+
+@*@section scripts{
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    }*@

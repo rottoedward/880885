@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>880885</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/animate.css" rel="stylesheet" />
+    <link href="~/Content/simple-line-icons.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/settings.css" rel="stylesheet" />
+    <link rel="stylesheet" href="files/rs-plugin/css/settings.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    @RenderSection("heads", false)
+    @RenderSection("styles", false)
+</head>
+<body>
+    <div class="sidebar-menu-container" id="sidebar-menu-container">
+
+        <div class="sidebar-menu-push">
+
+            <div class="sidebar-menu-overlay"></div>
+
+            <div class="sidebar-menu-inner">
+
+                <header class="site-header">
+                    <div id="main-header" class="main-header header-sticky">
+                        <div class="inner-header clearfix">
+                            <div class="logo">
+                                <a href="~/Home/Index" class="has-submenu">880885</a>
+                            </div>
+                            <div class="header-right-toggle pull-right hidden-md hidden-lg">
+                                <a href="javascript:void(0)" class="side-menu-button"><i class="fa fa-bars"></i></a>
+                            </div>
+                            <nav class="main-navigation pull-right hidden-xs hidden-sm">
+                                <ul>
+                                    <li>
+                                        @{if (Session["MEMBERID"] != null)
+                                            {
+                                                <a href="~/TotalCase/Goods/GoodsCreate">發表案件</a>
+                                            }
+                                        }
+                                    </li>
+                                    <li>
+                                        <a href="~/TotalCase/Goods/BrowseGoodsAll">瀏覽案件</a>
+                                    </li>
+                                    <li>
+                                        <a href="~/MyCaseCenter/MyGood/Index"><span class="glyphicon glyphicon-bell" title="通知"></span></a>
+                                        <div style="width:16px; height:16px; background-color:#FF0000; position: absolute; top:0px; right:0px; margin-top:20px; border-radius:8px;font-size:10px; text-align: center; margin-right:7px; color:#ffffff;">5</div>
+
+                                    </li>
+
+                                    <li><a href="@Url.Action("Index", "Search", new { area = "SearchCase" })"><span class="glyphicon glyphicon-search" title="搜尋"></span></a></li>
+
+
+                                    <li>
+                                        <a href="@Url.Action("Cart", "Cart", new { area = "ShoppingCart" })"><span class="glyphicon glyphicon-shopping-cart" title="購物車"></span></a>
+                                    </li>
+                                    <li>
+                                        @{
+                                            if (Session["MEMBERID"] != null)
+                                            {
+                                                <a href="~/MyMember/Member/MemberProfile"><span class="glyphicon glyphicon-user" title="會員資料"></span></a>
+                                                <ul class="sub-menu">
+                                                    <li>@Html.ActionLink("我的案件", "Index", "MyGood", new { area = "MyCaseCenter" }, null)</li>
+                                                    <li>@Html.ActionLink("我的訂單", "orderlist", "eva", new { area = "MyEva" }, null)</li>
+                                                    <li>@Html.ActionLink("我的評價", "Evalist", "eva", new { area = "MyEva" }, null)</li>
+                                                    <li>@Html.ActionLink("登出", "Logout", "Member", new { area = "MyMember" }, null)</li>
+                                                    <li><a href=""></a></li>
+                                                </ul>
+
+                                            }
+                                            else
+                                            {
+                                                <a href="~/MyMember/Member/Login"><span class="glyphicon glyphicon-user" title="登入"></span></a>
+                                            }
+                                        }
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </header>
+                @*<div style="height:90px;width:100%"></div>*@
+                @*<div style="width:100%; height:500px; background-image:url('@Url.Content("~/Images/TopBackImage.jpeg")') ; background-size:cover; background-repeat:no-repeat; background-position:center top;"></div>*@
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+
+                <div style="width:auto">
+
+                    <div class="row">
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-8">
+                            @RenderBody()
+                        </div>
+                        <div class="col-lg-2"></div>
+                    </div>
+                </div>
+
+
+
+                <a href="#" class="go-top"><i class="fa fa-angle-up"></i></a>
+
+            </div>
+
+        </div>
+
+        <footer class="footer">
+            <div class="three spacing"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h1> <a href="#"> 880885 </a> </h1>
+                        <ul>
+                            <li>營業時間:9:00 ~ 21:00</li>
+                            <li>電話:02 6631 6666</li>
+                            <li>地址:台北市大安區復興南路一段390號2樓</li>
+                        </ul>
+                        <p>©2017 880885. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="two spacing"></div>
+        </footer>
+        <nav class="sidebar-menu slide-from-left">
+            <div class="nano">
+                <div class="content">
+                    <nav class="responsive-menu">
+                        <ul>
+                            <li>
+                                <a href="~/TotalCase/Goods/BrowseGoodsAll" class="has-submenu">瀏覽全部案件</a>
+
+                            </li>
+
+                            <li>
+                                <a href="~/MyCaseCenter/MyGood/Index"><span class="glyphicon glyphicon-bell" title="通知"></span></a>
+                                @*<div style="width:16px; height:16px; background-color:#FF0000; position: absolute; top:0px; right:0px; margin-top:20px; border-radius:8px;font-size:10px; text-align: center; margin-right:7px; color:#ffffff;">5</div>*@
+
+                            </li>
+                            <li><a href="@Url.Action("Index", "Search",new {area= "SearchCase" })"><span class="glyphicon glyphicon-search" title="搜尋"></span></a></li>
+                            <li><a href="@Url.Action("Index", "Search",new {area= "SearchCase" })"><span class="glyphicon glyphicon-calendar" title="行事曆(未連結)"></span></a></li>
+
+                            <li>
+                                <a href="@Url.Action("Cart", "Cart",new {area= "ShoppingCart" })"><span class="glyphicon glyphicon-shopping-cart" title="購物車"></span></a>
+                            </li>
+                            <li>
+                                @{
+                                    if (Session["MEMBERID"] != null)
+                                    {
+                                        <a href="~/MyMember/Member/MemberProfile"><span class="glyphicon glyphicon-user" title="會員資料"></span></a>
+                                        <ul class="sub-menu">
+
+                                            <li>@Html.ActionLink("我的案件", "Index", "MyGood", new { area = "MyCaseCenter" }, null)</li>
+                                            <li>@Html.ActionLink("我的訂單", "orderlist", "eva", new { area = "MyEva" }, null)</li>
+                                            <li>@Html.ActionLink("我的評價", "Evalist", "eva", new { area = "MyEva" }, null)</li>
+                                            <li>@Html.ActionLink("登出", "Logout", "Member", new { area = "MyMember" }, null)</li>
+                                            <li><a href=""></a></li>
+                                        </ul>
+
+                                    }
+                                    else
+                                    {
+                                        <a href="~/MyMember/Member/Login"><span class="glyphicon glyphicon-user" title="登入"></span></a>
+                                    }
+                                }
+                            </li>
+                        </ul>
+
+                    </nav>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
+    <script src="~/Scripts/jquery.themepunch.tools.min.js"></script>
+    <script src="~/Scripts/jquery.themepunch.revolution.min.js"></script>
+    <script src="~/Scripts/plugins.js"></script>
+    <script src="~/Scripts/custom.js"></script>
+    @RenderSection("scripts", false)
+</body>
+</html>

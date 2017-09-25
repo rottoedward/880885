@@ -1,0 +1,507 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>880885</title>
+    <link href="https://www.novzi.com/ajax/demo.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/animate.css" rel="stylesheet" />
+    <link href="~/Content/simple-line-icons.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/settings.css" rel="stylesheet" />
+    <link rel="stylesheet" href="files/rs-plugin/css/settings.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <script>
+        var sub = ["user1", "user2"];
+        //reloadSubArray();
+        function sendData(publish, message) {
+            send(publish, message);
+        }
+        function getData(subscribe, message) {
+            //alert(subscribe + " : " + message);
+            var d = new Date();
+
+            var mincheck = ""
+            mincheck += d.getMinutes();
+            if (mincheck.length == 1) {
+                mincheck = "0" + d.getMinutes();
+            }
+
+            var time = "";
+            time += d.getHours();
+            time += ":";
+            time += mincheck;
+
+
+            if (subscribe == "user1") {
+                $('#chat-history').append($("<hr><div class='chat-message clearfix'><img src='https://img.sportsv.net/img/photo/image/6/60146/aspect-kMm3blDKXG-1000xauto.jpg' alt='' width='32'height='32'><div class='chat-message-content clearfix'><span class='chat-time'>" + time + "</span><h5>akira</h5><p>" + message + "</p></div></div>").hide().fadeIn(300));
+
+                $('#chat-history2').append($("<hr><div class='chat-message clearfix'><img src='https://img.sportsv.net/img/photo/image/6/60146/aspect-kMm3blDKXG-1000xauto.jpg' alt='' width='32'height='32'><div class='chat-message-content clearfix'><span class='chat-time'>" + time + "</span><h5>akira</h5><p>" + message + "</p></div></div>").hide().fadeIn(300));
+            }
+            else {
+                $('#chat-history').append($("<hr><div class='chat-message clearfix'><img src='http://video.nextmag.com.tw/photo/2016/05/23/B783ENT03-4-7_1464003901163_577194_ver1.0.jpg' alt='' width='32'height='32'><div class='chat-message-content clearfix'><span class='chat-time'>" + time + "</span><h5>鯰魚哥</h5><p>" + message + "</p></div></div>").hide().fadeIn(300));
+
+                $('#chat-history2').append($("<hr><div class='chat-message clearfix'><img src='http://video.nextmag.com.tw/photo/2016/05/23/B783ENT03-4-7_1464003901163_577194_ver1.0.jpg' alt='' width='32'height='32'><div class='chat-message-content clearfix'><span class='chat-time'>" + time + "</span><h5>鯰魚哥</h5><p>" + message + "</p></div></div>").hide().fadeIn(300));
+            }
+
+
+            $('.chat-history').scrollTop($('.chat-history')[0].scrollHeight);
+            $('.chat-history2').scrollTop($('.chat-history2')[0].scrollHeight);
+
+            if (document.visibilityState != "visible") {
+                //alert("off");
+                trigger_notification(subscribe, message);
+
+            }
+            else {
+
+                //alert("on");
+            }
+
+        }
+
+        function trigger_notification(subscribe, message) {
+            //check if browser supports notification API
+            //alert("hi");
+
+            if ("Notification" in window) {
+                if (Notification.permission == "granted") {
+                    if (subscribe == "user1") {
+                        var notification = new Notification("你有來自" + " akira " + "的訊息",
+                        { "body": message, "icon": "https://www.novzi.com/ajax/png.png" });
+                    }
+                    else if (subscribe == "user2") {
+                        var notification = new Notification("你有來自" + " 鯰魚哥 " + "的訊息",
+                        { "body": message, "icon": "https://www.novzi.com/ajax/png.png" });
+                    }
+                }
+                else {
+                    Notification.requestPermission(function (permission) {
+                        if (permission === "granted") {
+                            var notification = new Notification("你有來自" + subscribe + "的訊息",
+                            { "body": message, "icon": "https://www.novzi.com/ajax/png.png" });
+                        }
+                    });
+                }
+            }
+            else {
+                alert("Your browser doesn't support notfication API");
+            }
+        }
+    </script>
+    @RenderSection("heads", false)
+    @RenderSection("styles", false)
+</head>
+<body>
+    <div class="sidebar-menu-container" id="sidebar-menu-container">
+
+        <div class="sidebar-menu-push">
+
+            <div class="sidebar-menu-overlay"></div>
+
+            <div class="sidebar-menu-inner">
+
+                <header class="site-header">
+                    <div id="main-header" class="main-header header-sticky">
+                        <div class="inner-header clearfix">
+                            <div class="logo">
+                                <a href="~/Home/Index" class="has-submenu" style="font-family:DFKai-sb">幫幫你幫幫我－公益互助網</a>
+                            </div>
+                            <div class="header-right-toggle pull-right hidden-md hidden-lg">
+                                <a href="javascript:void(0)" class="side-menu-button"><i class="fa fa-bars" style="color:white;"></i></a>
+                            </div>
+                            <nav class="main-navigation pull-right hidden-xs hidden-sm">
+                                <ul>
+                                    <li>
+                                        @{if (Session["MEMBERID"] != null)
+                                            {
+                                                <a href="~/TotalCase/Goods/GoodsCreate">刊登案件</a>
+                                            }
+                                        }
+                                    </li>
+                                    <li>
+                                        <a href="~/TotalCase/Goods/BrowseGoodsAll">瀏覽案件</a>
+                                    </li>
+                                    
+
+                                    <li><a href="@Url.Action("Index", "Search", new { area = "SearchCase" })"><span class="glyphicon glyphicon-search" title="搜尋"></span></a></li>
+                                    <li>
+                                        <a href="@Url.Action("Index", "Home", new { area = "test" })"><span class="glyphicon glyphicon-list" title="電子報"></span></a>
+                                    </li>
+
+                                    <li>
+                                        <a href="@Url.Action("Cart", "Cart", new { area = "ShoppingCart" })"><span class="glyphicon glyphicon-shopping-cart" title="待審核清單"></span></a>
+                                    </li>
+                                    <li>
+
+                                        @{
+
+                                            if (Session["MEMBERID"] != null)
+
+                                            {
+                                                <a href="~/MyMember/Member/MemberProfile"><span class="glyphicon glyphicon-user" title="會員資料">@Session["NICKNAME"].ToString()</span></a>
+
+                                                <ul class="sub-menu">
+                                                    <li>@Html.ActionLink("我的案件", "Index", "MyGood", new { area = "MyCaseCenter" }, null)</li>
+                                                    <li>@Html.ActionLink("未評價需求單", "orderlist", "eva", new { area = "MyEva" }, null)</li>
+                                                    <li>@Html.ActionLink("我的需求單紀錄", "orderall", "eva", new { area = "MyEva" }, null)</li>
+                                                    <li>@Html.ActionLink("登出", "Logout", "Member", new { area = "MyMember" }, null)</li>
+                                                    <li><a href=""></a></li>
+                                                </ul>
+
+                                            }
+                                            else
+                                            {
+                                                <a href="~/MyMember/Member/Login"><span class="glyphicon glyphicon-user" title="登入"></span></a>
+                                            }
+                                        }
+                                    </li>
+                                    <li>
+                                        @{
+
+                                            if (Session["MEMBERID"] != null)
+
+                                            {
+                                                <a style="cursor:pointer;"><span class="glyphicon glyphicon-comment" title="聊天室"></span></a>
+
+                                                if (Session["MEMBERID"].ToString() == "17")
+                                                {
+                                                    <ul class="sub-menu">
+                                                        <li id="li-may" style="font-size:larger;margin-left:40px;cursor:pointer">akira</li>
+                                                        <br />
+                                                        <li style="font-size:larger;margin-left:40px;cursor:pointer;">豆花</li>
+                                                    </ul>
+                                                }
+                                                else if (Session["MEMBERID"].ToString() == "18")
+                                                {
+                                                    <ul class="sub-menu">
+                                                        <li id="li-yang" style="font-size:larger;margin-left:40px;cursor:pointer">鯰魚哥</li>
+                                                        <br />
+                                                        <li style="font-size:larger;margin-left:40px;cursor:pointer">豆花</li>
+                                                    </ul>
+                                                }
+                                                else
+                                                {
+                                                    <ul class="sub-menu">
+                                                        <li style="font-size:larger;margin-left:40px;cursor:pointer">鯰魚哥</li>
+                                                        <br />
+                                                        <li style="font-size:larger;margin-left:40px;cursor:pointer">akira</li>
+                                                    </ul>
+                                                }
+
+                                            }
+
+                                        }
+                                    </li>
+
+                                </ul>
+
+                            </nav>
+                        </div>
+                    </div>
+                </header>
+
+
+                <div style="width:auto">
+
+                    <div class="row">
+
+                        @RenderBody()
+
+                    </div>
+                </div>
+
+
+
+                <a href="#" class="go-top"><i class="fa fa-angle-up"></i></a>
+
+            </div>
+
+        </div>
+        <div id="live-chat" class="mqttyang" style="display:none">
+            <header class="clearfix header1">
+                <h4>akira<span id="sisterhide" class="glyphicon glyphicon-remove-circle" style="float:right;"></span></h4>
+
+            </header>
+
+            <div class="chat chat1">
+                <div class="chat-history" id="chat-history">
+                    <div class="chat-message clearfix">
+                        <img src="https://img.sportsv.net/img/photo/image/6/60146/aspect-kMm3blDKXG-1000xauto.jpg" alt="" width="32" height="32">
+                        <div class="chat-message-content clearfix">
+                            <span class="chat-time">13:35</span>
+                            <h5>akira</h5>
+                            <p>Hi好久不見!</p>
+                        </div> <!-- end chat-message-content -->
+                    </div> <!-- end chat-message -->
+                    <hr>
+                    <div class="chat-message clearfix">
+
+                        <img src="http://video.nextmag.com.tw/photo/2016/05/23/B783ENT03-4-7_1464003901163_577194_ver1.0.jpg" alt="" width="32" height="32">
+
+                        <div class="chat-message-content clearfix">
+                            <span class="chat-time">13:36</span>
+                            <h5>鯰魚哥</h5>
+                            <p>你好啊!</p>
+                        </div> <!-- end chat-message-content -->
+                    </div> <!-- end chat-message -->
+                    <hr>
+                    <div class="chat-message clearfix">
+
+                        <img src="http://video.nextmag.com.tw/photo/2016/05/23/B783ENT03-4-7_1464003901163_577194_ver1.0.jpg" alt="" width="32" height="32">
+
+                        <div class="chat-message-content clearfix">
+                            <span class="chat-time">13:36</span>
+                            <h5>鯰魚哥</h5>
+                            <p>想問你棒球的事情</p>
+                        </div> <!-- end chat-message-content -->
+                    </div> <!-- end chat-message -->
+                    <hr>
+                    <div class="chat-message clearfix">
+                        <img src="https://img.sportsv.net/img/photo/image/6/60146/aspect-kMm3blDKXG-1000xauto.jpg" alt="" width="32" height="32">
+                        <div class="chat-message-content clearfix">
+                            <span class="chat-time">13:37</span>
+                            <h5>akira</h5>
+                            <p>為甚麼可以一直漏接球這件事嗎</p>
+                        </div> <!-- end chat-message-content -->
+                    </div> <!-- end chat-message -->
+                    <hr>
+                    <div class="chat-message clearfix">
+
+                        <img src="http://video.nextmag.com.tw/photo/2016/05/23/B783ENT03-4-7_1464003901163_577194_ver1.0.jpg" alt="" width="32" height="32">
+                        <div class="chat-message-content clearfix">
+                            <span class="chat-time">13:37</span>
+                            <h5>鯰魚哥</h5>
+                            <p>對阿!</p>
+                        </div> <!-- end chat-message-content -->
+                    </div> <!-- end chat-message -->
+
+
+
+                </div> <!-- end chat-history -->
+                <form class="form" method="post" action="javascript:userPostfirst();" user="user2">
+
+                    <input id="messagebox1" type="text" style="width:218px;" placeholder="Type your message..." autofocus>
+                    <input type="submit" class="btn btn-primary" style="float:right; height: 32px;">
+                </form>
+
+
+            </div> <!-- end chat -->
+        </div>
+
+        <div id="live-chat" class="mqttmay" style="display:none">
+            <header class="clearfix header2">
+                <h4>鯰魚哥<span id="brotherhide" class="glyphicon glyphicon-remove-circle" style="float:right;"></span></h4>
+
+            </header>
+
+            <div class="chat chat2">
+                <div class="chat-history chat-history2" id="chat-history2">
+                    <div class="chat-message clearfix">
+                        <img src="https://img.sportsv.net/img/photo/image/6/60146/aspect-kMm3blDKXG-1000xauto.jpg" alt="" width="32" height="32">
+                        <div class="chat-message-content clearfix">
+                            <span class="chat-time">13:35</span>
+                            <h5>akira</h5>
+                            <p>Hi好久不見!</p>
+                        </div> <!-- end chat-message-content -->
+                    </div> <!-- end chat-message -->
+                    <hr>
+                    <div class="chat-message clearfix">
+
+                        <img src="http://video.nextmag.com.tw/photo/2016/05/23/B783ENT03-4-7_1464003901163_577194_ver1.0.jpg" alt="" width="32" height="32">
+
+                        <div class="chat-message-content clearfix">
+                            <span class="chat-time">13:36</span>
+                            <h5>鯰魚哥</h5>
+                            <p>你好啊!</p>
+                        </div> <!-- end chat-message-content -->
+                    </div> <!-- end chat-message -->
+                    <hr>
+                    <div class="chat-message clearfix">
+
+                        <img src="http://video.nextmag.com.tw/photo/2016/05/23/B783ENT03-4-7_1464003901163_577194_ver1.0.jpg" alt="" width="32" height="32">
+
+                        <div class="chat-message-content clearfix">
+                            <span class="chat-time">13:36</span>
+                            <h5>鯰魚哥</h5>
+                            <p>想問你棒球的事情</p>
+                        </div> <!-- end chat-message-content -->
+                    </div> <!-- end chat-message -->
+                    <hr>
+                    <div class="chat-message clearfix">
+                        <img src="https://img.sportsv.net/img/photo/image/6/60146/aspect-kMm3blDKXG-1000xauto.jpg" alt="" width="32" height="32">
+                        <div class="chat-message-content clearfix">
+                            <span class="chat-time">13:37</span>
+                            <h5>akira</h5>
+                            <p>為甚麼可以一直漏接球這件事嗎</p>
+                        </div> <!-- end chat-message-content -->
+                    </div> <!-- end chat-message -->
+                    <hr>
+                    <div class="chat-message clearfix">
+
+                        <img src="http://video.nextmag.com.tw/photo/2016/05/23/B783ENT03-4-7_1464003901163_577194_ver1.0.jpg" alt="" width="32" height="32">
+                        <div class="chat-message-content clearfix">
+                            <span class="chat-time">13:37</span>
+                            <h5>鯰魚哥</h5>
+                            <p>對阿!</p>
+                        </div> <!-- end chat-message-content -->
+                    </div> <!-- end chat-message -->
+                </div> <!-- end chat-history -->
+                <form class="form" method="post" action="javascript:userPostSec();" user="user2">
+                    <input id="messagebox2" type="text" style="width:218px;" placeholder="Type your message..." autofocus>
+                    <input type="submit" class="btn btn-primary" style="float:right; height: 32px;">
+
+                </form>
+
+
+
+
+            </div> <!-- end chat -->
+        </div>
+        <footer class="footer">
+            <div class="three spacing"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h1> <a href="#"> 880885 </a> </h1>
+                        <ul>
+                            <li>營業時間:9:00 ~ 21:00</li>
+                            <li>電話:02 6631 6666</li>
+                            <li>地址:台北市大安區復興南路一段390號2樓</li>
+                        </ul>
+                        <p>©2017 880885. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="two spacing"></div>
+        </footer>
+        <nav class="sidebar-menu slide-from-left">
+            <div class="nano">
+                <div class="content">
+                    <nav class="responsive-menu">
+                        <ul>
+                            <li>
+                                <a href="~/TotalCase/Goods/BrowseGoodsAll" class="has-submenu">瀏覽全部案件</a>
+
+                            </li>
+
+                            <li>
+                                <a href="~/MyCaseCenter/MyGood/Index"><span class="glyphicon glyphicon-bell" title="通知"></span></a>
+                                @*<div style="width:16px; height:16px; background-color:#FF0000; position: absolute; top:0px; right:0px; margin-top:20px; border-radius:8px;font-size:10px; text-align: center; margin-right:7px; color:#ffffff;">5</div>*@
+
+                            </li>
+                            <li><a href="@Url.Action("Index", "Search",new {area= "SearchCase" })"><span class="glyphicon glyphicon-search" title="搜尋"></span></a></li>
+                            <li><a href="@Url.Action("Index", "Search",new {area= "SearchCase" })"><span class="glyphicon glyphicon-calendar" title="行事曆(未連結)"></span></a></li>
+
+                            <li>
+                                <a href="@Url.Action("Cart", "Cart",new {area= "ShoppingCart" })"><span class="glyphicon glyphicon-shopping-cart" title="購物車"></span></a>
+                            </li>
+                            <li>
+                                @{
+                                    if (Session["MEMBERID"] != null)
+                                    {
+                                        <a href="~/MyMember/Member/MemberProfile"><span class="glyphicon glyphicon-user" title="會員資料"></span></a>
+                                        <ul class="sub-menu">
+
+                                            <li>@Html.ActionLink("我的案件", "Index", "MyGood", new { area = "MyCaseCenter" }, null)</li>
+                                            <li>@Html.ActionLink("我的訂單", "orderlist", "eva", new { area = "MyEva" }, null)</li>
+                                            <li>@Html.ActionLink("我的評價", "Evalist", "eva", new { area = "MyEva" }, null)</li>
+                                            <li>@Html.ActionLink("登出", "Logout", "Member", new { area = "MyMember" }, null)</li>
+                                            <li><a href=""></a></li>
+                                        </ul>
+
+                                    }
+                                    else
+                                    {
+                                        <a href="~/MyMember/Member/Login"><span class="glyphicon glyphicon-user" title="登入"></span></a>
+                                    }
+                                }
+                            </li>
+                        </ul>
+
+                    </nav>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+
+    <script src="https://www.novzi.com/ajax/wilson_pubsub.js" type="text/javascript"></script>
+    <script src="https://www.novzi.com/ajax/demo.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
+    <script src="~/Scripts/jquery.themepunch.tools.min.js"></script>
+    <script src="~/Scripts/jquery.themepunch.revolution.min.js"></script>
+    <script src="~/Scripts/plugins.js"></script>
+    <script src="~/Scripts/custom.js"></script>
+    <script>
+                    function userPostSec() {
+                        if ($('#messagebox2').val() != "") {
+                            sendData("user1", $('#messagebox2').val())
+                            $('#messagebox2').val("")
+                        }
+
+
+                    }
+                    $(document).ready(function () {
+                        $('.header2').click(function () {
+                            $('.chat2').slideToggle();
+                        });
+                    });
+
+    </script>
+    <script>
+                    function userPostfirst() {
+                        if ($('#messagebox1').val() != "") {
+
+
+                            sendData("user2", $('#messagebox1').val());
+                            $('#messagebox1').val("")
+                        }
+
+                    }
+
+
+                    $(document).ready(function () {
+                        $('.header1').click(function () {
+
+                            $('.chat1').slideToggle();
+                        });
+                    });
+
+    </script>
+    <script>
+        $(document).ready(function () {
+            //$('.mqttmay').hide();
+
+
+            //$('.mqttyang').hide();
+        });
+        $('#li-yang').click(function () {
+            $('.mqttmay').slideToggle();
+        });
+        $('#li-may').click(function () {
+            $('.mqttyang').slideToggle();
+        });
+        $('#sisterhide').click(function () {
+            $('.mqttyang').slideToggle();
+        });
+        $('#brotherhide').click(function () {
+            $('.mqttmay').slideToggle();
+        });
+    </script>
+
+    @RenderSection("scripts", false)
+</body>
+
+</html>

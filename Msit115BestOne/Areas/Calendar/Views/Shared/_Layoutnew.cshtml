@@ -1,0 +1,234 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>880885</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/animate.css" rel="stylesheet" />
+    <link href="~/Content/simple-line-icons.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/settings.css" rel="stylesheet" />
+    <link rel="stylesheet" href="files/rs-plugin/css/settings.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    @RenderSection("heads", false)
+    @RenderSection("styles", false);
+</head>
+<body>
+    <div class="sidebar-menu-container" id="sidebar-menu-container">
+
+        <div class="sidebar-menu-push">
+
+            <div class="sidebar-menu-overlay"></div>
+
+            <div class="sidebar-menu-inner">
+
+                <header class="site-header">
+                    <div id="main-header" class="main-header header-sticky">
+                        <div class="inner-header clearfix">
+                            <div class="logo">
+                                <a href="~/Home/Index" class="has-submenu">880885</a>
+                            </div>
+                            <div class="header-right-toggle pull-right hidden-md hidden-lg">
+                                <a href="javascript:void(0)" class="side-menu-button"><i class="fa fa-bars"></i></a>
+                            </div>
+                            <nav class="main-navigation pull-right hidden-xs hidden-sm">
+                                <ul>
+                                    <li>
+                                        <a href="#" class="has-submenu">案件</a>
+                                        <ul class="sub-menu">
+                                            <li>@Html.ActionLink("物品案件", "BrowseGoods", "Goods", new { area = "TotalCase" }, null)</li>
+                                            <li><a href="~/Home/Index">人力案件</a></li>
+                                          
+                                            <li><a href=""></a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="has-submenu">我的案件清單</a>
+                                        <ul class="sub-menu">
+                                            <li>@Html.ActionLink("物品案件", "Index", "MyGood", new { area = "MyCaseCenter" }, null)</li>
+                                            <li>@Html.ActionLink("人力案件", "Index", "MyManPower", new { area = "MyCaseCenter" }, null)</li>
+                                        </ul>
+                                    </li>
+
+                                    <li>
+                                        <a href="contact.html"><span class="glyphicon glyphicon-bell" title="通知"></span></a>
+                                        <div style="width:16px; height:16px; background-color:#FF0000; position: absolute; top:0px; right:0px; margin-top:20px; border-radius:8px;font-size:10px; text-align: center; margin-right:7px; color:#ffffff;">2</div>
+
+                                    </li>
+
+                                    <li><a href="@Url.Action("Index", "Search",new {area= "SearchCase" })"><span class="glyphicon glyphicon-search" title="搜尋"></span></a></li>
+                                    <li>
+                                        <a href="@Url.Action("Cart", "Cart",new {area= "ShoppingCart" })"><span class="glyphicon glyphicon-shopping-cart" title="購物車"></span></a>
+                                    </li>
+                                    <li>
+                                        <a href="contact.html"><span class="glyphicon glyphicon-user" title="登入"></span></a>
+                                        <ul class="sub-menu">
+                                            <li>@Html.ActionLink("會員登入", "Login", "Member", new { area = "MyMember" }, null)</li>
+                                            <li><a href="~/Home/Index">會員資料</a></li>
+                                            <li>@Html.ActionLink("我的訂單", "orderlist", "eva", new { area = "MyEva" }, null)</li>
+                                            <li>@Html.ActionLink("我的評價", "Evalist", "eva", new { area = "MyEva" }, null)</li>
+                                            <li><a href=""></a></li>
+                                        </ul>
+
+                                    </li>
+                                    <li>
+                                        <a href="contact.html"><span class="glyphicon glyphicon-piggy-bank"></span></a>
+                                        <ul class="sub-menu">
+                                            <li><a href="~/Home/Index">儲值</a></li>
+                                            <li><a href="~/Home/Index">餘額查詢</a></li>
+                                            <li><a href=""></a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </header>
+                @*<div style="height:90px;width:100%"></div>*@
+                <div style="width:100%; height:500px; background-image:url('@Url.Content("~/Images/TopBackImage.jpeg")') ; background-size:cover; background-repeat:no-repeat; background-position:center top;"></div>
+                <div style="width:auto">
+                    <div class="row">
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-8">
+                            @RenderBody()
+                        </div>
+                        <div class="col-lg-2"></div>
+                    </div>
+                </div>
+
+
+
+                <a href="#" class="go-top"><i class="fa fa-angle-up"></i></a>
+
+            </div>
+
+        </div>
+
+        <footer class="footer">
+            <div class="three spacing"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h1>
+                            <a href="index.html">
+                                880885
+                            </a>
+                        </h1>
+                        <p>©2015 Yom. All rights reserved.</p>
+                        <div class="spacing"></div>
+                        <ul class="socials">
+                            <li>
+                                <a href="http://facebook.com">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://twitter.com">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://dribbble.com">
+                                    <i class="fa fa-dribbble"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://tumblr.com">
+                                    <i class="fa fa-tumblr"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="spacing"></div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="spacing"></div>
+                        <div class="links">
+                            <h4>Some pages</h4>
+                            <ul>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">View some works here</a></li>
+                                <li><a href="#">Follow our blog</a></li>
+                                <li><a href="#">Contact us</a></li>
+                                <li><a href="#">Our services</a></li>
+                            </ul>
+                        </div>
+                        <div class="spacing"></div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="spacing"></div>
+                        <div class="links">
+                            <h4>Recent posts</h4>
+                            <ul>
+                                <li><a href="#">Hello World!</a></li>
+                                <li><a href="#">This is the post title here</a></li>
+                                <li><a href="#">Our happy day</a></li>
+                                <li><a href="#">The first works done</a></li>
+                                <li><a href="#">The cats and dogs</a></li>
+                            </ul>
+                        </div>
+                        <div class="spacing"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="two spacing"></div>
+        </footer>
+
+    </div>
+    <nav class="sidebar-menu slide-from-left">
+        <div class="nano">
+            <div class="content">
+                <nav class="responsive-menu">
+                    <ul>
+                        <li><a href="index-2.html">Home</a></li>
+                        <li class="menu-item-has-children">
+                            <a href="#">Pages</a>
+                            <ul class="sub-menu">
+                                <li><a href="services.html">Services</a></li>
+                                <li><a href="clients.html">Clients</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-item-has-children">
+                            <a href="#">Blog</a>
+                            <ul class="sub-menu">
+                                <li><a href="blog.html">Blog Classic</a></li>
+                                <li><a href="blog-grid.html">Blog Grid</a></li>
+                                <li><a href="blog-single.html">Single Post</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="about.html">About</a></li>
+                        <li class="menu-item-has-children">
+                            <a href="#">Works</a>
+                            <ul class="sub-menu">
+                                <li><a href="work-3columns.html">Three Columns</a></li>
+                                <li><a href="work-4columns.html">Four Columns</a></li>
+                                <li><a href="single-project.html">Single Project</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </nav>
+
+    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+    <script src="~/Scripts/jquery.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
+    <script src="~/Scripts/jquery.themepunch.tools.min.js"></script>
+    <script src="~/Scripts/jquery.themepunch.revolution.min.js"></script>
+    <script src="~/Scripts/plugins.js"></script>
+    <script src="~/Scripts/custom.js"></script>
+    @RenderSection("scripts", false);
+</body>
+</html>

@@ -1,0 +1,8 @@
+﻿@{
+    string categoryName = ViewBag.categoryName;
+}
+@Html.ActionLink("瀏覽全部案件", "Browse" + categoryName + "All", categoryName, null, new { @class = "btn btn-large btn-inverse", id = "BrowseAll" })
+@Html.ActionLink("查看個人案件", categoryName + "Read", categoryName, null, new { @class = "btn btn-large btn-inverse", id = "ORead" })
+@Html.ActionLink("建立個人案件", categoryName + "Create", categoryName, null, new { @class = "btn btn-large btn-inverse", id = "OCreate" })
+@Html.ActionLink("修改個人案件", categoryName + "Update", categoryName, null, new { @class = "btn btn-large btn-inverse", id = "OUpdate" })
+@Html.ActionLink("刪除個人案件", categoryName + "Delete", categoryName, null, new { @class = "btn btn-large btn-inverse", id = "ODelete" })
